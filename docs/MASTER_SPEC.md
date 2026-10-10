@@ -226,7 +226,7 @@ These stages are planning priorities. Nothing in Stage 2 or 3 is implemented or 
 
 ### 8.2 Primary navigation
 
-Order and labels are fixed: **Home · Plan · Code Detective · Rubber Duck · Knowledge Check · Deploy · My Skills · Sign In / Profile.**
+Approved hackathon lifecycle order and labels: **Home · Plan · Code Detective · Knowledge Check · Rubber Duck · Deploy · My Skills · Sign In / Profile.** This follows Plan → Understand → Prove → Debug/Improve → Ship → Grow.
 
 - The current page has `aria-current="page"` and the active style.
 - The sign-in slot shows "Sign In" when signed out and an avatar menu (Profile, Sign out) when signed in.
