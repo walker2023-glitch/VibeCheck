@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { BookOpen, Compass, Lightbulb } from "lucide-react";
 import { getAnalysisPollPlan } from "@/lib/api/analysis-polling";
 import { api } from "@/lib/api/client";
@@ -11,10 +11,7 @@ import { saveGuestSession } from "@/lib/session-state";
 import { ConceptCard } from "../analysis/ConceptCard";
 import { StatusLine } from "../analysis/StatusLine";
 import { RepositoryInput } from "../ui/RepositoryInput";
-import {
-  ProcessFlowVisualization,
-  analysisStageToProcessIndex
-} from "./ProcessFlowVisualization";
+import { CodeDetectivePreview } from "./CodeDetectivePreview";
 
 type UiPhase =
   | { kind: "idle" }
@@ -69,6 +66,13 @@ export function HomeExperience() {
   const [url, setUrl] = useState("");
   const [phase, setPhase] = useState<UiPhase>({ kind: "idle" });
   const [fieldError, setFieldError] = useState<string | null>(null);
+  const inputSectionRef = useRef<HTMLDivElement>(null);
+
+  const inviteAnalyze = useCallback(() => {
+    const input = document.getElementById("repository-url") as HTMLInputElement | null;
+    inputSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    input?.focus();
+  }, []);
 
   const runAnalysis = useCallback(async (raw: string) => {
     const validated = validateGitHubUrl(raw);
@@ -165,12 +169,6 @@ export function HomeExperience() {
   }, []);
 
   const submitting = phase.kind === "working";
-  const processIndex =
-    phase.kind === "working"
-      ? analysisStageToProcessIndex(phase.stage)
-      : phase.kind === "success"
-        ? 4
-        : null;
 
   return (
     <div className="relative overflow-hidden">
@@ -191,7 +189,7 @@ export function HomeExperience() {
             AI-assisted code using their own repositories.
           </p>
 
-          <div className="mt-10 flex w-full justify-center">
+          <div ref={inputSectionRef} className="mt-10 flex w-full justify-center">
             <RepositoryInput
               value={url}
               onChange={setUrl}
@@ -208,7 +206,7 @@ export function HomeExperience() {
         </section>
 
         <div className="flex justify-center">
-          <ProcessFlowVisualization activeStageIndex={processIndex} />
+          <CodeDetectivePreview onInviteAnalyze={inviteAnalyze} />
         </div>
 
         {phase.kind === "working" ? (

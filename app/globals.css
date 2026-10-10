@@ -102,28 +102,65 @@ body {
   mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 45%, transparent 100%);
 }
 
-.vc-process-path {
+.vc-code-preview-line-active {
+  box-shadow: inset 0 0 24px rgba(22, 184, 176, 0.08);
+}
+
+.vc-code-preview-scanner {
+  animation: vc-preview-scanner-glow 2.5s ease-in-out infinite;
+}
+
+.vc-code-preview-connector {
   background: linear-gradient(
-    180deg,
+    90deg,
     transparent,
-    rgba(22, 184, 176, 0.35),
-    transparent
+    rgba(22, 184, 176, 0.18),
+    rgba(65, 214, 173, 0.22)
   );
 }
 
-@media (min-width: 768px) {
-  .vc-process-path {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(22, 184, 176, 0.35),
-      transparent
-    );
+.vc-code-preview-panel {
+  animation: vc-preview-panel-in 450ms ease-out;
+}
+
+.vc-code-preview-progress-bar {
+  width: 100%;
+  transform-origin: left center;
+  animation-name: vc-preview-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes vc-preview-scanner-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(22, 184, 176, 0.35));
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(22, 184, 176, 0.7));
+    opacity: 1;
   }
 }
 
-.vc-process-stage-active {
-  transition: color 300ms ease, box-shadow 300ms ease;
+@keyframes vc-preview-panel-in {
+  from {
+    opacity: 0.35;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vc-preview-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -136,8 +173,12 @@ body {
     scroll-behavior: auto !important;
   }
 
-  .vc-process-stage-active {
-    box-shadow: none;
+  .vc-code-preview-panel,
+  .vc-code-preview-scanner,
+  .vc-code-preview-progress-bar {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
   }
 }
 
