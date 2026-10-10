@@ -32,9 +32,34 @@ export async function handle(action: () => Promise<Response> | Response): Promis
   }
 }
 
+function unauthorizedOrigin(): never {
+  throw new ApiError("AUTHORIZATION_FAILED", 403, "This request origin is not allowed.");
+}
+
+/** When set, APP_ORIGIN is the sole trusted browser origin (normalized). Host/X-Forwarded-* are never consulted. */
+function configuredAppOrigin(): string | undefined {
+  const raw = process.env.APP_ORIGIN;
+  if (raw === undefined || raw === "") return undefined;
+  let parsed: URL;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    unauthorizedOrigin();
+  }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") unauthorizedOrigin();
+  if (parsed.username || parsed.password) unauthorizedOrigin();
+  if (parsed.search || parsed.hash) unauthorizedOrigin();
+  if (parsed.pathname !== "/" && parsed.pathname !== "") unauthorizedOrigin();
+  // Reject whitespace / multi-value / non-origin forms that URL() still parses.
+  if (raw.trim() !== raw || /\s/.test(raw)) unauthorizedOrigin();
+  return parsed.origin;
+}
+
 export function assertOrigin(request: Request): void {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) throw new ApiError("AUTHORIZATION_FAILED", 403, "This request origin is not allowed.");
+  if (!origin) return;
+  const trusted = configuredAppOrigin() ?? new URL(request.url).origin;
+  if (origin !== trusted) unauthorizedOrigin();
 }
 
 export async function readJsonObject(request: Request, allowed: string[]): Promise<Record<string, unknown>> {
@@ -71,7 +96,9 @@ export function requireGuest(request: Request): GuestSession {
 }
 
 export function guestCookie(session: GuestSession, request: Request): string {
-  const secure = new URL(request.url).protocol === "https:" ? "; Secure" : "";
+  const configured = configuredAppOrigin();
+  const https = configured ? configured.startsWith("https:") : new URL(request.url).protocol === "https:";
+  const secure = https ? "; Secure" : "";
   return `vibecheck_guest=${session.id}; Path=/; Max-Age=${Math.floor(GUEST_TTL_MS / 1000)}; HttpOnly; SameSite=Lax${secure}`;
 }
 
