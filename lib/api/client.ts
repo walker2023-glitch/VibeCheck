@@ -130,6 +130,23 @@ export const api = {
     });
   },
 
+  async updateAiConsent(
+    repositoryId: string,
+    granted: boolean
+  ): Promise<{ granted: boolean; consentVersion: string }> {
+    if (isFixtureMode()) {
+      void repositoryId;
+      return { granted, consentVersion: "demo.v1" };
+    }
+    return request<{ granted: boolean; consentVersion: string }>(
+      `/repositories/${repositoryId}/ai-consent`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ granted, consentVersion: "demo.v1" })
+      }
+    );
+  },
+
   async createAssessment(runId: string, conceptIds: string[]): Promise<Assessment> {
     if (isFixtureMode()) {
       return { ...demoAssessment, runId, items: demoAssessment.items.slice(0, 2) };
