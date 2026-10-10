@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { BookOpen, Compass, Lightbulb } from "lucide-react";
+import { getAnalysisPollPlan } from "@/lib/api/analysis-polling";
 import { api } from "@/lib/api/client";
 import { ApiError, ANALYSIS_STAGE_LABELS, analysisUiStage, userMessageForError } from "@/lib/api/errors";
 import type { Concept } from "@/lib/api/types";
@@ -35,17 +36,19 @@ export function HomeExperience() {
     }
 
     setFieldError(null);
-    setPhase({ kind: "working", stage: "validating", progress: 5 });
+    setPhase({ kind: "working", stage: "validating" });
 
     try {
       const repo = await api.createRepository(validated.url);
-      setPhase({ kind: "working", stage: "reading", progress: 15 });
+      setPhase({ kind: "working", stage: "reading" });
 
       const started = await api.startAnalysisRun(repo.id);
       let run = started;
+      const poll = getAnalysisPollPlan(api.isFixtureMode());
 
-      // Poll until terminal (fixture advances each poll; live backend uses real stages)
-      for (let i = 0; i < 20; i += 1) {
+      // Poll until terminal. Live: ~60s at ~1s. Fixtures: short interval for fast demos/tests.
+      // Progress is only shown when the backend supplies AnalysisRun.progress.
+      for (let i = 0; i < poll.maxAttempts; i += 1) {
         run = await api.getAnalysisRun(run.id);
         const ui = analysisUiStage(run.stage, run.status);
         if (ui === "success") break;
@@ -60,9 +63,9 @@ export function HomeExperience() {
         setPhase({
           kind: "working",
           stage: ui === "validating" || ui === "reading" || ui === "inspecting" || ui === "finding" ? ui : "finding",
-          progress: run.progress
+          progress: typeof run.progress === "number" ? run.progress : undefined
         });
-        await sleep(api.isFixtureMode() ? 350 : 800);
+        await sleep(poll.intervalMs);
       }
 
       if (run.status !== "succeeded" && run.stage !== "complete") {
@@ -74,7 +77,11 @@ export function HomeExperience() {
         });
       }
 
-      setPhase({ kind: "working", stage: "finding", progress: run.progress ?? 90 });
+      setPhase({
+        kind: "working",
+        stage: "finding",
+        progress: typeof run.progress === "number" ? run.progress : undefined
+      });
       const page = await api.listConcepts(run.id);
       const concepts = page.items.slice(0, 6);
 

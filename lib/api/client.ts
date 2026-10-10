@@ -23,6 +23,7 @@ import type {
   SessionCompletion
 } from "./types";
 
+// Same-origin default: one Next.js app serves UI + /api/v1 (no CORS for normal deploy).
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "/api/v1";
 
 export function parseEnvelope<T>(envelope: Envelope<T>): T {
