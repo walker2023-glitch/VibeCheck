@@ -27,7 +27,7 @@ The prototype established a useful interface direction: a minimal homepage with 
 
 This specification keeps the prototype's structure and interaction ideas, replaces every fabricated behavior with a defined backend workflow, and applies the Brand Guide's navy, teal, turquoise, and mint system with Inter as the primary typeface.
 
-**Delivery stages.** Stage 1 (hackathon MVP) delivers a reliable end-to-end path: import a repository, identify concepts, assess understanding, explain code, track knowledge, and provide a basic Rubber Duck. Stage 2 adds Plan, Deploy guidance, profiles, and skill reports. Stage 3 covers video, generated lessons, and portfolio features.
+**Delivery stages.** Product Stage 1 retains the scope in §7.1. The narrower Hackathon Demo MVP critical path is: paste a public GitHub URL without signing in, analyze real code, show concepts with file/line evidence and bounded redacted snippets, explain selected code, answer a short multiple-choice Knowledge Check, receive deterministic grading and evidence-grounded feedback, and see an ephemeral session result separating demonstrated from unverified concepts. Persistent My Skills requires sign-in. Rubber Duck and companion follow after that path works; private repository access is a later Stage 1 task. Plan and Deploy remain honest previews. Stage 2 adds Plan, Deploy guidance, profiles, and skill reports. Stage 3 covers video, generated lessons, and portfolio features.
 
 ---
 
@@ -153,7 +153,7 @@ Status values reflect the prototype *and* the implementation as of this document
 |---|---|---|---|---|---|---|
 | F1 | Homepage with repository input | Visual + simulated | Real input validation, real analysis start | 1 | FR-2 | [Not started] |
 | F2 | Three tool choices on homepage | Visual only | Navigate with optional repo | 1 | UI-HOME | [Not started] |
-| F3 | Repository import (GitHub OAuth) | Absent | OAuth, minimum scope | 1 | FR-1, FR-2 | [Not started] |
+| F3 | Repository import (public URL; later authorized private access) | Absent | Guest public import first; private per-repository grant through minimum-scope GitHub App or OAuth, choice deferred | 1 | FR-1, FR-2 | [Not started] |
 | F4 | Commit analysis | Absent | Fetch commits in range | 1 | FR-3 | [Not started] |
 | F5 | Concept identification with evidence | Simulated (hardcoded labels) | Taxonomy mapping, evidence links | 1 | FR-6 | [Not started] |
 | F6 | Code viewer with line focus | Visual only (static table) | Real file content, line selection | 1 | UI-CD | [Not started] |
@@ -180,7 +180,7 @@ Status values reflect the prototype *and* the implementation as of this document
 
 ## 7. MVP Scope and Future Roadmap
 
-### 7.1 Stage 1 — Hackathon MVP (must be reliable end to end)
+### 7.1 Product Stage 1 — full product scope (broader than the Hackathon Demo MVP)
 
 - Homepage with real repository input, validation, and three tools.
 - GitHub import for public and private repositories the user authorizes.
@@ -362,7 +362,9 @@ Each page has an **Initial** state (before interaction) and an **Active** state 
 - Types: multiple choice (single answer), written explanation (rubric-scored, with the rubric shown after submitting), code prediction ("What does this return?").
 - Feedback after each answer: correct/partial/incorrect label in text and icon, the misconception named, the explanation using the user's code, and a button to take a follow-up.
 - Ends with a summary: concepts checked, outcomes, and "Add to my skills" (which writes to the profile only as assessed evidence).
-- A declaration control before each attempt: "Did you use AI help for this answer?" with options Yes / No / Prefer not to say. The answer sets the track (FR-12).
+- A declaration control before each attempt: "Did you use AI help for this answer?" with options Yes / No / Prefer not to say. Yes or No selects a demonstrated-knowledge track; Prefer not to say records practice evidence without changing either track (FR-12, KM-03).
+
+For the narrower Hackathon Demo, use multiple-choice items only. A guest sees a session-scoped completion result showing demonstrated versus unverified concepts from that session's graded attempts. It expires with the guest session and does not create a persistent My Skills profile; "Add to my skills" requires sign-in and is outside the demo. Written grading and item reporting remain Product Stage 1 requirements after the demo.
 
 **Interaction rules (UI-KC):**
 
@@ -881,7 +883,7 @@ Analysis and AI-heavy tasks run as jobs in a database-backed queue (the `analysi
 
 ## 16. Database and Knowledge Model
 
-The data model is defined in full in `docs/plan/vibecheck.md` §8 and is authoritative for schema. This section defines the **knowledge rules** that the schema must enforce.
+The missing original feature plan has been reconstructed as a proposed replacement in `docs/plan/vibecheck.md` §8 and `docs/contracts/domain-model.md`. These are reviewable contract proposals, not an approved SQL schema; this master specification remains authoritative. This section defines the **knowledge rules** that any schema must enforce.
 
 ### 16.1 Knowledge states
 
@@ -894,7 +896,7 @@ Rules:
 
 - **KM-01** A concept that appears in code but has no assessment is `unassessed` and is displayed as "unverified."
 - **KM-02** Commit history alone never changes a knowledge state (addresses the prompt's requirement that scores come from evidence).
-- **KM-03** An attempt updates exactly one track, based on the declaration at attempt time.
+- **KM-03** An attempt declaring No or Yes updates only the independent or assisted track, respectively. An attempt declaring Prefer not to say is retained and receives normal feedback as practice evidence, but updates neither demonstrated-knowledge track. Each track's materialized state comes from its latest valid graded attempt; attempt history is append-only.
 - **KM-04** A state older than 180 days is displayed as stale; the underlying state is retained.
 - **KM-05** Skill summaries include only assessed evidence in "Demonstrated." Everything else is listed as "Not yet verified."
 
@@ -911,7 +913,7 @@ Rules:
 
 ### 17.1 Model use
 
-Claude API is the first provider, accessed only through the provider interface (see the plan §12.1). Model IDs are configuration, recorded on every call. Specific model choice is an implementation decision recorded per prompt version.
+Claude API is the first provider, accessed only through the provider interface (see the reconstructed plan §7 and `docs/contracts/ai-operations.md`). Model IDs are configuration, recorded on every call. Specific model choice is an implementation decision recorded per prompt version.
 
 ### 17.2 Audience calibration
 
@@ -964,7 +966,7 @@ Structure, in order: what the answer assumed (the misconception, named), what ac
 ### 17.10 Evaluation
 
 - A labeled evaluation set (100 items, multiple languages), with expert labels for the correct answer and misconceptions. Gate: at least 95% of multiple-choice items have one defensible answer (human-rated).
-- Written grading agreement with human graders: κ ≥ 0.7 before grades are shown without review.
+- Written grading agreement with human graders: κ ≥ 0.7 before grades are shown as final without review. During the MVP, validated written grades may be shown immediately only as "AI-graded, reviewable"; the review path remains available.
 - Regression evaluation on every prompt or model change; a regression blocks release.
 - Live metric: item report rate. Above 5% per 100 items triggers review.
 
@@ -974,26 +976,28 @@ Structure, in order: what the answer assumed (the misconception, named), what ac
 
 ### 18.1 Conventions
 
-- REST under `/api`, JSON, envelope `{ data, error }` (per the plan §9).
+- REST under `/api/v1`, JSON, envelope `{ data, error }`. Earlier `/api` examples were unversioned shorthand; `/api/v1` is the approved contract prefix.
 - Every route is described in OpenAPI 3.1 and checked in CI (API-001).
-- Idempotency: `Idempotency-Key` on all POSTs that create attempts, analysis runs, or AI outputs (API-002).
+- Idempotency (API-002): require `Idempotency-Key` for repository creation, analysis-run creation, and attempt submission, where duplicate records would be incorrect. Code Detective explanations and assessment generation do not require a complex idempotency ledger in the Hackathon Demo; later persistence/retry requirements may strengthen them.
 - Pagination: cursor-based.
-- Rate limits: per-user limits on AI-triggering endpoints; `429` responses with `Retry-After`.
-- Auth: session cookie (HTTP-only, SameSite=Lax) for browser; no tokens in client JavaScript.
+- Rate limits: stricter guest and per-user limits on AI-triggering endpoints; `429` responses with `Retry-After`.
+- Auth: session cookie (HTTP-only, SameSite=Lax) for browser; a short-lived guest cookie scopes ephemeral public work. Persistent My Skills and private access require sign-in. No tokens in client JavaScript.
 
 ### 18.2 Key contracts (summary)
 
 | Endpoint | Client receives | Client never receives |
 |---|---|---|
-| `POST /api/repositories` | Repository summary | GitHub token |
-| `POST /api/repositories/:id/analysis-runs` | `202` with run ID | Model prompts |
-| `GET /api/analysis-runs/:id` | Stage, progress, error code | Raw repository files beyond the displayed excerpt |
-| `GET /api/repositories/:id/concepts` | Concepts with evidence references | Full file content |
-| `POST /api/assessments` | Items without answers | Answer key, rubric, explanation |
-| `POST /api/assessments/:id/attempts` | Outcome, misconception, explanation, follow-up | Other items' answers |
-| `POST /api/assessment-items/:id/reports` | Acknowledgment | Reporter identity to other users |
-| `POST /api/companion/messages` | Assistant message with grounding references | System prompt, usage internals |
-| `POST /api/code-detective` | Explanations with tags and evidence | Model reasoning traces |
+| `POST /api/v1/repositories` | Repository summary | GitHub token |
+| `GET /api/v1/repositories/:id` | Owned repository and `latestRunId` for refresh/navigation | Other users' resources or run history |
+| `POST /api/v1/repositories/:id/analysis-runs` | `202` with run ID | Model prompts |
+| `GET /api/v1/analysis-runs/:id` | Stage, progress, error code | Raw repository files beyond the displayed excerpt |
+| `GET /api/v1/analysis-runs/:id/concepts` | Concepts with immutable snapshot evidence and bounded redacted snippets | Full file content |
+| `POST /api/v1/assessments` | Items without answers | Answer key, rubric, explanation |
+| `POST /api/v1/assessments/:id/attempts` | Outcome, misconception, explanation, follow-up | Other items' answers |
+| `GET /api/v1/assessments/:id/completion` | Session result: demonstrated versus unverified concepts | Persistent guest knowledge profile |
+| `POST /api/v1/assessment-items/:id/reports` | Acknowledgment | Reporter identity to other users |
+| `POST /api/v1/companion/messages` | Assistant message with grounding references | System prompt, usage internals |
+| `POST /api/v1/code-detective` | Explanations with tags and evidence | Model reasoning traces |
 
 ### 18.3 Companion endpoint rule
 
@@ -1067,12 +1071,14 @@ Concurrency is used only for independent, network-bound work. Bounded concurrenc
 - **SEC-08** Generated code is never executed in Stage 1 (FR-16).
 - **SEC-09** Prompt injection tests in CI (§23).
 - **SEC-10** Rate limits and abuse protection on AI endpoints.
+- **SEC-11** Accept only strictly validated GitHub repository URLs; never fetch arbitrary remote URLs or permit path traversal when reading repository files.
+- **SEC-12** Treat repository files, comments, READMEs, and commit messages as untrusted prompt data. The Hackathon Demo executes zero analyzed or AI-generated code.
 
 ### 20.2 Privacy
 
 - Per-repository AI consent is recorded before analysis that sends code to a provider.
 - A consent screen explains: what is sent, to which provider, retention terms, and how to delete data.
-- Users can delete a repository's analysis and all derived evidence; deletion is confirmed and completes within 30 days (proposal, §29).
+- Users can delete a repository's analysis and all derived evidence; ownership and deletion relationships are specified in the replacement plan. The completion SLA remains an open production decision (§29).
 - Logs contain no source code and no tokens.
 - The product is not directed at children under 13; the terms say so.
 
@@ -1262,7 +1268,7 @@ These follow the plan's milestones (M0–M9), with the UI scope added.
 | Milestone | Scope | Depends on | Exit criteria |
 |---|---|---|---|
 | **M0 Foundations** | Repo, CI, tokens, theme, primitives, placeholder logo, Inter, layout shell, header and navigation (responsive) | — | Tokens tested in both themes; header passes axe; navigation keyboard test passes |
-| **M1 Home and GitHub import** | Home page (initial state), URL validation, GitHub OAuth, repository list, import, consent | M0 | AC-1, UI-HOME-01 to 05 pass |
+| **M1 Home and GitHub import** | Guest public URL/import/consent for demo; signed-in repository list and minimum-scope private authorization later in Product Stage 1 | M0 | Public path first; full AC-1 and UI-HOME-01 to 05 at Stage 1 gate |
 | **M2 Analysis and Code Detective shell** | Analysis runs, stage status, concept inventory, code viewer, evidence, explanation panel (basic), sample workspaces | M1 | AC-2, AC-6, UI-CD rules pass |
 | **M3 Assessments and Knowledge Check** | Generation, schema validation, items, attempts, feedback, reporting | M2 | AC-3, AC-4, AC-5, UI-KC pass |
 | **M4 My Skills** | Knowledge states, two-track progress, stale flags | M3 | AC-10, KM rules pass |
@@ -1273,9 +1279,10 @@ These follow the plan's milestones (M0–M9), with the UI scope added.
 | **M9 Prompt Coach and skill reports** | Prompt coaching, PDF export | M4, M6 | FR-25, FR-26 criteria |
 
 **Critical path:** M0 → M1 → M2 → M3 → M6.
+For the narrower Hackathon Demo MVP, complete the public guest path in M1–M3 with multiple-choice deterministic grading and a guest-session completion result. Repository listing/history, cancellation, deletion, item reports, companion messages, written grading, persistent AI usage ledger, Rubber Duck/Plan/Deploy backends, private OAuth/App authorization, persistent BYOK, and billing are outside that demo target. The milestone table above remains the full Product Stage 1 scope; M4 persistent My Skills requires sign-in. Private authorization is not a prerequisite for public analysis.
 **Parallel after M3:** M4 and M5.
 
-Effort estimates are in the plan (`docs/plan/vibecheck.md` §13) and are AI-generated estimates until validated.
+The reconstructed plan does not include effort estimates; validate estimates during implementation task planning.
 
 ---
 
@@ -1322,6 +1329,11 @@ Effort estimates are in the plan (`docs/plan/vibecheck.md` §13) and are AI-gene
 - **Given** the user declares AI assistance for an attempt,
 - **When** the attempt is recorded,
 - **Then** only the assisted track changes.
+
+**AC-KC-03 (KM-03).**
+- **Given** an attempt declares Prefer not to say,
+- **When** it is graded,
+- **Then** the attempt and educational feedback are retained as practice evidence and neither demonstrated-knowledge track changes.
 
 **AC-MS-01 (KM-05).**
 - **Given** a concept has code evidence but no assessment,
@@ -1450,18 +1462,18 @@ Product metrics (for example, assessments per week) are defined only when instru
 6. **D-06 Logo asset.** Supply the official compass artwork (SVG) and a mascot illustration. Until then, the placeholder rule applies (CR-03, CR-04).
 7. **D-07 Light-theme token values.** Approve or adjust the proposed light variants for success, learn, info, and muted text, and verify contrast (§10.2).
 8. **D-08 Clear space and minimum sizes.** Approve the logo clear-space proposal (§11.3).
-9. **D-09 Deletion window.** Approve 30 days for complete deletion of derived data (§20.2).
+9. **D-09 Retention and deletion SLA.** Ownership and deletion relationships are defined; approve the production retention periods and deletion-completion SLA before production rollout (§20.2). No 30-day period is approved.
 10. **D-10 Mobile companion behavior.** Approve the full-sheet mode below 640 px (§13.3).
 
 **Requires research or decision by the team**
 
 11. **Q-01 Go timer behavior.** Confirm the Go version semantics for the `time.After` claim before showing it (§4.1).
-12. **Q-02 Assisted-track declaration UX.** Is per-attempt declaration enough, or should repositories also ask (plan Q4)?
-13. **Q-03 Language scope for Stage 1.** Recommend JavaScript/TypeScript and Python (plan Q6).
-14. **Q-04 Written grading display.** Shown immediately (Stage 1 labeled "AI-graded, reviewable") or after review?
-15. **Q-05 Repository size limits.** Stage 1 file size limit of 1 MB and commit range limit of 50 are proposals.
-16. **Q-06 Accessibility level.** This spec uses WCAG 2.1 AA with 2.2 target-size checks. Confirm.
-17. **Q-07 Account requirement.** The homepage prototype's sample workspaces are available without sign-in. Confirm that reading samples is allowed without an account and that analysis of a user's own repository requires sign-in.
+12. **Q-02 Resolved.** AI-assistance declaration is per attempt; Prefer not to say is practice only (KM-03).
+13. **Q-03 Resolved.** JavaScript/TypeScript first, Python next; adapters allow more languages.
+14. **Q-04 Resolved.** Validated written grades may display immediately with "AI-graded, reviewable" and later human review.
+15. **Q-05 Resolved for the demo.** Initial configurable limits are 1 MB per source file and 50 commits per analyzed range.
+16. **Q-06 Resolved.** WCAG 2.1 AA baseline with sensible WCAG 2.2 improvements including target size.
+17. **Q-07 Resolved.** Public repository analysis and labeled samples may be anonymous and ephemeral; persistence, private access, and account settings require sign-in.
 18. **Q-08 Mascot illustration style.** Confirm the mascot is a duck (the prototype's copy says "Duck") and approve its visual direction.
 
 ---
@@ -1563,7 +1575,7 @@ Columns: screen, purpose, components, interactions, data needs, prototype behavi
 | UI-KC-04 | Wrong answers don't block | F9 | M3 | TEST-KC-04 | [Not started] |
 | KM-01 | Unassessed = unverified | F12 | M4 | AC-MS-01 | [Not started] |
 | KM-02 | Commits don't change state | F12 | M4 | TEST-KM-02 | [Not started] |
-| KM-03 | One track per attempt | F12 | M3 | AC-KC-02 | [Not started] |
+| KM-03 | Declared track or practice-only attempt | F12 | M3 | AC-KC-02, AC-KC-03 | [Not started] |
 | KM-04 | Stale after 180 days | F13 | M4 | AC-10 (plan) | [Not started] |
 | KM-05 | Demonstrated only from assessment | F20 | M4 | AC-MS-01 | [Not started] |
 | AI-COMP-01 | No task completion | F16 | M5 | AC-COMP-01 | [Not started] |
@@ -1607,7 +1619,7 @@ These documents are derived from this master specification. They must not introd
 | `docs/FEATURES.md` | Feature inventory with status | §6 |
 | `docs/IMPLEMENTATION_PLAN.md` | Milestones, tasks, ownership | §24–§25 |
 | `docs/TEST_STRATEGY.md` | Test layers, fixtures, gates | §23, §26 |
-| `docs/plan/vibecheck.md` | Feature-level plan (template-conformant) | §6, §13, §16 |
+| `docs/plan/vibecheck.md` | Proposed reconstruction of the missing original feature plan | §6–§7, §16–§20 |
 | `AGENTS.md` | Instructions for Cursor, Codex, and other agents | §22, §24 |
 
 ### C.1 AGENTS.md outline
@@ -1641,10 +1653,10 @@ Cursor reads `AGENTS.md` through a project rules file that points to it. Codex a
 | 8 | All major features accounted for | **Yes** (§6). |
 | 9 | Mock functionality not described as implemented | **Yes**. All prototype-only behavior is listed as removed or replaced (§4, Appendix A). |
 | 10 | Technical claims evidence-based | **Partly.** Go timer and other claims flagged for verification (§4.1, Q-01). Contrast values are computed and must be re-verified. |
-| 11 | Architecture decisions consistent | **Yes**, with the plan (`docs/plan/vibecheck.md`). |
+| 11 | Architecture decisions consistent | **Proposed**, with the reconstructed plan (`docs/plan/vibecheck.md`) and M0-02A contract review pending. |
 | 12 | Critical requirements have acceptance criteria | **Yes** (§26.1). |
 | 13 | Tasks independently testable | **Yes** (§23, §24). |
 | 14 | Parallel-agent instructions avoid conflicts | **Yes** (§24). |
 | 15 | MVP and future separated | **Yes** (§7, §25). |
 
-**Items still open:** D-01 through D-10 and Q-01 through Q-08 (§29). Do not begin Stage 1 frontend work that depends on those decisions until they are approved or explicitly deferred.
+**Items still open:** D-01 through D-10 and Q-01 and Q-08 (§29). Q-02 through Q-07 are resolved above. Do not begin frontend work that depends on open decisions until they are approved or explicitly deferred.

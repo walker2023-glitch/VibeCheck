@@ -2,7 +2,7 @@
 
 > Derived from `docs/MASTER_SPEC.md`. The master specification governs if anything conflicts.
 
-> **Gap:** The separate `docs/plan/vibecheck.md` originally referenced for the authoritative database schema was not provided. Do not treat a proposed schema as approved.
+> **M0-02A:** The original detailed feature plan remains missing. `docs/plan/vibecheck.md` is a proposed reconstruction and `docs/contracts/` holds reviewable shared contracts, not SQL migrations or implemented services.
 
 ## 14. Frontend Architecture
 
@@ -88,6 +88,8 @@ tests/
 
 Stage 1 implementation: one Next.js application with route handlers and a background worker process. Services are modules with explicit interfaces so they can split later. No microservices in Stage 1.
 
+The hackathon's narrower critical path begins with ephemeral public-repository analysis, bounded redacted evidence snippets, a multiple-choice Knowledge Check, deterministic feedback, and a session completion result without sign-in. Authenticated persistence and private access are separate tasks. AI features call an AI service, provider resolver, and `AIProvider` adapter; only one server-configured managed Claude adapter is initially needed. Future managed/BYOK selection is a contract boundary, not an implemented credential store. Language adapters normalize JavaScript/TypeScript first, Python next, and preserve line evidence before optional AI clarification. See `docs/contracts/ai-operations.md` and `docs/contracts/language-analysis.md`.
+
 ### 15.2 Background work
 
 Analysis and AI-heavy tasks run as jobs in a database-backed queue (the `analysis_runs` table with status transitions and a polling worker). See §19.
@@ -101,7 +103,7 @@ Analysis and AI-heavy tasks run as jobs in a database-backed queue (the `analysi
 
 ## 16. Database and Knowledge Model
 
-The data model is defined in full in `docs/plan/vibecheck.md` §8 and is authoritative for schema. This section defines the **knowledge rules** that the schema must enforce.
+The proposed logical model, ownership, and deletion graph are in `docs/contracts/domain-model.md`; the master specification remains authoritative. No SQL schema is approved by this summary.
 
 ### 16.1 Knowledge states
 
@@ -114,7 +116,7 @@ Rules:
 
 - **KM-01** A concept that appears in code but has no assessment is `unassessed` and is displayed as "unverified."
 - **KM-02** Commit history alone never changes a knowledge state (addresses the prompt's requirement that scores come from evidence).
-- **KM-03** An attempt updates exactly one track, based on the declaration at attempt time.
+- **KM-03** Yes/No updates the corresponding track from its latest valid graded attempt. Prefer not to say is retained with feedback as practice evidence and updates neither track. Attempts are append-only.
 - **KM-04** A state older than 180 days is displayed as stale; the underlying state is retained.
 - **KM-05** Skill summaries include only assessed evidence in "Demonstrated." Everything else is listed as "Not yet verified."
 
@@ -131,26 +133,28 @@ Rules:
 
 ### 18.1 Conventions
 
-- REST under `/api`, JSON, envelope `{ data, error }` (per the plan §9).
+- REST under `/api/v1`, JSON, envelope `{ data, error }`; `docs/contracts/openapi-v1.yaml` is the proposed route contract.
 - Every route is described in OpenAPI 3.1 and checked in CI (API-001).
-- Idempotency: `Idempotency-Key` on all POSTs that create attempts, analysis runs, or AI outputs (API-002).
+- Idempotency: require `Idempotency-Key` for repository creation, analysis runs, and attempts. Code Detective and assessment generation may be retried without a complex idempotency ledger during the demo (API-002).
 - Pagination: cursor-based.
-- Rate limits: per-user limits on AI-triggering endpoints; `429` responses with `Retry-After`.
-- Auth: session cookie (HTTP-only, SameSite=Lax) for browser; no tokens in client JavaScript.
+- Rate limits: stricter guest limits and per-user limits on AI-triggering endpoints; `429` responses with `Retry-After`.
+- Auth: session cookie (HTTP-only, SameSite=Lax) for browser; a short-lived guest cookie scopes ephemeral public analysis. Persistent history, My Skills, private access, and settings require authentication. No tokens in client JavaScript.
 
 ### 18.2 Key contracts (summary)
 
 | Endpoint | Client receives | Client never receives |
 |---|---|---|
-| `POST /api/repositories` | Repository summary | GitHub token |
-| `POST /api/repositories/:id/analysis-runs` | `202` with run ID | Model prompts |
-| `GET /api/analysis-runs/:id` | Stage, progress, error code | Raw repository files beyond the displayed excerpt |
-| `GET /api/repositories/:id/concepts` | Concepts with evidence references | Full file content |
-| `POST /api/assessments` | Items without answers | Answer key, rubric, explanation |
-| `POST /api/assessments/:id/attempts` | Outcome, misconception, explanation, follow-up | Other items' answers |
-| `POST /api/assessment-items/:id/reports` | Acknowledgment | Reporter identity to other users |
-| `POST /api/companion/messages` | Assistant message with grounding references | System prompt, usage internals |
-| `POST /api/code-detective` | Explanations with tags and evidence | Model reasoning traces |
+| `POST /api/v1/repositories` | Repository summary | GitHub token |
+| `GET /api/v1/repositories/:id` | Owned repository and `latestRunId` | Other users' resources or run history |
+| `POST /api/v1/repositories/:id/analysis-runs` | `202` with run ID | Model prompts |
+| `GET /api/v1/analysis-runs/:id` | Stage, progress, error code | Raw repository files beyond the displayed excerpt |
+| `GET /api/v1/analysis-runs/:id/concepts` | Concepts with bounded redacted evidence snippets | Full file content |
+| `POST /api/v1/assessments` | Items without answers | Answer key, rubric, explanation |
+| `POST /api/v1/assessments/:id/attempts` | Outcome, misconception, explanation, follow-up | Other items' answers |
+| `GET /api/v1/assessments/:id/completion` | Ephemeral session result from graded attempts | Persistent guest knowledge profile |
+| `POST /api/v1/assessment-items/:id/reports` | Acknowledgment | Reporter identity to other users |
+| `POST /api/v1/companion/messages` | Assistant message with grounding references | System prompt, usage internals |
+| `POST /api/v1/code-detective` | Explanations with tags and evidence | Model reasoning traces |
 
 ### 18.3 Companion endpoint rule
 
@@ -161,8 +165,8 @@ The companion receives a context object: page, repository ID, file path, and lin
 | System | Use | Failure handling |
 |---|---|---|
 | GitHub API | Repositories, commits, contents | Retry transient failures; honor rate limits; show specific messages |
-| GitHub OAuth/App | Authorization | Show re-authorization prompt on token revocation |
-| Claude API | Generation and grading | Schema validation; one repair retry; circuit breaker; budget checks |
+| GitHub OAuth/App | Later private authorization; choose one at that task | Per-repository revocation and minimum permissions |
+| Claude through `AIProvider` | Initial managed generation and grading | Schema validation; one repair retry; circuit breaker; budget checks |
 | Supabase | Database, Auth, Realtime (optional) | Retry reads; writes idempotent |
 | Link checker | Resource URLs | 5 s timeout; cache 7 days |
 
