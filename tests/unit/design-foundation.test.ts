@@ -49,7 +49,7 @@ describe("shared design foundation", () => {
     expect(css).not.toContain("cdn.tailwindcss.com");
   });
 
-  it("loads approved fonts and defaults the neutral shell to dark", () => {
+  it("loads approved fonts and defaults the shell to dark", () => {
     const layout = read("app/layout.tsx");
     expect(layout).toContain('from "next/font/google"');
     expect(layout).toContain("Inter");
@@ -57,7 +57,7 @@ describe("shared design foundation", () => {
     expect(layout).toContain('data-theme="dark"');
     expect(layout).toContain("--font-inter");
     expect(layout).toContain("--font-jetbrains-mono");
-    expect(read("app/page.tsx")).toContain("Application foundation");
+    expect(read("app/page.tsx")).toContain("HomeExperience");
   });
 
   it("keeps Stitch technology out of production and exposes the approved compass", () => {
