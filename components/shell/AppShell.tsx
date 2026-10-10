@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 import { FixtureBanner } from "../dev/FixtureBanner";
 import { AskVibeCheckCompanion } from "./AskVibeCheckCompanion";
 import { SiteHeader } from "./SiteHeader";
@@ -12,7 +13,9 @@ export function AppShell({ children }: { children: ReactNode }) {
         <SiteHeader />
       </div>
       <div className="flex-1 pb-24">{children}</div>
-      <AskVibeCheckCompanion />
+      <Suspense fallback={null}>
+        <AskVibeCheckCompanion />
+      </Suspense>
     </div>
   );
 }

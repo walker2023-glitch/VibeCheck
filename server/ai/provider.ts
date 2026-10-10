@@ -1,6 +1,11 @@
 export type GenerateInput = {
-  operation: "explainCode"; model: string; promptVersion: "explainCode.v1"; schemaVersion: "explainCode.v1";
-  boundedInput: string; timeoutMs: number; idempotencyScope: string;
+  operation: "explainCode" | "respondCompanion";
+  model: string;
+  promptVersion: "explainCode.v1" | "respondCompanion.v1";
+  schemaVersion: "explainCode.v1" | "respondCompanion.v1";
+  boundedInput: string;
+  timeoutMs: number;
+  idempotencyScope: string;
 };
 
 export interface AIProvider {

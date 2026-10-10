@@ -147,6 +147,30 @@ export const api = {
     );
   },
 
+  async askCompanion(
+    page: string,
+    question: string,
+    context?: { runId?: string; evidenceId?: string }
+  ): Promise<Explanation> {
+    if (isFixtureMode()) {
+      return {
+        summary:
+          "VibeCheck helps you understand AI-assisted code. This fixture reply is sample guidance, not a live provider response. (Implemented now.)",
+        claims: []
+      };
+    }
+    return request<Explanation>("/companion/messages", {
+      method: "POST",
+      body: JSON.stringify({
+        page,
+        question,
+        ...(context?.runId ? { runId: context.runId } : {}),
+        ...(context?.evidenceId ? { evidenceId: context.evidenceId } : {})
+      }),
+      idempotency: true
+    });
+  },
+
   async createAssessment(runId: string, conceptIds: string[]): Promise<Assessment> {
     if (isFixtureMode()) {
       return { ...demoAssessment, runId, items: demoAssessment.items.slice(0, 2) };
