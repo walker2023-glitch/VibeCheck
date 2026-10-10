@@ -1,0 +1,103 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+
+const NAV = [
+  { href: "/", label: "Home", exact: true },
+  { href: "/code-detective", label: "Code Detective" },
+  { href: "/knowledge-check", label: "Knowledge Check" },
+  { href: "/rubber-duck", label: "Rubber Duck", preview: true },
+  { href: "/plan", label: "Plan", preview: true },
+  { href: "/deploy", label: "Deploy", preview: true },
+  { href: "/my-skills", label: "My Skills", preview: true }
+] as const;
+
+function isActive(pathname: string, href: string, exact?: boolean): boolean {
+  if (exact) return pathname === href;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function SiteHeader() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between gap-4 px-5 md:px-10 lg:px-16">
+        <Link
+          href="/"
+          className="flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/compass-dark.svg" alt="" width={32} height={32} className="h-8 w-8" />
+          <span className="text-xl font-semibold tracking-tight text-text">
+            Vibe<span className="text-primary">Check</span>
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+          {NAV.map((item) => {
+            const active = isActive(pathname, item.href, "exact" in item && item.exact);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={`text-sm font-medium tracking-[0.02em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                  active ? "text-primary" : "text-text-muted hover:text-text"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <button
+          type="button"
+          className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-lg border border-border text-text lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          {open ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
+        </button>
+      </div>
+
+      {open ? (
+        <nav
+          id="mobile-nav"
+          className="border-t border-border bg-surface px-5 py-4 lg:hidden"
+          aria-label="Mobile"
+        >
+          <ul className="flex flex-col gap-2">
+            {NAV.map((item) => {
+              const active = isActive(pathname, item.href, "exact" in item && item.exact);
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                    className={`block min-h-10 rounded-lg px-3 py-2 text-sm font-medium ${
+                      active ? "bg-surface-raised text-primary" : "text-text-muted hover:text-text"
+                    }`}
+                  >
+                    {item.label}
+                    {"preview" in item && item.preview ? (
+                      <span className="ml-2 text-xs text-text-muted">(preview)</span>
+                    ) : null}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      ) : null}
+    </header>
+  );
+}
