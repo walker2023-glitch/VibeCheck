@@ -90,7 +90,7 @@ export const STORY_PHASES: Array<{
 }> = [
   {
     id: "generate",
-    durationMs: 2600,
+    durationMs: 3500,
     highlightLines: [],
     revealLines: CODE_LINES.length,
     stageLabel: "Generate",
@@ -100,7 +100,7 @@ export const STORY_PHASES: Array<{
   },
   {
     id: "question",
-    durationMs: 1800,
+    durationMs: 2300,
     highlightLines: [],
     revealLines: CODE_LINES.length,
     stageLabel: "Question",
@@ -110,7 +110,7 @@ export const STORY_PHASES: Array<{
   },
   {
     id: "navigate_async",
-    durationMs: 1800,
+    durationMs: 3300,
     highlightLines: [1],
     revealLines: CODE_LINES.length,
     stageLabel: "Navigate",
@@ -120,7 +120,7 @@ export const STORY_PHASES: Array<{
   },
   {
     id: "navigate_promise",
-    durationMs: 1800,
+    durationMs: 3300,
     highlightLines: [4],
     revealLines: CODE_LINES.length,
     stageLabel: "Navigate",
@@ -130,7 +130,7 @@ export const STORY_PHASES: Array<{
   },
   {
     id: "navigate_map",
-    durationMs: 1800,
+    durationMs: 3300,
     highlightLines: [5],
     revealLines: CODE_LINES.length,
     stageLabel: "Understand",
@@ -140,7 +140,7 @@ export const STORY_PHASES: Array<{
   },
   {
     id: "prove",
-    durationMs: 2000,
+    durationMs: 3500,
     highlightLines: [4, 5],
     revealLines: CODE_LINES.length,
     stageLabel: "Prove",
@@ -150,7 +150,7 @@ export const STORY_PHASES: Array<{
   },
   {
     id: "result",
-    durationMs: 1500,
+    durationMs: 2800,
     highlightLines: [4],
     revealLines: CODE_LINES.length,
     stageLabel: "Result",

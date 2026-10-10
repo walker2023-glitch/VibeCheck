@@ -37,8 +37,8 @@ describe("Homepage Code Detective product preview", () => {
       "prove",
       "result"
     ]);
-    expect(STORY_LOOP_MS).toBeGreaterThanOrEqual(12_000);
-    expect(STORY_LOOP_MS).toBeLessThanOrEqual(16_000);
+    expect(STORY_LOOP_MS).toBeGreaterThanOrEqual(20_000);
+    expect(STORY_LOOP_MS).toBeLessThanOrEqual(24_000);
     expect(STORY_PHASES.some((phase) => phase.badge === "observed")).toBe(true);
     expect(STORY_PHASES.some((phase) => phase.id === "prove")).toBe(true);
     expect(STORY_PHASES.some((phase) => phase.id === "result")).toBe(true);
