@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "@/lib/api/client";
 import { ApiError, userMessageForError } from "@/lib/api/errors";
 import type { Explanation } from "@/lib/api/types";
+import { buildAssessmentConceptIds } from "@/lib/assessment-concepts";
 import { loadGuestSession, saveGuestSession } from "@/lib/session-state";
 import { Button } from "../ui/Button";
 import { CodeExplanationPanel } from "./CodeExplanationPanel";
@@ -81,7 +82,7 @@ export function CodeDetectiveWorkspace() {
     setStartingCheck(true);
     setError(null);
     try {
-      const conceptIds = session.concepts.slice(0, 2).map((c) => c.id);
+      const conceptIds = buildAssessmentConceptIds(session.concepts, concept?.id);
       const assessment = await api.createAssessment(runId, conceptIds);
       saveGuestSession({
         ...session,
