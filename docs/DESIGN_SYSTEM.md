@@ -9,12 +9,12 @@
 ### 10.1 Foundations
 
 - **Typeface:** Inter for all UI text (Brand Guide §4). Weights: 400, 500, 600, 700.
-- **Code typeface (proposal):** JetBrains Mono, 400 and 500, for code only. It is not a brand typeface. Approval needed (CR-01).
+- **Code typeface:** JetBrains Mono, 400 and 500, for code only. It is not a brand typeface (CR-01; approved for the hackathon).
 - **Base size:** 16 px. Body text is never below 14 px for interface text, and never below 12 px for any text.
 
 ### 10.2 Color tokens
 
-Brand values from Document B, marked provisional. Tokens are semantic: components use role names, never raw HEX.
+The brand palette below is approved for hackathon implementation. Components consume semantic roles from `design/tokens.json` and `app/globals.css`, never raw HEX.
 
 **Brand palette (source values):**
 
@@ -32,112 +32,21 @@ Brand values from Document B, marked provisional. Tokens are semantic: component
 | Off White | `#F7FAFC` | Light background |
 | White | `#FFFFFF` | Light cards, text on dark |
 
-**Semantic mapping (proposed starting values; verify before approval):**
+**Semantic roles:** `design/tokens.json` is the source for both theme values. `app/globals.css` maps each role to `--vc-*` CSS variables and Tailwind v4 `@theme inline` colors. Dark is the default (`:root`); `[data-theme="light"]` supplies light values. Components use role names, not palette HEX values.
 
-| Token | Dark theme | Light theme | Use |
-|---|---|---|---|
-| `--bg` | `#071B2C` | `#F7FAFC` | Page background |
-| `--surface` | `#0B2940` | `#FFFFFF` | Cards, panels |
-| `--surface-raised` | `#12334F` *(proposed tint)* | `#FFFFFF` + border `#D5E0E8` | Popovers, active cards |
-| `--surface-sunken` | `#051420` *(proposed)* | `#EAF0F5` *(proposed)* | Code viewer background |
-| `--text` | `#FFFFFF` | `#071B2C` | Primary text |
-| `--text-muted` | `#B7C8D4` *(proposed; verify ≥ 4.5:1)* | `#4B5F70` *(proposed; verify)* | Secondary text |
-| `--accent` | `#16B8B0` | `#087E89` | Links, focus, active nav |
-| `--accent-fg` | `#071B2C` | `#FFFFFF` | Text on accent buttons |
-| `--success` | `#41D6AD` | `#0E7A5A` *(proposed darker mint for text)* | Positive states |
-| `--learn` | `#A18BFF` | `#5B43D6` *(proposed)* | Rubber Duck and learning accents |
-| `--info` | `#2478F2` | `#1F5FD1` *(proposed)* | Technical visualization |
-| `--warning` | `#E8B04A` *(proposed, approval needed)* | `#8A5A00` *(proposed)* | Caution (CR-02) |
-| `--danger` | `#F4837D` *(proposed, approval needed)* | `#B42318` *(proposed)* | Errors |
-| `--focus` | `#16B8B0` | `#087E89` | Focus ring |
+| Role group | Semantic roles |
+|---|---|
+| Layout | `background`, `surface`, `surface-raised`, `border` |
+| Text and actions | `text`, `text-muted`, `primary`, `primary-hover`, `on-primary`, `focus` |
+| Status and learning | `success`, `warning`, `danger`, `information`, `learning` |
 
-**Contrast checks.** Ratios below are computed from the brand HEX values with WCAG relative luminance. Re-verify with tooling before release.
+The brand palette is approved for hackathon implementation. Light-theme semantic variants and individual foreground/background pairings still need rendered contrast checks; no untested pairing is claimed to meet WCAG. Turquoise and mint should not be used as small text on light surfaces.
 
-| Pairing | Ratio | Result |
-|---|---|---|
-| Navy text on Turquoise (dark primary button) | ≈ 7.1 : 1 | Pass AA |
-| White on Deep Teal (light primary button) | ≈ 4.8 : 1 | Pass AA |
-| Mint on Navy | ≈ 9.6 : 1 | Pass AA |
-| Soft Violet on Navy | ≈ 6.4 : 1 | Pass AA |
-| Deep Teal on Off White | ≈ 4.6 : 1 | Pass AA (small text, verify) |
-| Turquoise on White | ≈ 2.5 : 1 | **Fail** for text; use only for non-text |
-| Mint on White | ≈ 1.8 : 1 | **Fail**; use darker success token on light |
+### 10.3 Tailwind token bridge
 
-**Rule (BRAND-010):** Turquoise and mint are not used for text on light backgrounds. The light theme uses Deep Teal and the proposed dark variants.
+Production uses compiled Tailwind v4 through `@import "tailwindcss"` in `app/globals.css`. The stylesheet defines theme variables and exposes them through `@theme inline`, for example `--color-primary: var(--vc-primary)`. Fonts, card radius, and restrained shadow are exposed there as well. Stitch's CDN configuration and inline JavaScript remain reference material only.
 
-### 10.3 Tailwind configuration (example, mapped to tokens)
-
-```ts
-// tailwind.config.ts (illustrative; implementation must follow this structure)
-import type { Config } from 'tailwindcss';
-
-export default {
-  darkMode: ['class', '[data-theme="dark"]'],
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        bg: 'rgb(var(--bg) / <alpha-value>)',
-        surface: 'rgb(var(--surface) / <alpha-value>)',
-        'surface-raised': 'rgb(var(--surface-raised) / <alpha-value>)',
-        'surface-sunken': 'rgb(var(--surface-sunken) / <alpha-value>)',
-        text: 'rgb(var(--text) / <alpha-value>)',
-        'text-muted': 'rgb(var(--text-muted) / <alpha-value>)',
-        accent: 'rgb(var(--accent) / <alpha-value>)',
-        'accent-fg': 'rgb(var(--accent-fg) / <alpha-value>)',
-        success: 'rgb(var(--success) / <alpha-value>)',
-        learn: 'rgb(var(--learn) / <alpha-value>)',
-        info: 'rgb(var(--info) / <alpha-value>)',
-        warning: 'rgb(var(--warning) / <alpha-value>)',
-        danger: 'rgb(var(--danger) / <alpha-value>)',
-        focus: 'rgb(var(--focus) / <alpha-value>)',
-      },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-      },
-    },
-  },
-} satisfies Config;
-```
-
-```css
-/* globals.css — tokens as RGB triplets so Tailwind alpha works */
-:root, [data-theme="light"] {
-  --bg: 247 250 252;        /* #F7FAFC */
-  --surface: 255 255 255;
-  --surface-raised: 255 255 255;
-  --surface-sunken: 234 240 245;
-  --text: 7 27 44;          /* #071B2C */
-  --text-muted: 75 95 112;
-  --accent: 8 126 137;      /* #087E89 */
-  --accent-fg: 255 255 255;
-  --success: 14 122 90;
-  --learn: 91 67 214;
-  --info: 31 95 209;
-  --warning: 138 90 0;
-  --danger: 180 35 24;
-  --focus: 8 126 137;
-}
-[data-theme="dark"] {
-  --bg: 7 27 44;            /* #071B2C */
-  --surface: 11 41 64;      /* #0B2940 */
-  --surface-raised: 18 51 79;
-  --surface-sunken: 5 20 32;
-  --text: 255 255 255;
-  --text-muted: 183 200 212;
-  --accent: 22 184 176;     /* #16B8B0 */
-  --accent-fg: 7 27 44;
-  --success: 65 214 173;    /* #41D6AD */
-  --learn: 161 139 255;     /* #A18BFF */
-  --info: 36 120 242;       /* #2478F2 */
-  --warning: 232 176 74;
-  --danger: 244 131 125;
-  --focus: 22 184 176;
-}
-```
-
-Theme selection: follow `prefers-color-scheme` by default, with a manual toggle stored in local preferences. The theme must be set before first paint to avoid a flash.
+Dark is the hackathon default. Light remains available through semantic tokens. A future theme selector should set the theme before first paint to avoid a flash.
 
 ### 10.4 Light and dark theme rules
 
@@ -164,7 +73,7 @@ Letter spacing: headings −0.02 em; labels +0.02 em; uppercase badges +0.08 em.
 
 ### 10.6 Spacing, layout, breakpoints
 
-- **Spacing scale (4 px base):** 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96.
+- **Spacing scale:** 4 px base unit; 8 px primary layout rhythm. Use 4 px increments for compact internal spacing. Normal layout spacing predominantly uses multiples of 8 px. Scale: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96.
 - **Breakpoints:** `sm` 640, `md` 768, `lg` 1024, `xl` 1280.
 - **Container:** max width 1200 px for content; 1280 px for the workspace header. Horizontal page margin 20 px (mobile), 40 px (tablet), 64 px (desktop).
 - **Grid:** 12 columns, 24 px gutter (desktop), 16 px (mobile).
@@ -172,9 +81,9 @@ Letter spacing: headings −0.02 em; labels +0.02 em; uppercase badges +0.08 em.
 
 ### 10.7 Radii, shadows, icons
 
-- **Radii:** controls 8 px; cards 12–16 px; large panels 16–20 px; pills (inputs and badges) full; app icons 22%.
+- **Radii:** controls 8 px; cards 12 px; large panels 16–20 px; pills (inputs and badges) full; app icons 22%.
 - **Shadows:** elevation 1 (cards, light: `0 1px 2px rgba(7,27,44,0.06)`; dark: border instead). Elevation 2 (popovers only). No colored glows except one ambient element per page at ≤ 10% opacity.
-- **Icons:** Lucide (proposed, approval needed; CR-18), 24 px grid, 1.75 px stroke, round caps. Icons are inline SVG from the package, self-hosted. The prototype's Material Symbols CDN is removed.
+- **Icons:** Lucide (approved for the hackathon; CR-18), 24 px grid, 1.75 px stroke, round caps. Icons are inline SVG from the package. The prototype's Material Symbols CDN is not production source.
 - The compass symbol is reserved for the logo, the header, the companion's panel header (small), and onboarding moments. It is not used as a generic feature icon (Brand Guide §6).
 
 ### 10.8 Motion
@@ -189,7 +98,7 @@ Letter spacing: headings −0.02 em; labels +0.02 em; uppercase badges +0.08 em.
 
 - **Buttons:** Primary (accent background, accent-fg text; min height 40 px; hover darkens 8%; focus ring 2 px with 2 px offset). Secondary (surface background, 1 px border). Ghost (text only, for low-priority actions). Destructive (danger, always confirmed).
 - **Inputs:** surface-sunken background, 1 px border, 40 px height, focus ring; error text below in danger with an icon.
-- **Cards:** surface background, 12–16 px radius, 1 px border in light theme.
+- **Cards:** surface background, 12 px radius, subtle 1 px border, restrained shadow where needed.
 - **Badges:** caption text, uppercase only for category labels, always paired with text (never color alone).
 - **Tabs:** segmented control with `role="tablist"`.
 - **Modals:** focus trap, Escape closes, focus returns to trigger, scrim at 60% navy.
@@ -225,10 +134,10 @@ The compass: a clean circular ring, four directional points at the cardinal posi
 
 ### 11.4 Placeholder rule
 
-Until official artwork is supplied:
+For the supplied standalone compass variants (`public/brand/compass-*.svg`), use the approved asset. For a still-missing lockup or other unsupplied artwork:
 
 - Use a neutral placeholder in the header that reads "VibeCheck" in Inter (text only, no fake compass) and is marked with `data-asset="placeholder-logo"`.
-- Do not recreate the compass from memory and present it as official.
+- Do not recreate a missing lockup or companion illustration from memory and present it as supplied artwork.
 - The placeholder must be replaced before any public release. A release check fails if `placeholder-logo` is present in the production build (TEST-BRAND-01).
 
 ### 11.5 Mascot versus logo

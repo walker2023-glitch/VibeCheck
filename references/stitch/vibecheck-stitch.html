@@ -1,0 +1,1430 @@
+<!-- VibeCheck — Home (Closed Companion) -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-background":"#dfe2f1","on-tertiary-container":"#613b00","surface":"#0f131d","secondary-container":"#00a572","tertiary-container":"#f59e0b","surface-container-low":"#171b26","inverse-on-surface":"#2c303b","surface-variant":"#313540","on-error-container":"#ffdad6","on-tertiary":"#472a00","surface-tint":"#7bd0ff","outline-variant":"#3e484f","inverse-primary":"#00668a","on-secondary-fixed":"#002113","on-surface-variant":"#bdc8d1","on-secondary":"#003824","tertiary-fixed":"#ffddb8","secondary":"#4edea3","primary-fixed-dim":"#7bd0ff","on-surface":"#dfe2f1","surface-dim":"#0f131d","on-secondary-container":"#00311f","on-primary-fixed":"#001e2c","tertiary":"#ffc174","inverse-surface":"#dfe2f1","on-secondary-fixed-variant":"#005236","secondary-fixed-dim":"#4edea3","primary":"#8ed5ff","primary-container":"#38bdf8","secondary-fixed":"#6ffbbe","primary-fixed":"#c4e7ff","surface-container-highest":"#313540","surface-bright":"#353944","on-tertiary-fixed":"#2a1700","surface-container":"#1c1f2a","on-tertiary-fixed-variant":"#653e00","surface-container-lowest":"#0a0e18","surface-container-high":"#262a35","background":"#0f131d","tertiary-fixed-dim":"#ffb95f","error-container":"#93000a","on-primary-fixed-variant":"#004c69","on-error":"#690005","outline":"#87929a","on-primary":"#00354a","on-primary-container":"#004965","error":"#ffb4ab"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-3xl":"6rem","space-lg":"1.5rem","margin-tablet":"2.5rem","margin-desktop":"4rem","space-md":"1rem","space-xl":"2.5rem","space-2xl":"4rem","gutter-desktop":"2.5rem","gutter":"1.5rem"},"fontFamily":{"headline-lg":["Space Grotesk"],"label-lg":["Geist"],"label-md":["Geist"],"headline-md":["Space Grotesk"],"code-snippet":["JetBrains Mono"],"body-sm":["Geist"],"label-badge":["Geist"],"body-lg":["Geist"],"display-hero":["Space Grotesk"],"body-md":["Geist"],"display-hero-mobile":["Space Grotesk"],"headline-sm":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"]},"fontSize":{"headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-md":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-snippet":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-badge":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-space-2xl max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="VibeCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Xt4g6IjIHe-gMPF_iVlVXI2EXltCxrAkn_RLQAzgp3uujujwGZlPSTjPyzZmUgXq9lUf4pVGLzes9ciJUwF0FrlXsMIBlq-ZSXRr-KGzhNhMphzngwv73LPYEUYDhZvcP4pai7WgNMcnTrmGVlsc5yiJpG5QHvZmK7aI-zH9K1CPDdpo7PGBUl191ScojB3DvB1YvestRgwgvoLpY76WwCWHjYsidM6PF6e0mVeGyHBJM3r99lRZMSbyc"/><a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-semibold flex items-center gap-space-xs hover:text-primary transition-colors" data-path="home" href="#">Vibe<span class="text-primary">Check</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="home" href="#">Home</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="plan" href="#">Plan</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="code-detective" href="#">Code Detective</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="rubber-duck" href="#">Rubber Duck</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="knowledge-check" href="#">Knowledge Check</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="deploy" href="#">Deploy</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-skills" href="#">My Skills</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><a class="hidden sm:inline-flex font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="sign-in" href="#">Sign In</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(56,189,248,0.35)] cursor-pointer hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full flex-1 pt-space-2xl bg-surface"><div class="flex flex-col w-full relative overflow-hidden">
+<!-- Atmospheric Cyan Ambient Radials -->
+<div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[840px] h-[480px] bg-primary/10 blur-[130px] rounded-full"></div>
+<div class="pointer-events-none absolute top-[520px] left-1/4 w-[520px] h-[360px] bg-secondary/5 blur-[120px] rounded-full"></div>
+<!-- PERSPECTIVE BLUEPRINT FLOOR (3DCadet / Technical spatial texture) -->
+<div class="pointer-events-none absolute inset-x-0 top-0 h-[720px] overflow-hidden opacity-25">
+<div class="w-full h-full [perspective:1000px] flex items-center justify-center">
+<div class="w-[180%] h-[180%] [transform:rotateX(68deg)] [transform-origin:center_top] bg-[linear-gradient(to_right,#313540_1px,transparent_1px),linear-gradient(to_bottom,#313540_1px,transparent_1px)] bg-[size:52px_52px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_15%,#000_65%,transparent_100%)]"></div>
+</div>
+</div>
+<!-- HERO CONTAINER -->
+<section class="relative w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-xl md:pt-space-2xl pb-space-2xl flex flex-col items-center text-center">
+<!-- Micro-Badge (Pre-interaction status) -->
+<div class="inline-flex items-center gap-space-sm px-space-md py-1 rounded-full bg-surface-container-high/70 shadow-sm backdrop-blur-md mb-space-lg transition-transform hover:scale-105 duration-300">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary">Intelligent Repository Radar</span>
+<span class="text-outline-variant font-label-md text-label-md">•</span>
+<span class="font-label-md text-label-md text-on-surface-variant">v2.4 Interactive Engine</span>
+</div>
+<!-- MAIN HERO TYPOGRAPHY -->
+<h1 class="font-display-hero text-display-hero md:text-display-hero text-on-surface tracking-tight max-w-4xl leading-[1.12]">
+      Build with AI. <span class="text-primary-container drop-shadow-[0_0_24px_rgba(56,189,248,0.35)]">Understand what you build.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-space-md font-light leading-relaxed">
+      Explore your code, learn how it works, and take your projects further.
+    </p>
+<!-- REPOSITORY INPUT COMPONENT (Simple before interaction. Detailed after interaction) -->
+<div class="w-full max-w-2xl mt-space-2xl relative z-20">
+<form class="group relative flex items-center bg-surface-container-low/90 backdrop-blur-xl rounded-full p-2 pl-6 shadow-2xl transition-all duration-300 hover:shadow-[0_12px_36px_rgba(56,189,248,0.12)]" id="repoForm" onsubmit="event.preventDefault(); triggerInspect();">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors text-[22px] flex-shrink-0">
+          terminal
+        </span>
+<input class="w-full bg-transparent border-0 outline-none px-4 text-on-surface placeholder:text-outline/70 font-code-snippet text-code-snippet focus:ring-0" id="repoInput" placeholder="Paste your GitHub repository link..." type="url" value=""/>
+<!-- Action Pill CTA -->
+<button class="flex items-center gap-2 bg-primary-container text-surface-container-lowest font-label-lg text-label-lg font-bold px-7 py-3 rounded-full hover:bg-primary transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 shadow-[0_0_20px_rgba(56,189,248,0.35)] flex-shrink-0" id="analyzeBtn" type="submit">
+<span>Analyze</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Micro Interactive State Banner (Detailed after interaction) -->
+<div class="hidden mt-4 p-4 rounded-xl bg-surface-container/90 backdrop-blur-md text-left transition-all duration-300 animate-fadeIn" id="inspectorDetailPanel">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold" id="repoStatusTitle">Detecting Architecture...</p>
+<p class="font-code-snippet text-code-snippet text-on-surface-variant" id="repoStatusSub">Scanning ast-parser, API routes, and container configs</p>
+</div>
+</div>
+<span class="font-label-badge text-label-badge px-3 py-1 rounded-full bg-secondary-container/20 text-secondary">Ready for Deep-Dive</span>
+</div>
+</div>
+</div>
+<!-- 3 DISTINCT HERO ARTIFACTS / CORE TOOLS -->
+<div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-space-lg mt-space-2xl z-10 text-left">
+<!-- TOOL 1: CODE DETECTIVE -->
+<div class="group cursor-pointer rounded-xl bg-surface-container/60 hover:bg-surface-container-high/90 backdrop-blur-sm p-space-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),0_0_24px_rgba(56,189,248,0.18)] relative overflow-hidden" onclick="selectTool('detective')">
+<div class="absolute -right-10 -bottom-10 w-28 h-28 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest/80 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 shadow-inner">
+<span class="material-symbols-outlined text-[30px]">manage_search</span>
+</div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary">AST Scan</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Code Detective</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-normal">
+          Understand your code. Unravel dependencies, logic blocks, and generated codebases visually.
+        </p>
+<div class="mt-space-md pt-3 flex items-center gap-1.5 text-primary text-label-md font-label-md font-semibold opacity-80 group-hover:opacity-100 transition-opacity">
+<span>Launch Detective Sandbox</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- TOOL 2: RUBBER DUCK -->
+<div class="group cursor-pointer rounded-xl bg-surface-container/60 hover:bg-surface-container-high/90 backdrop-blur-sm p-space-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),0_0_24px_rgba(245,158,11,0.15)] relative overflow-hidden" onclick="selectTool('duck')">
+<div class="absolute -right-10 -bottom-10 w-28 h-28 bg-tertiary-container/10 rounded-full blur-2xl group-hover:bg-tertiary-container/20 transition-colors"></div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest/80 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform duration-300 shadow-inner">
+<span class="material-symbols-outlined text-[30px]">psychology_alt</span>
+</div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary">Diagnostic</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors">Rubber Duck</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-normal">
+          Find and fix problems. Talk out runtime bugs with context-aware, patient diagnostic reasoning.
+        </p>
+<div class="mt-space-md pt-3 flex items-center gap-1.5 text-tertiary text-label-md font-label-md font-semibold opacity-80 group-hover:opacity-100 transition-opacity">
+<span>Start Reasoning Session</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+<!-- TOOL 3: DEPLOY -->
+<div class="group cursor-pointer rounded-xl bg-surface-container/60 hover:bg-surface-container-high/90 backdrop-blur-sm p-space-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),0_0_24px_rgba(78,222,163,0.18)] relative overflow-hidden" onclick="selectTool('deploy')">
+<div class="absolute -right-10 -bottom-10 w-28 h-28 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-colors"></div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="w-14 h-14 rounded-xl bg-surface-container-highest/80 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform duration-300 shadow-inner">
+<span class="material-symbols-outlined text-[30px]">rocket_launch</span>
+</div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider px-2 py-0.5 rounded-full bg-secondary/10 text-secondary">Zero-Config</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors">Deploy</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-normal">
+          Get your app online. Instant preview environments, automatic SSL, and continuous verification.
+        </p>
+<div class="mt-space-md pt-3 flex items-center gap-1.5 text-secondary text-label-md font-label-md font-semibold opacity-80 group-hover:opacity-100 transition-opacity">
+<span>Explore Pipeline</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- ZERO FRICTION ENTRY NOTE -->
+<div class="mt-space-lg flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-outline text-[16px]">touch_app</span>
+<span>Or click any tool to explore sample repositories without signing in.</span>
+</div>
+</section>
+<!-- LIVE CODE TELEMETRY / DETAILED VIEW (Reveals on interaction) -->
+<section class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop mb-space-3xl transition-all duration-500" id="interactiveDemoBoard">
+<div class="bg-surface-container-low rounded-xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6">
+<div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary">Live Context Sandbox</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-1">Inspecting: <span class="font-code-snippet text-primary" id="activeSampleLabel">vibecheck/starter-next-agent</span></h2>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface text-label-md font-label-md hover:bg-surface-variant transition-colors" onclick="loadSample('auth')">Auth Workflow</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface text-label-md font-label-md hover:bg-surface-variant transition-colors" onclick="loadSample('vector')">Vector Engine</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface text-label-md font-label-md hover:bg-surface-variant transition-colors" onclick="loadSample('edge')">Edge Proxy</button>
+</div>
+</div>
+<!-- Bento-style interactive insight panels -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md pt-4">
+<!-- Code snippet representation -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-lg p-5 flex flex-col font-code-snippet text-code-snippet text-on-surface-variant">
+<div class="flex items-center justify-between pb-3 text-outline">
+<span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-error/60 inline-block"></span><span class="w-3 h-3 rounded-full bg-tertiary/60 inline-block"></span><span class="w-3 h-3 rounded-full bg-secondary/60 inline-block"></span> app/agent/runtime.ts</span>
+<span class="text-label-badge uppercase font-sans text-secondary">Verified Clean</span>
+</div>
+<div class="overflow-x-auto space-y-1 text-on-surface" id="codeViewport">
+<p><span class="text-primary font-semibold">export async function</span> <span class="text-tertiary font-medium">verifyPayload</span>(req: <span class="text-primary">NextRequest</span>) {</p>
+<p class="pl-4 text-on-surface-variant">// VibeCheck Detective flagged potential missing validation</p>
+<p class="pl-4"><span class="text-primary font-semibold">const</span> token = req.headers.<span class="text-secondary">get</span>(<span class="text-secondary-fixed">'authorization'</span>);</p>
+<p class="pl-4"><span class="text-primary font-semibold">if</span> (!token) <span class="text-error font-semibold">throw new Error</span>(<span class="text-secondary-fixed">'Unauthorized access'</span>);</p>
+<p class="pl-4 text-on-surface-variant">// Rubber Duck suggested memoizing public keys:</p>
+<p class="pl-4"><span class="text-primary font-semibold">return await</span> <span class="text-tertiary">keyStore</span>.<span class="text-secondary">resolveCached</span>(token);</p>
+<p>}</p>
+</div>
+</div>
+<!-- Telemetry & Insights -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm justify-between">
+<div class="bg-surface-container rounded-lg p-4">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Cognitive Complexity</span>
+<span class="font-label-md text-label-md text-secondary font-bold">Low (Rank A)</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-highest h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-4/5"></div>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-4">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">AI Confidence &amp; Clarity</span>
+<span class="font-label-md text-label-md text-primary font-bold">96.8%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-[96%]"></div>
+</div>
+</div>
+<!-- Micro Quick Action -->
+<div class="bg-surface-container-high/50 rounded-lg p-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">smart_toy</span>
+<span class="font-body-sm text-body-sm text-on-surface">Explaining this segment line-by-line</span>
+</div>
+<button class="text-xs font-label-md text-surface-container-lowest bg-primary px-3 py-1 rounded-full font-bold hover:bg-primary-container transition-colors" onclick="simulateDuckChat()">
+              Explain
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BRIEF MINIMALIST FEATURE INTRODUCTION SECTION (Card / Pill Rows) -->
+<section class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop mb-space-3xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div>
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary">Philosophy &amp; Clarity</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">A transparent lens for your software</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-2 md:mt-0 font-light">
+        Coding with AI is fast. Truly understanding the result gives you mastery over your craft.
+      </p>
+</div>
+<!-- 4 Clean Pillars (Horizontal Rows / Sleek Pill Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Feature 1 -->
+<div class="flex items-center gap-space-md p-space-lg rounded-xl bg-surface-container/70 hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex-shrink-0 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">visibility</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold text-base">Understand the code AI writes</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Dissect LLM-generated blocks with interactive flowcharts and syntax walkthroughs.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="flex items-center gap-space-md p-space-lg rounded-xl bg-surface-container/70 hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex-shrink-0 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">model_training</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold text-base">Learn programming through your own projects</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Transform real product requirements into hands-on architectural lessons.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="flex items-center gap-space-md p-space-lg rounded-xl bg-surface-container/70 hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex-shrink-0 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">build_circle</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold text-base">Improve your code with guided help</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Non-judgmental diagnostic hints help isolate logic anomalies step by step.</p>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="flex items-center gap-space-md p-space-lg rounded-xl bg-surface-container/70 hover:bg-surface-container-high transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex-shrink-0 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold text-base">Turn your ideas into working applications</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Bridge the gap from prompt prototypes to hardened, production-ready systems.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- PERSISTENT FLOATING AI COMPANION (Fixed at bottom right) -->
+<aside class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+<!-- Hover Tooltip Badge -->
+<div class="opacity-0 translate-x-2 pointer-events-none transition-all duration-200 py-1.5 px-3 rounded-full bg-surface-container-highest/95 backdrop-blur-md shadow-xl text-on-surface font-label-md text-label-md flex items-center gap-2" id="companionBadge">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>Ask VibeCheck</span>
+</div>
+<!-- Circular Avatar Trigger -->
+<button aria-label="Ask VibeCheck Mascot" class="relative w-14 h-14 rounded-full p-0.5 bg-surface-container-lowest flex items-center justify-center shadow-[0_0_24px_rgba(56,189,248,0.4)] hover:shadow-[0_0_32px_rgba(56,189,248,0.7)] transition-all duration-300 transform hover:scale-110 active:scale-95 group focus:outline-none" id="companionTrigger" onclick="toggleCompanionDialog()" onmouseenter="showBadge(true)" onmouseleave="showBadge(false)" type="button">
+<!-- Glowing cyan concentric ring -->
+<div class="absolute inset-0 rounded-full border-2 border-primary/50 group-hover:border-primary transition-colors"></div>
+<!-- Mascot image placeholder -->
+<img alt="VibeCheck AI Mascot" class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+<!-- Online Active Dot -->
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-secondary border-2 border-surface"></span>
+</button>
+</aside>
+<!-- INTERACTIVE COMPANION CHAT POPUP (Detailed after interaction) -->
+<div class="fixed bottom-24 right-6 z-50 hidden w-80 md:w-96 rounded-xl bg-surface-container/95 backdrop-blur-2xl shadow-2xl p-5 border-0 transition-all duration-300" id="companionModal">
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full overflow-hidden">
+<img alt="VibeCheck Mascot" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-sm text-on-surface">VibeCheck Duck</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="toggleCompanionDialog()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest/80 rounded-lg p-3 my-2 text-on-surface-variant font-body-sm text-body-sm leading-relaxed" id="companionBubble">
+      “Quack! Need help diagnosing a repo or demystifying AI-generated code? Drop a link or click any of the 3 tools above!”
+    </div>
+<div class="flex items-center gap-2 mt-3">
+<input class="flex-1 bg-surface-container-high rounded-full px-4 py-2 text-on-surface font-body-sm text-body-sm outline-none placeholder:text-outline" placeholder="Ask a question..." type="text"/>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  function showBadge(visible) {
+    const badge = document.getElementById('companionBadge');
+    if (!badge) return;
+    if (visible) {
+      badge.classList.remove('opacity-0', 'translate-x-2');
+      badge.classList.add('opacity-100', 'translate-x-0');
+    } else {
+      badge.classList.remove('opacity-100', 'translate-x-0');
+      badge.classList.add('opacity-0', 'translate-x-2');
+    }
+  }
+
+  function toggleCompanionDialog() {
+    const modal = document.getElementById('companionModal');
+    if (!modal) return;
+    modal.classList.toggle('hidden');
+  }
+
+  function triggerInspect() {
+    const input = document.getElementById('repoInput');
+    const panel = document.getElementById('inspectorDetailPanel');
+    const title = document.getElementById('repoStatusTitle');
+    const sub = document.getElementById('repoStatusSub');
+
+    if (!input.value.trim()) {
+      input.value = "https://github.com/vibecheck/agent-runtime";
+    }
+
+    if (panel) {
+      panel.classList.remove('hidden');
+      title.innerText = "Analyzed: " + input.value.replace('https://github.com/', '');
+      sub.innerText = "Mapped 43 files • 3 agentic routes • 0 critical security issues found";
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function selectTool(type) {
+    const sampleLabel = document.getElementById('activeSampleLabel');
+    const viewport = document.getElementById('codeViewport');
+    const bubble = document.getElementById('companionBubble');
+
+    if (type === 'detective') {
+      sampleLabel.innerText = "vibecheck/code-detective-sandbox";
+      viewport.innerHTML = `
+        <p><span class="text-primary font-semibold">class</span> <span class="text-secondary font-medium">ASTAnalyzer</span> {</p>
+        <p class="pl-4"><span class="text-on-surface-variant">// Detective inspecting module imports</span></p>
+        <p class="pl-4"><span class="text-primary font-semibold">public inspectGraph</span>(node: <span class="text-tertiary">SyntaxNode</span>) {</p>
+        <p class="pl-8"><span class="text-primary font-semibold">return</span> node.children.<span class="text-secondary">filter</span>(n => n.isDynamicImport);</p>
+        <p class="pl-4">}</p>
+        <p>}</p>
+      `;
+      if (bubble) bubble.innerHTML = "&ldquo;Code Detective activated! I highlighted your dynamic dependencies so you can trace async loading bottlenecks.&rdquo;";
+    } else if (type === 'duck') {
+      sampleLabel.innerText = "vibecheck/rubber-duck-diagnostic";
+      viewport.innerHTML = `
+        <p><span class="text-on-surface-variant">// Rubber Duck: Why is this throwing undefined?</span></p>
+        <p><span class="text-primary font-semibold">const</span> state = <span class="text-tertiary">useAgentStore</span>.<span class="text-secondary">getState</span>();</p>
+        <p><span class="text-error font-semibold">if</span> (!state.activeContext) {</p>
+        <p class="pl-4 text-tertiary">// Solution: Provide fallback memory vector</p>
+        <p class="pl-4"><span class="text-primary font-semibold">return</span> <span class="text-secondary">createEphemeralContext</span>();</p>
+        <p>}</p>
+      `;
+      if (bubble) bubble.innerHTML = "&ldquo;Quack! I spotted a potential null reference in state.activeContext. Let's fix it together!&rdquo;";
+    } else if (type === 'deploy') {
+      sampleLabel.innerText = "vibecheck/edge-deploy-target";
+      viewport.innerHTML = `
+        <p><span class="text-primary font-semibold">export const</span> config = { runtime: <span class="text-secondary-fixed">&apos;edge&apos;</span>, regions: [<span class="text-secondary-fixed">&apos;iad1&apos;</span>, <span class="text-secondary-fixed">&apos;sfo1&apos;</span>] };</p>
+        <p><span class="text-on-surface-variant">// Pipeline ready: Global latency ~18ms</span></p>
+        <p><span class="text-primary font-semibold">export default async function</span> handler(req: <span class="text-primary">Request</span>) {</p>
+        <p class="pl-4"><span class="text-primary font-semibold">return new</span> <span class="text-tertiary">Response</span>(<span class="text-secondary-fixed">&apos;Healthy&apos;</span>, { status: 200 });</p>
+        <p>}</p>
+      `;
+      if (bubble) bubble.innerHTML = "&ldquo;Ready for launch! Zero configuration detected, build passed, and SSL is provisioned!&rdquo;";
+    }
+  }
+
+  function loadSample(key) {
+    const input = document.getElementById('repoInput');
+    if (key === 'auth') {
+      input.value = "https://github.com/vibecheck/sample-oauth-flow";
+    } else if (key === 'vector') {
+      input.value = "https://github.com/vibecheck/sample-vector-search";
+    } else if (key === 'edge') {
+      input.value = "https://github.com/vibecheck/sample-edge-gateway";
+    }
+    triggerInspect();
+  }
+
+  function simulateDuckChat() {
+    const modal = document.getElementById('companionModal');
+    if (modal) modal.classList.remove('hidden');
+    const bubble = document.getElementById('companionBubble');
+    if (bubble) {
+      bubble.innerHTML = "&ldquo;Here is the breakdown: The code checks the Authorization header from the request, handles errors if missing, and then securely verifies the cached authentication key.&rdquo;";
+    }
+  }
+</script></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Vibe<span class="text-primary">Check</span></span><span class="text-outline-variant">•</span><span>Interactive engineering &amp; developer mastery</span></div><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="plan" href="#">Curriculum</a><a class="hover:text-on-surface transition-colors" data-path="code-detective" href="#">Sandbox</a><a class="hover:text-on-surface transition-colors" data-path="my-skills" href="#">Skill Graph</a><span class="text-outline-variant">© 2025 VibeCheck. All rights reserved.</span></div></div></footer></body></html>
+
+<!-- VibeCheck — Home (AI Companion Open) -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-background":"#dfe2f1","on-tertiary-container":"#613b00","surface":"#0f131d","secondary-container":"#00a572","tertiary-container":"#f59e0b","surface-container-low":"#171b26","inverse-on-surface":"#2c303b","surface-variant":"#313540","on-error-container":"#ffdad6","on-tertiary":"#472a00","surface-tint":"#7bd0ff","outline-variant":"#3e484f","inverse-primary":"#00668a","on-secondary-fixed":"#002113","on-surface-variant":"#bdc8d1","on-secondary":"#003824","tertiary-fixed":"#ffddb8","secondary":"#4edea3","primary-fixed-dim":"#7bd0ff","on-surface":"#dfe2f1","surface-dim":"#0f131d","on-secondary-container":"#00311f","on-primary-fixed":"#001e2c","tertiary":"#ffc174","inverse-surface":"#dfe2f1","on-secondary-fixed-variant":"#005236","secondary-fixed-dim":"#4edea3","primary":"#8ed5ff","primary-container":"#38bdf8","secondary-fixed":"#6ffbbe","primary-fixed":"#c4e7ff","surface-container-highest":"#313540","surface-bright":"#353944","on-tertiary-fixed":"#2a1700","surface-container":"#1c1f2a","on-tertiary-fixed-variant":"#653e00","surface-container-lowest":"#0a0e18","surface-container-high":"#262a35","background":"#0f131d","tertiary-fixed-dim":"#ffb95f","error-container":"#93000a","on-primary-fixed-variant":"#004c69","on-error":"#690005","outline":"#87929a","on-primary":"#00354a","on-primary-container":"#004965","error":"#ffb4ab"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-3xl":"6rem","space-lg":"1.5rem","margin-tablet":"2.5rem","margin-desktop":"4rem","space-md":"1rem","space-xl":"2.5rem","space-2xl":"4rem","gutter-desktop":"2.5rem","gutter":"1.5rem"},"fontFamily":{"headline-lg":["Space Grotesk"],"label-lg":["Geist"],"label-md":["Geist"],"headline-md":["Space Grotesk"],"code-snippet":["JetBrains Mono"],"body-sm":["Geist"],"label-badge":["Geist"],"body-lg":["Geist"],"display-hero":["Space Grotesk"],"body-md":["Geist"],"display-hero-mobile":["Space Grotesk"],"headline-sm":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"]},"fontSize":{"headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-md":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-snippet":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-badge":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-space-2xl max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="VibeCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Xt4g6IjIHe-gMPF_iVlVXI2EXltCxrAkn_RLQAzgp3uujujwGZlPSTjPyzZmUgXq9lUf4pVGLzes9ciJUwF0FrlXsMIBlq-ZSXRr-KGzhNhMphzngwv73LPYEUYDhZvcP4pai7WgNMcnTrmGVlsc5yiJpG5QHvZmK7aI-zH9K1CPDdpo7PGBUl191ScojB3DvB1YvestRgwgvoLpY76WwCWHjYsidM6PF6e0mVeGyHBJM3r99lRZMSbyc"/><a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-semibold flex items-center gap-space-xs hover:text-primary transition-colors" data-path="home" href="#">Vibe<span class="text-primary">Check</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="home" href="#">Home</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="plan" href="#">Plan</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="code-detective" href="#">Code Detective</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="rubber-duck" href="#">Rubber Duck</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="knowledge-check" href="#">Knowledge Check</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="deploy" href="#">Deploy</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-skills" href="#">My Skills</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><a class="hidden sm:inline-flex font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="sign-in" href="#">Sign In</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(56,189,248,0.35)] cursor-pointer hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full flex-1 pt-space-2xl bg-surface"><div class="flex flex-col w-full relative overflow-x-hidden">
+<!-- Blueprint Perspective Ambient Grid Background -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+<div class="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-primary/10 rounded-full blur-[140px]"></div>
+<div class="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[160px]"></div>
+<svg class="w-full h-[700px] opacity-[0.07] stroke-on-surface" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="48" id="grid-pattern" patternunits="userSpaceOnUse" width="48">
+<path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid-pattern)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Hero Section -->
+<section class="relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-xl pb-space-3xl flex flex-col items-center text-center">
+<!-- Micro Pill Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high shadow-sm mb-space-lg">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-badge text-label-badge text-primary uppercase tracking-wider">Engine v2.4 Live</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Instant codebase clarity for vibe-coders</span>
+</div>
+<!-- Dual-Tone Headline -->
+<h1 class="font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface max-w-4xl tracking-tight leading-none mb-space-md">
+      Build with AI. <br class="hidden sm:inline"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-secondary">Understand what you build.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-space-2xl">
+      The telemetry and conceptual bridge between AI code generators and real software mastery. Trace runtime logic, audit dependencies, and master production architectures in minutes.
+    </p>
+<!-- GitHub URL Repos Scanner Input Box -->
+<div class="w-full max-w-2xl bg-surface-container-low rounded-xl p-space-xs shadow-xl mb-space-2xl">
+<form class="flex flex-col sm:flex-row items-center gap-space-xs" onsubmit="event.preventDefault();">
+<div class="flex items-center gap-space-sm w-full px-space-md py-space-sm">
+<span class="material-symbols-outlined text-outline text-[22px]">terminal</span>
+<input class="w-full bg-transparent font-code-snippet text-code-snippet text-on-surface focus:outline-none placeholder:text-outline" placeholder="https://github.com/username/repository or paste code link..." type="text" value="https://github.com/alex-dev/nextjs-agentic-dashboard"/>
+</div>
+<button class="w-full sm:w-auto px-space-lg py-3 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg hover:bg-primary transition-all duration-200 flex items-center justify-center gap-space-xs shrink-0 shadow-md">
+<span>Deconstruct Repo</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Quick Stats Bar -->
+<div class="flex flex-wrap items-center justify-center gap-space-lg md:gap-space-2xl text-on-surface-variant font-label-md text-label-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span>Zero configuration needed</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+<span>Sub-second AST mapping</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">shield</span>
+<span>Sandboxed runtime isolation</span>
+</div>
+</div>
+</section>
+<!-- Core Pillars: 3 Primary Feature Cards -->
+<section class="relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-2xl">
+<div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-space-xl">
+<div>
+<p class="font-label-badge text-label-badge text-primary uppercase tracking-widest mb-space-xs">Intelligent Modules</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Precision telemetry for your stacks</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-space-sm md:mt-0">
+        Turn black-box code into interactive architectures. Click through any utility to explore hands-on workflows.
+      </p>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Feature 1: Code Detective -->
+<div class="group bg-surface-container rounded-xl p-space-xl flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors"></div>
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-lg text-primary shadow-sm">
+<span class="material-symbols-outlined text-[26px]">manage_search</span>
+</div>
+<span class="inline-block px-space-sm py-0.5 rounded-full bg-primary/10 font-label-badge text-label-badge text-primary mb-space-sm">Diagnostic Scope</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">Code Detective</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+            Instantly translates dense PRs, boilerplate artifacts, and nested dependencies into interactive human narratives and step-by-step logic trees.
+          </p>
+</div>
+<div class="pt-space-md bg-surface-container-high/40 rounded-lg p-space-sm">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface mb-1">
+<span class="text-on-surface-variant">Trace Efficiency</span>
+<span class="text-secondary font-code-snippet">99.4%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-[94%]"></div>
+</div>
+</div>
+</div>
+<!-- Feature 2: Rubber Duck Interactive -->
+<div class="group bg-surface-container rounded-xl p-space-xl flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-colors"></div>
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-lg text-secondary shadow-sm">
+<span class="material-symbols-outlined text-[26px]">psychology</span>
+</div>
+<span class="inline-block px-space-sm py-0.5 rounded-full bg-secondary/10 font-label-badge text-label-badge text-secondary mb-space-sm">Socratic Guidance</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">Rubber Duck AI</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+            A conversational partner that doesn’t just spit out generated solutions, but challenges edge-case thinking, architectural trade-offs, and invariants.
+          </p>
+</div>
+<div class="pt-space-md bg-surface-container-high/40 rounded-lg p-space-sm">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface mb-1">
+<span class="text-on-surface-variant">Cognitive Feedback</span>
+<span class="text-primary font-code-snippet">Dynamic</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-[88%]"></div>
+</div>
+</div>
+</div>
+<!-- Feature 3: Deploy Sandbox -->
+<div class="group bg-surface-container rounded-xl p-space-xl flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl group-hover:bg-tertiary/20 transition-colors"></div>
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-lg text-tertiary shadow-sm">
+<span class="material-symbols-outlined text-[26px]">rocket_launch</span>
+</div>
+<span class="inline-block px-space-sm py-0.5 rounded-full bg-tertiary/10 font-label-badge text-label-badge text-tertiary mb-space-sm">Micro-Containers</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">Zero-Friction Deploy</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+            Spin up sandboxed staging pipelines directly from prompt iterations. Inspect cold start latencies, memory envelopes, and network handshakes.
+          </p>
+</div>
+<div class="pt-space-md bg-surface-container-high/40 rounded-lg p-space-sm">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface mb-1">
+<span class="text-on-surface-variant">Spin Time</span>
+<span class="text-tertiary font-code-snippet">&lt; 320ms</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full w-[100%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Deep Value Feature Bullets Matrix -->
+<section class="relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-2xl">
+<div class="bg-surface-container-low rounded-xl p-space-xl md:p-space-2xl shadow-xl flex flex-col lg:flex-row gap-space-2xl items-center">
+<div class="w-full lg:w-1/2 flex flex-col">
+<span class="font-label-badge text-label-badge text-secondary uppercase tracking-widest mb-space-sm">Comprehensive Diagnostics</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-space-md">Never deploy unvetted code into production.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-xl">
+          Engineered for engineers transitioning from copy-pasting LLM output to building resilient, resilient, scale-ready systems.
+        </p>
+<!-- Bullet Points -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span>
+</div>
+<div>
+<p class="font-headline-sm text-label-lg text-on-surface">Autonomous AST Flow Validation</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Trace variable lifecycles across synchronous event loops and asynchronous stream bounds.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span>
+</div>
+<div>
+<p class="font-headline-sm text-label-lg text-on-surface">Security &amp; Secret Exposure Radar</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Automatic sanitization for leaked credentials, SQL injections, and loose CORS policies.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span>
+</div>
+<div>
+<p class="font-headline-sm text-label-lg text-on-surface">Skill Graph &amp; Knowledge Extraction</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Turn every inspected code snippet into permanent mastery credits on your developer profile.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Rich Visual Diagram / Interactive Simulation Window -->
+<div class="w-full lg:w-1/2 bg-surface-container rounded-lg p-space-lg shadow-inner">
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-high/60 px-space-md py-2 rounded">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="ml-space-sm font-code-snippet text-body-sm text-on-surface-variant">app/api/auth/route.ts</span>
+</div>
+<span class="font-label-badge text-label-badge text-secondary bg-secondary/10 px-2 py-0.5 rounded">Verified Safe</span>
+</div>
+<div class="font-code-snippet text-code-snippet space-y-1 text-on-surface-variant">
+<p><span class="text-primary">export async function</span> <span class="text-secondary">POST</span>(req: <span class="text-tertiary">Request</span>) {</p>
+<p class="pl-4"><span class="text-outline">// Step 1: Validate payload bounds</span></p>
+<p class="pl-4">const payload = <span class="text-primary">await</span> req.json();</p>
+<p class="pl-4 text-secondary-fixed">✓ AST verified: No recursive deserialization</p>
+<p class="pl-4"><span class="text-primary">const</span> session = <span class="text-primary">await</span> authService.<span class="text-primary-fixed-dim">verifyToken</span>(payload.token);</p>
+<p class="pl-4"><span class="text-primary">return</span> Response.<span class="text-primary-fixed-dim">json</span>({ ok: <span class="text-secondary">true</span>, session });</p>
+<p>}</p>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-low p-space-sm rounded flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">neurology</span>
+<span class="font-label-md text-label-md text-on-surface">VibeCheck Engine Runtime:</span>
+</div>
+<span class="font-code-snippet text-label-md text-secondary">0 vulnerabilities found</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- FLOATING AI COMPANION (OPEN EXPANDED STATE) - Bottom Right Corner Fixed   -->
+<!-- ========================================================================= -->
+<aside aria-label="VibeCheck AI Assistant" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto" id="ai-companion-drawer">
+<!-- Chat Card Window (Open Expanded State) -->
+<div class="w-[380px] h-[490px] max-w-[calc(100vw-2rem)] bg-surface-container-low/95 backdrop-blur-xl rounded-2xl shadow-[0_24px_50px_rgba(0,0,0,0.7),0_0_25px_rgba(56,189,248,0.22)] flex flex-col mb-4 overflow-hidden transition-all duration-300" id="ai-chat-window">
+<!-- Companion Header -->
+<div class="px-space-md py-space-sm bg-surface-container-high/80 flex items-center justify-between shrink-0 shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="relative w-8 h-8 rounded-full overflow-hidden bg-surface-container-lowest shrink-0">
+<img alt="VibeCheck AI Mascot" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-label-lg text-on-surface">VibeCheck AI</span>
+<span class="material-symbols-outlined text-primary text-[14px]">auto_awesome</span>
+</div>
+<div class="flex items-center gap-1.5 font-label-md text-label-md text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="truncate">Online • Context: Homepage</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-7 h-7 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors" onclick="document.getElementById('ai-chat-window').classList.toggle('hidden')" title="Minimize Assistant" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<button class="w-7 h-7 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors" onclick="document.getElementById('ai-chat-window').classList.add('hidden')" title="Close Assistant" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Chat History & Messages Area -->
+<div class="flex-1 overflow-y-auto p-space-md space-y-space-md font-body-sm text-body-sm scroll-smooth">
+<!-- Prior Conversation Timestamp -->
+<div class="text-center my-1">
+<span class="font-label-badge text-label-badge text-outline bg-surface-container/60 px-2.5 py-0.5 rounded-full">Today • Just now</span>
+</div>
+<!-- AI Assistant Welcome Message -->
+<div class="flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full overflow-hidden shrink-0 mt-0.5 bg-surface-container">
+<img alt="AI Icon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+</div>
+<div class="bg-surface-container p-space-sm rounded-xl rounded-tl-sm text-on-surface shadow-sm max-w-[85%] leading-relaxed">
+            Hey Alex! What can I help you figure out? Paste any repository or pick a tool below to jump right in.
+          </div>
+</div>
+<!-- Quick Suggestions Pill Block -->
+<div class="pl-8 space-y-1.5">
+<p class="font-label-badge text-label-badge text-outline uppercase tracking-wider">Quick Suggestions</p>
+<div class="flex flex-col gap-1.5">
+<button class="text-left w-full px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-all duration-150 flex items-center justify-between group" onclick="fillPrompt('Need help getting started?')" type="button">
+<span>Need help getting started?</span>
+<span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</button>
+<button class="text-left w-full px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-all duration-150 flex items-center justify-between group" onclick="fillPrompt('How does Code Detective explain AI code?')" type="button">
+<span>How does Code Detective explain AI code?</span>
+<span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</button>
+<button class="text-left w-full px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-all duration-150 flex items-center justify-between group" onclick="fillPrompt('Can I test without a GitHub account?')" type="button">
+<span>Can I test without a GitHub account?</span>
+<span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- User Follow-up Question -->
+<div class="flex items-start justify-end gap-space-sm">
+<div class="bg-primary-container text-on-primary-container p-space-sm rounded-xl rounded-tr-sm shadow-sm max-w-[80%] font-body-sm leading-relaxed">
+            Can I test without a GitHub account?
+          </div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-badge text-label-badge shrink-0 mt-0.5">
+            A
+          </div>
+</div>
+<!-- AI Responsive Follow-up -->
+<div class="flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-full overflow-hidden shrink-0 mt-0.5 bg-surface-container">
+<img alt="AI Icon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+</div>
+<div class="bg-surface-container p-space-sm rounded-xl rounded-tl-sm text-on-surface shadow-sm max-w-[85%] leading-relaxed">
+            Absolutely! You can paste raw code snippets directly into the detective sandbox, or load our pre-configured demo repos with one tap.
+          </div>
+</div>
+</div>
+<!-- Bottom Chat Composer Input -->
+<div class="p-space-sm bg-surface-container-high/90 shrink-0">
+<form class="flex items-center gap-space-xs" onsubmit="handleSend(event)">
+<div class="flex-1 bg-surface-container-lowest rounded-lg px-space-sm py-2 flex items-center gap-space-xs shadow-inner">
+<input class="w-full bg-transparent font-body-sm text-body-sm text-on-surface focus:outline-none placeholder:text-outline" id="chat-input" placeholder="Ask a question or describe what you want to learn..." type="text"/>
+</div>
+<button class="w-9 h-9 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(56,189,248,0.4)] transition-transform hover:scale-105 active:scale-95" title="Send Message" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</form>
+</div>
+</div>
+<!-- Persistent Mascot Anchor Bubble (Bottom Right) -->
+<div class="relative group">
+<!-- Outer active glow ring -->
+<div class="absolute -inset-1 rounded-full bg-gradient-to-r from-primary to-secondary opacity-75 blur-sm group-hover:opacity-100 transition duration-300"></div>
+<!-- Mascot Button -->
+<button class="relative w-14 h-14 rounded-full bg-surface-container-high p-0.5 flex items-center justify-center shadow-2xl transition-transform duration-200 group-hover:scale-105 active:scale-95" id="mascot-toggle-btn" onclick="document.getElementById('ai-chat-window').classList.toggle('hidden')" title="Toggle VibeCheck AI Assistant" type="button">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container-lowest flex items-center justify-center">
+<img alt="VibeCheck AI Mascot" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+</div>
+<!-- Active indicator badge on mascot bubble -->
+<span class="absolute top-0 right-0 flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-secondary border-2 border-surface"></span>
+</span>
+</button>
+</div>
+</aside>
+<!-- Interactive script for Quick Prompts -->
+<script>
+    function fillPrompt(text) {
+      const input = document.getElementById('chat-input');
+      if (input) {
+        input.value = text;
+        input.focus();
+      }
+    }
+    function handleSend(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      if (input && input.value.trim() !== '') {
+        input.value = '';
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Vibe<span class="text-primary">Check</span></span><span class="text-outline-variant">•</span><span>Interactive engineering &amp; developer mastery</span></div><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="plan" href="#">Curriculum</a><a class="hover:text-on-surface transition-colors" data-path="code-detective" href="#">Sandbox</a><a class="hover:text-on-surface transition-colors" data-path="my-skills" href="#">Skill Graph</a><span class="text-outline-variant">© 2025 VibeCheck. All rights reserved.</span></div></div></footer></body></html>
+
+<!-- VibeCheck — Code Detective (Active Workspace) -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-background":"#dfe2f1","on-tertiary-container":"#613b00","surface":"#0f131d","secondary-container":"#00a572","tertiary-container":"#f59e0b","surface-container-low":"#171b26","inverse-on-surface":"#2c303b","surface-variant":"#313540","on-error-container":"#ffdad6","on-tertiary":"#472a00","surface-tint":"#7bd0ff","outline-variant":"#3e484f","inverse-primary":"#00668a","on-secondary-fixed":"#002113","on-surface-variant":"#bdc8d1","on-secondary":"#003824","tertiary-fixed":"#ffddb8","secondary":"#4edea3","primary-fixed-dim":"#7bd0ff","on-surface":"#dfe2f1","surface-dim":"#0f131d","on-secondary-container":"#00311f","on-primary-fixed":"#001e2c","tertiary":"#ffc174","inverse-surface":"#dfe2f1","on-secondary-fixed-variant":"#005236","secondary-fixed-dim":"#4edea3","primary":"#8ed5ff","primary-container":"#38bdf8","secondary-fixed":"#6ffbbe","primary-fixed":"#c4e7ff","surface-container-highest":"#313540","surface-bright":"#353944","on-tertiary-fixed":"#2a1700","surface-container":"#1c1f2a","on-tertiary-fixed-variant":"#653e00","surface-container-lowest":"#0a0e18","surface-container-high":"#262a35","background":"#0f131d","tertiary-fixed-dim":"#ffb95f","error-container":"#93000a","on-primary-fixed-variant":"#004c69","on-error":"#690005","outline":"#87929a","on-primary":"#00354a","on-primary-container":"#004965","error":"#ffb4ab"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-3xl":"6rem","space-lg":"1.5rem","margin-tablet":"2.5rem","margin-desktop":"4rem","space-md":"1rem","space-xl":"2.5rem","space-2xl":"4rem","gutter-desktop":"2.5rem","gutter":"1.5rem"},"fontFamily":{"headline-lg":["Space Grotesk"],"label-lg":["Geist"],"label-md":["Geist"],"headline-md":["Space Grotesk"],"code-snippet":["JetBrains Mono"],"body-sm":["Geist"],"label-badge":["Geist"],"body-lg":["Geist"],"display-hero":["Space Grotesk"],"body-md":["Geist"],"display-hero-mobile":["Space Grotesk"],"headline-sm":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"]},"fontSize":{"headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-md":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-snippet":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-badge":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-space-2xl max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="VibeCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Xt4g6IjIHe-gMPF_iVlVXI2EXltCxrAkn_RLQAzgp3uujujwGZlPSTjPyzZmUgXq9lUf4pVGLzes9ciJUwF0FrlXsMIBlq-ZSXRr-KGzhNhMphzngwv73LPYEUYDhZvcP4pai7WgNMcnTrmGVlsc5yiJpG5QHvZmK7aI-zH9K1CPDdpo7PGBUl191ScojB3DvB1YvestRgwgvoLpY76WwCWHjYsidM6PF6e0mVeGyHBJM3r99lRZMSbyc"/><a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-semibold flex items-center gap-space-xs hover:text-primary transition-colors" data-path="home" href="#">Vibe<span class="text-primary">Check</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="plan" href="#">Plan</a><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="code-detective" href="#">Code Detective</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="rubber-duck" href="#">Rubber Duck</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="knowledge-check" href="#">Knowledge Check</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="deploy" href="#">Deploy</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-skills" href="#">My Skills</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><a class="hidden sm:inline-flex font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="sign-in" href="#">Sign In</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(56,189,248,0.35)] cursor-pointer hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full flex-1 pt-space-2xl bg-surface"><div class="flex flex-col w-full">
+<!-- Interactive Workspace Breadcrumb & Control Header -->
+<section class="w-full bg-surface-container-lowest py-space-sm px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<!-- Breadcrumb + Repo Switcher -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-primary bg-primary/10 px-space-xs py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">troubleshoot</span>
+          Code Detective
+        </span>
+<span class="text-outline-variant font-body-sm text-body-sm">/</span>
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface font-body-sm text-body-sm group">
+<span class="material-symbols-outlined text-primary-container text-[16px]">folder_open</span>
+<span>stream-orchestrator</span>
+<span class="material-symbols-outlined text-outline-variant text-[14px] group-hover:text-on-surface transition-colors">unfold_more</span>
+</button>
+<span class="text-outline-variant font-body-sm text-body-sm">/</span>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">data_object</span>
+<span class="font-code-snippet text-code-snippet text-on-surface font-medium">distributed_lock.go</span>
+</div>
+</div>
+<!-- Mode Selector Tabs & Actions -->
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<div class="flex items-center p-1 bg-surface-container-low rounded-xl">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-sm" id="btn-mode-socratic">
+<span class="material-symbols-outlined text-[16px]">psychology_alt</span>
+<span>Socratic Walkthrough</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-all" id="btn-mode-ast">
+<span class="material-symbols-outlined text-[16px]">account_tree</span>
+<span>AST Breakdown</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-all" id="btn-mode-plain">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+<span>Plain English</span>
+</button>
+</div>
+<div class="hidden sm:flex items-center gap-1 pl-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-code-snippet text-code-snippet text-on-surface-variant">Live Context</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Split Workspace Layout -->
+<section class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-md">
+<!-- Active Provenance Banner -->
+<div class="w-full bg-surface-container-low p-space-sm rounded-xl mb-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">Claude 3.7 Copilot generated</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-badge text-label-badge">89% AI attribution</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Autogenerated routine for automated Redis heartbeat and distributed key expiration safeguard.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<span class="font-code-snippet text-code-snippet text-outline">Branch: feat/stream-orchestrator-v2</span>
+<button class="px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant text-label-md font-label-md flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">history</span>
+          Inspect Prompt
+        </button>
+</div>
+</div>
+<!-- 12-Column Grid Split: 7 Cols Left (Code), 5 Cols Right (Learning Hub) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT PANE: Syntax Highlighted Code Viewer -->
+<div class="lg:col-span-7 flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl">
+<!-- Code Window Chrome / Meta bar -->
+<div class="flex items-center justify-between px-space-md py-space-sm bg-surface-container">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-full bg-error/70"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary-container/70"></span>
+<span class="w-3 h-3 rounded-full bg-secondary/70"></span>
+</div>
+<span class="font-code-snippet text-code-snippet text-on-surface-variant pl-space-xs">distributed_lock.go:40-62</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface text-primary-fixed-dim font-code-snippet text-code-snippet">Go 1.23</span>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface transition-colors" title="Copy snippet">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Code Block with Interactive Inspection Highlight -->
+<div class="overflow-x-auto p-space-sm font-code-snippet text-code-snippet leading-relaxed select-text">
+<table class="w-full border-collapse">
+<tbody>
+<!-- Non-selected context lines -->
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">38</td>
+<td><span class="text-outline-variant">// MaintainHeartbeat maintains lease renewal in background goroutine</span></td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">39</td>
+<td><span class="text-primary-container">func</span> <span class="text-on-surface">(m *DistributedMutex)</span> <span class="text-primary">MaintainHeartbeat</span>(ctx <span class="text-secondary">context.Context</span>) <span class="text-secondary">error</span> {</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">40</td>
+<td>    m.mu.<span class="text-primary">Lock</span>()</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">41</td>
+<td>    <span class="text-primary-container">defer</span> m.mu.<span class="text-primary">Unlock</span>()</td>
+</tr>
+<!-- SELECTED REGION: Lines 42-56 -->
+<tr class="bg-primary/10 relative">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">42</td>
+<td class="text-on-surface relative pl-2">
+<span class="absolute -left-1 top-1 bottom-1 w-1 bg-primary rounded-r"></span>
+                      <span class="text-tertiary-fixed font-semibold">for</span> {
+                </td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">43</td>
+<td class="text-on-surface pl-2">        <span class="text-tertiary-fixed font-semibold">select</span> {</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">44</td>
+<td class="text-on-surface pl-2">        <span class="text-tertiary-fixed">case</span> &lt;-ctx.<span class="text-primary">Done</span>():</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">45</td>
+<td class="text-on-surface pl-2">            <span class="text-outline-variant">// Context cancelled; release lock proactively</span></td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">46</td>
+<td class="text-on-surface pl-2">            <span class="text-primary-container">return</span> ctx.<span class="text-primary">Err</span>()</td>
+</tr>
+<!-- Hotspot line with visual annotation tag -->
+<tr class="bg-primary/15 relative">
+<td class="w-10 pr-4 text-right select-none text-tertiary-fixed font-bold">47</td>
+<td class="text-on-surface pl-2">
+<div class="flex items-center justify-between pr-2">
+<span>        <span class="text-tertiary-fixed">case</span> &lt;-<span class="text-primary-container font-semibold">time</span>.<span class="text-tertiary">After</span>(m.delay):</span>
+<button class="px-2 py-0.5 rounded bg-tertiary-container/30 text-tertiary font-label-badge text-label-badge flex items-center gap-1 hover:bg-tertiary-container/50 transition-colors">
+<span class="material-symbols-outlined text-[12px]">warning</span> Leak Vector
+                    </button>
+</div>
+</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">48</td>
+<td class="text-on-surface pl-2">            ok, err := m.client.<span class="text-primary">Expire</span>(ctx, m.key, m.ttl).<span class="text-primary">Result</span>()</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">49</td>
+<td class="text-on-surface pl-2">            <span class="text-tertiary-fixed">if</span> err != <span class="text-secondary">nil</span> || !ok {</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">50</td>
+<td class="text-on-surface pl-2">                <span class="text-outline-variant">// Lock ownership lost or connection severed</span></td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">51</td>
+<td class="text-on-surface pl-2">                <span class="text-primary-container">return</span> ErrHeartbeatExpired</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">52</td>
+<td class="text-on-surface pl-2">            }</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">53</td>
+<td class="text-on-surface pl-2">            <span class="text-outline-variant">// Lease extended successfully, loop continues</span></td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">54</td>
+<td class="text-on-surface pl-2">            m.metrics.<span class="text-primary">IncRenewals</span>()</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">55</td>
+<td class="text-on-surface pl-2">        }</td>
+</tr>
+<tr class="bg-primary/10">
+<td class="w-10 pr-4 text-right select-none text-primary font-bold">56</td>
+<td class="text-on-surface pl-2">    }</td>
+</tr>
+<!-- Context continuation -->
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">57</td>
+<td>}</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">58</td>
+<td></td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">59</td>
+<td><span class="text-primary-container">func</span> <span class="text-on-surface">(m *DistributedMutex)</span> <span class="text-primary">Release</span>(ctx <span class="text-secondary">context.Context</span>) <span class="text-secondary">error</span> {</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors text-outline">
+<td class="w-10 pr-4 text-right select-none opacity-40">60</td>
+<td>    <span class="text-outline-variant">// Atomic Lua script execution...</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Code Inspection Status Footer -->
+<div class="px-space-md py-space-xs bg-surface-container flex items-center justify-between text-on-surface-variant font-code-snippet text-code-snippet">
+<div class="flex items-center gap-space-sm">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[15px]">center_focus_strong</span>
+<span>Focus: Lines 42-56</span>
+</span>
+<span class="text-outline-variant">•</span>
+<span>15 lines scoped</span>
+</div>
+<span class="text-secondary">AI Pattern Confirmed</span>
+</div>
+</div>
+<!-- RIGHT PANE: Interactive Explanation & Learning Hub -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- CARD 1: What does this selected code do? -->
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[15px]">lightbulb</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">What does this code do?</h2>
+</div>
+<span class="font-label-badge text-label-badge px-2 py-0.5 rounded-full bg-surface-container text-primary-fixed-dim">Step 1 of 4</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-space-xs leading-relaxed">
+            This loop retries acquiring or extending a Redis mutex lock until successful or until the background context is cancelled.
+          </p>
+<div class="mt-space-sm p-space-xs bg-surface-container rounded-lg flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5 flex-shrink-0">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+              Every tick of <code class="text-primary font-code-snippet">m.delay</code>, it refreshes the key TTL so concurrent workers know this instance is still executing work.
+            </span>
+</div>
+</div>
+<!-- CARD 2: Why did the AI write it this way? -->
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[15px]">psychology</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Why did the AI write it this way?</h2>
+</div>
+<span class="font-label-badge text-label-badge px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary">Hidden Gotcha</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            LLMs frequently pick <code class="font-code-snippet text-code-snippet text-tertiary">time.After()</code> because it reads cleanly in concise documentation examples.
+          </p>
+<div class="mt-space-sm p-space-sm bg-surface-container rounded-lg">
+<div class="flex items-center gap-2 text-tertiary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+<span>Memory Heap Allocation Risk</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Under high concurrency or rapid channel events, <code class="font-code-snippet text-code-snippet text-on-surface">time.After()</code> creates an underlying <code class="font-code-snippet text-code-snippet text-on-surface">Timer</code> channel that cannot be garbage collected until the timer actually expires—even if <code class="font-code-snippet text-code-snippet text-on-surface">ctx.Done()</code> fires immediately!
+            </p>
+</div>
+</div>
+<!-- CARD 3: How could you build this yourself? (Tabbed Tradeoffs) -->
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[15px]">compare_arrows</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Alternative approaches</h2>
+</div>
+<span class="font-label-badge text-label-badge px-2 py-0.5 rounded-full bg-secondary-container/10 text-secondary">Idiomatic Go</span>
+</div>
+<!-- Interactive Tab Toggle -->
+<div class="flex items-center p-1 bg-surface-container rounded-lg mb-space-sm">
+<button class="flex-1 py-1 rounded text-center font-label-md text-label-md bg-surface text-on-surface shadow-sm transition-all" id="tab-btn-current">
+              Current (time.After)
+            </button>
+<button class="flex-1 py-1 rounded text-center font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-btn-idiomatic">
+              Idiomatic (time.NewTimer + Stop)
+            </button>
+</div>
+<!-- Tab Content 1: Current -->
+<div class="flex flex-col gap-space-xs" id="tab-content-current">
+<div class="p-space-xs bg-surface-container-lowest rounded font-code-snippet text-code-snippet text-on-surface-variant">
+<span class="text-tertiary">case</span> &lt;-time.<span class="text-primary">After</span>(m.delay):
+            </div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-1 mt-1">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">add</span>
+<span>Minimal code footprint (single line expression)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[16px]">close</span>
+<span>Each loop spin allocates new channel nodes in memory</span>
+</li>
+</ul>
+</div>
+<!-- Tab Content 2: Idiomatic (Hidden by default) -->
+<div class="hidden flex flex-col gap-space-xs" id="tab-content-idiomatic">
+<div class="p-space-xs bg-surface-container-lowest rounded font-code-snippet text-code-snippet text-on-surface-variant">
+              t := time.<span class="text-primary">NewTimer</span>(m.delay)<br/>
+<span class="text-primary-container">defer</span> t.<span class="text-primary">Stop</span>()<br/>
+<span class="text-tertiary">case</span> &lt;-t.C: t.<span class="text-primary">Reset</span>(m.delay)
+            </div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-1 mt-1">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span>
+<span>Zero allocations on subsequent loop resets</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check</span>
+<span>Immediately reclaims resources on routine cancellation</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- CARD 4: Quick Understanding Check (1 min) Interactive Quiz -->
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[15px]">quiz</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Quick Understanding Check</h2>
+</div>
+<span class="font-label-badge text-label-badge px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container">1 min</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 font-medium">
+            Why is <code class="text-primary font-code-snippet">time.NewTimer</code> preferred over <code class="text-tertiary font-code-snippet">time.After</code> in this long-running loop?
+          </p>
+<!-- Interactive options -->
+<div class="flex flex-col gap-2 mt-space-sm" id="quiz-options-container">
+<!-- Option A -->
+<button class="quiz-option text-left p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-start gap-3 group" onclick="handleQuizAnswer(this, false)">
+<span class="w-5 h-5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-badge text-label-badge flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:text-primary">A</span>
+<span class="font-body-sm text-body-sm text-on-surface">It runs significantly faster on x86 architectures due to compiler vectorization.</span>
+</button>
+<!-- Option B (Correct) -->
+<button class="quiz-option text-left p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-start gap-3 group" onclick="handleQuizAnswer(this, true)">
+<span class="w-5 h-5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-badge text-label-badge flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:text-primary">B</span>
+<span class="font-body-sm text-body-sm text-on-surface">It prevents temporary heap allocations and lingering timers if the context is cancelled early.</span>
+</button>
+<!-- Option C -->
+<button class="quiz-option text-left p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-start gap-3 group" onclick="handleQuizAnswer(this, false)">
+<span class="w-5 h-5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-badge text-label-badge flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:text-primary">C</span>
+<span class="font-body-sm text-body-sm text-on-surface">Because Redis driver protocols explicitly ban channels returned by <code class="text-code-snippet font-code-snippet">time.After</code>.</span>
+</button>
+</div>
+<!-- Dynamic feedback container -->
+<div class="hidden mt-space-sm p-space-sm rounded-lg" id="quiz-feedback"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Persistent Floating AI Companion Mascot -->
+<div class="fixed bottom-6 right-6 z-50 flex items-center gap-space-sm">
+<!-- Active Tooltip Card -->
+<div class="hidden md:flex flex-col bg-surface-container-high p-space-sm rounded-xl shadow-2xl max-w-xs transition-all" id="mascot-tooltip">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-badge text-label-badge text-primary uppercase">Ask VibeCheck</span>
+<button class="text-outline-variant hover:text-on-surface" onclick="document.getElementById('mascot-tooltip').classList.add('hidden')">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-1">
+        "Want me to refactor this to an idiomatic ticker and commit the test suite?"
+      </p>
+</div>
+<!-- Mascot Avatar Floating Button -->
+<div class="relative cursor-pointer group" onclick="toggleMascotDialogue()">
+<!-- Contextual Radial Pulse Glow -->
+<span class="absolute inset-0 rounded-full bg-primary-container animate-ping opacity-25"></span>
+<!-- Mascot Container -->
+<div class="relative w-14 h-14 rounded-full overflow-hidden shadow-2xl bg-surface-container-lowest transition-transform hover:scale-105">
+<img alt="VibeCheck AI Assistant" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+</div>
+<!-- Suggestion Pill Badge -->
+<div class="absolute -top-1 -right-1 px-1.5 py-0.5 bg-primary text-on-primary font-label-badge text-label-badge rounded-full shadow-md flex items-center gap-0.5">
+<span>1</span>
+</div>
+</div>
+</div>
+<!-- Interactive Logic Scripts -->
+<script>
+    // Tab switching for Alternative approaches (Current vs Idiomatic)
+    const tabCurrent = document.getElementById('tab-btn-current');
+    const tabIdiomatic = document.getElementById('tab-btn-idiomatic');
+    const contentCurrent = document.getElementById('tab-content-current');
+    const contentIdiomatic = document.getElementById('tab-content-idiomatic');
+
+    if (tabCurrent && tabIdiomatic) {
+      tabCurrent.addEventListener('click', () => {
+        tabCurrent.className = 'flex-1 py-1 rounded text-center font-label-md text-label-md bg-surface text-on-surface shadow-sm transition-all';
+        tabIdiomatic.className = 'flex-1 py-1 rounded text-center font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        contentCurrent.classList.remove('hidden');
+        contentIdiomatic.classList.add('hidden');
+      });
+
+      tabIdiomatic.addEventListener('click', () => {
+        tabIdiomatic.className = 'flex-1 py-1 rounded text-center font-label-md text-label-md bg-surface text-on-surface shadow-sm transition-all';
+        tabCurrent.className = 'flex-1 py-1 rounded text-center font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        contentIdiomatic.classList.remove('hidden');
+        contentCurrent.classList.add('hidden');
+      });
+    }
+
+    // Interactive Quiz Response handler
+    function handleQuizAnswer(buttonEl, isCorrect) {
+      const feedback = document.getElementById('quiz-feedback');
+      const allButtons = document.querySelectorAll('.quiz-option');
+
+      allButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.add('opacity-60');
+      });
+
+      buttonEl.classList.remove('opacity-60');
+
+      if (isCorrect) {
+        buttonEl.classList.add('bg-secondary-container/20', 'text-secondary');
+        feedback.className = 'mt-space-sm p-space-sm rounded-lg bg-secondary-container/10 text-secondary flex items-start gap-2';
+        feedback.innerHTML = `
+          <span class="material-symbols-outlined text-[18px] mt-0.5">verified</span>
+          <div>
+            <span class="font-label-lg text-label-lg block font-semibold">Spot on!</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">time.NewTimer allows explicit reclamation via Stop(), saving CPU and GC pressure during long-running heartbeats.</span>
+          </div>
+        `;
+      } else {
+        buttonEl.classList.add('bg-error-container/20', 'text-error');
+        feedback.className = 'mt-space-sm p-space-sm rounded-lg bg-error-container/10 text-error flex items-start gap-2';
+        feedback.innerHTML = `
+          <span class="material-symbols-outlined text-[18px] mt-0.5">error_outline</span>
+          <div>
+            <span class="font-label-lg text-label-lg block font-semibold">Not quite.</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">The core issue with time.After in loops is memory: each call creates a channel that persists until expiry, causing micro-leaks.</span>
+          </div>
+        `;
+      }
+      feedback.classList.remove('hidden');
+    }
+
+    // Toggle Mascot interaction
+    function toggleMascotDialogue() {
+      const tooltip = document.getElementById('mascot-tooltip');
+      if (tooltip) {
+        tooltip.classList.toggle('hidden');
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Vibe<span class="text-primary">Check</span></span><span class="text-outline-variant">•</span><span>Interactive engineering &amp; developer mastery</span></div><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="plan" href="#">Curriculum</a><a class="hover:text-on-surface transition-colors" data-path="code-detective" href="#">Sandbox</a><a class="hover:text-on-surface transition-colors" data-path="my-skills" href="#">Skill Graph</a><span class="text-outline-variant">© 2025 VibeCheck. All rights reserved.</span></div></div></footer></body></html>
+
+<!-- VibeCheck — Code Detective (Initial) -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-background":"#dfe2f1","on-tertiary-container":"#613b00","surface":"#0f131d","secondary-container":"#00a572","tertiary-container":"#f59e0b","surface-container-low":"#171b26","inverse-on-surface":"#2c303b","surface-variant":"#313540","on-error-container":"#ffdad6","on-tertiary":"#472a00","surface-tint":"#7bd0ff","outline-variant":"#3e484f","inverse-primary":"#00668a","on-secondary-fixed":"#002113","on-surface-variant":"#bdc8d1","on-secondary":"#003824","tertiary-fixed":"#ffddb8","secondary":"#4edea3","primary-fixed-dim":"#7bd0ff","on-surface":"#dfe2f1","surface-dim":"#0f131d","on-secondary-container":"#00311f","on-primary-fixed":"#001e2c","tertiary":"#ffc174","inverse-surface":"#dfe2f1","on-secondary-fixed-variant":"#005236","secondary-fixed-dim":"#4edea3","primary":"#8ed5ff","primary-container":"#38bdf8","secondary-fixed":"#6ffbbe","primary-fixed":"#c4e7ff","surface-container-highest":"#313540","surface-bright":"#353944","on-tertiary-fixed":"#2a1700","surface-container":"#1c1f2a","on-tertiary-fixed-variant":"#653e00","surface-container-lowest":"#0a0e18","surface-container-high":"#262a35","background":"#0f131d","tertiary-fixed-dim":"#ffb95f","error-container":"#93000a","on-primary-fixed-variant":"#004c69","on-error":"#690005","outline":"#87929a","on-primary":"#00354a","on-primary-container":"#004965","error":"#ffb4ab"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-3xl":"6rem","space-lg":"1.5rem","margin-tablet":"2.5rem","margin-desktop":"4rem","space-md":"1rem","space-xl":"2.5rem","space-2xl":"4rem","gutter-desktop":"2.5rem","gutter":"1.5rem"},"fontFamily":{"headline-lg":["Space Grotesk"],"label-lg":["Geist"],"label-md":["Geist"],"headline-md":["Space Grotesk"],"code-snippet":["JetBrains Mono"],"body-sm":["Geist"],"label-badge":["Geist"],"body-lg":["Geist"],"display-hero":["Space Grotesk"],"body-md":["Geist"],"display-hero-mobile":["Space Grotesk"],"headline-sm":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"]},"fontSize":{"headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-md":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-snippet":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-badge":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"0em","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-space-2xl max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="VibeCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Xt4g6IjIHe-gMPF_iVlVXI2EXltCxrAkn_RLQAzgp3uujujwGZlPSTjPyzZmUgXq9lUf4pVGLzes9ciJUwF0FrlXsMIBlq-ZSXRr-KGzhNhMphzngwv73LPYEUYDhZvcP4pai7WgNMcnTrmGVlsc5yiJpG5QHvZmK7aI-zH9K1CPDdpo7PGBUl191ScojB3DvB1YvestRgwgvoLpY76WwCWHjYsidM6PF6e0mVeGyHBJM3r99lRZMSbyc"/><a class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-semibold flex items-center gap-space-xs hover:text-primary transition-colors" data-path="home" href="#">Vibe<span class="text-primary">Check</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="plan" href="#">Plan</a><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="code-detective" href="#">Code Detective</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="rubber-duck" href="#">Rubber Duck</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="knowledge-check" href="#">Knowledge Check</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="deploy" href="#">Deploy</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="my-skills" href="#">My Skills</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><a class="hidden sm:inline-flex font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="sign-in" href="#">Sign In</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(56,189,248,0.35)] cursor-pointer hover:bg-primary-container transition-colors"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full flex-1 pt-space-2xl bg-surface"><div class="flex flex-col w-full relative overflow-hidden">
+<!-- Subtle Radial Perspective & Ambient Atmospheric Glow -->
+<div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-primary-container/10 via-primary/5 to-transparent blur-3xl opacity-60"></div>
+<div class="pointer-events-none absolute top-1/3 -right-60 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+<!-- Perspective Floor Blueprint Grid Lines (Subtle SVG Overlay) -->
+<div class="pointer-events-none absolute inset-0 opacity-[0.035] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_70%,transparent_100%)]">
+<svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="48" id="grid-pattern" patternunits="userSpaceOnUse" width="48">
+<path class="text-on-surface" d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid-pattern)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Main Hero Canvas (Clean, Centered, Generous Airiness) -->
+<section class="relative z-10 w-full max-w-[1100px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl md:py-space-2xl flex flex-col items-center text-center">
+<!-- Feature Pill Badge -->
+<div class="inline-flex items-center gap-space-xs px-3.5 py-1 rounded-full bg-surface-container-high text-primary shadow-sm mb-space-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-badge text-label-badge tracking-widest uppercase">CODE DETECTIVE</span>
+</div>
+<!-- Editorial Headline -->
+<h1 class="font-display-hero text-headline-lg-mobile md:text-display-hero text-on-surface max-w-4xl tracking-tight leading-tight md:leading-[1.1] mb-space-sm">
+      Understand the code <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-secondary">behind your ideas.</span>
+</h1>
+<!-- Subtitle / Framing -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl font-light tracking-normal leading-relaxed mb-space-xl">
+      Explore what your code does, why it works, and how you could build it yourself.
+    </p>
+<!-- Central Visual Artifact: Sleek Holographic Magnifying Lens & Code Nodes -->
+<div class="relative w-full max-w-[720px] h-[210px] md:h-[260px] flex items-center justify-center mb-space-xl">
+<!-- Ambient Glow Behind Node Cluster -->
+<div class="absolute w-72 h-36 bg-primary-container/15 blur-2xl rounded-full"></div>
+<!-- Holographic Code Window Artifact -->
+<div class="relative w-full max-w-xl h-full bg-surface-container-low/90 rounded-2xl shadow-2xl p-5 flex flex-col justify-between overflow-hidden backdrop-blur-md">
+<!-- Window Top Bar -->
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
+</div>
+<span class="font-code-snippet text-code-snippet text-on-surface-variant/60 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary">terminal</span>
+            orchestrator.ts • AST Inspect
+          </span>
+<span class="font-label-badge text-label-badge text-secondary bg-surface-container px-2 py-0.5 rounded-full">LIVE SYMBOL TREE</span>
+</div>
+<!-- Rendered Code Fragment with AST Node Highlights -->
+<div class="font-code-snippet text-code-snippet text-left space-y-1.5 py-1 text-on-surface-variant leading-relaxed select-none">
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant/30 select-none w-4">01</span>
+<span class="text-primary font-medium">export async function</span>
+<span class="text-on-surface font-semibold">dispatchBatchJob</span><span class="text-outline">(payload: JobSpec) {</span>
+</div>
+<div class="flex items-center gap-3 relative">
+<span class="text-on-surface-variant/30 select-none w-4">02</span>
+<span class="pl-4 text-on-surface-variant/70">const lock = <span class="text-secondary font-medium">await redis.acquire</span>(`lock:${payload.id}`);</span>
+<!-- Ast Micro Badge floating -->
+<span class="absolute right-2 top-0 px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-badge text-[10px] tracking-wide text-primary">distributed-mutex</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant/30 select-none w-4">03</span>
+<span class="pl-4 text-on-surface-variant/70"><span class="text-tertiary">if</span> (!lock.granted) <span class="text-error font-medium">throw new</span> ConcurrencyConflictError();</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-on-surface-variant/30 select-none w-4">04</span>
+<span class="pl-4 text-primary-container">return orchestrateWorkerPool</span><span class="text-outline">(payload.chunks);</span>
+</div>
+</div>
+<!-- Terminal Status Strip -->
+<div class="flex items-center justify-between pt-2.5 text-on-surface-variant/60 font-code-snippet text-[11px]">
+<span class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 0 side-effect risks detected
+          </span>
+<span class="text-on-surface-variant/40">AST Parser v4.1 • Ready</span>
+</div>
+<!-- Holographic Magnifying Lens Floating Artifact Overlay -->
+<div class="absolute right-12 md:right-28 top-8 w-32 h-32 md:w-36 md:h-36 pointer-events-none transition-transform hover:scale-105 duration-300">
+<!-- Glass Ring Lens -->
+<div class="relative w-full h-full rounded-full bg-gradient-to-br from-primary/25 via-surface-tint/10 to-transparent backdrop-blur-[2px] shadow-[0_0_35px_rgba(56,189,248,0.35)] flex items-center justify-center">
+<!-- Reticle Crosshair Inside Lens -->
+<div class="w-16 h-16 rounded-full bg-surface/40 flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary text-[32px] animate-pulse">radar</span>
+<div class="absolute -top-1 w-2 h-0.5 bg-primary"></div>
+<div class="absolute -bottom-1 w-2 h-0.5 bg-primary"></div>
+<div class="absolute -left-1 w-0.5 h-2 bg-primary"></div>
+<div class="absolute -right-1 w-0.5 h-2 bg-primary"></div>
+</div>
+</div>
+<!-- Lens Angled Handle -->
+<div class="absolute bottom-1 right-2 w-3.5 h-12 bg-gradient-to-b from-primary via-surface-container-highest to-surface-container-lowest rounded-full transform rotate-45 shadow-lg"></div>
+</div>
+</div>
+</div>
+<!-- Prominent Repository / File Input Console -->
+<div class="w-full max-w-2xl bg-surface-container rounded-2xl p-2.5 md:p-3 shadow-2xl flex flex-col gap-3">
+<!-- Input Field & Main CTA Bar -->
+<div class="flex flex-col sm:flex-row items-stretch gap-2.5">
+<!-- Input wrapper -->
+<div class="relative flex-1 flex items-center bg-surface-container-lowest rounded-xl px-3.5 py-3 group">
+<span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors text-[22px] mr-2.5">folder_open</span>
+<input class="w-full bg-transparent text-on-surface placeholder:text-on-surface-variant/40 font-code-snippet text-code-snippet focus:outline-none" id="repo-input" placeholder="Paste GitHub repository or file path..." type="text" value="github.com/alex/stream-orchestrator"/>
+<button class="text-on-surface-variant/50 hover:text-on-surface transition-colors ml-1 p-1" id="clear-btn" title="Clear input" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Primary Cyan Pill Action Button -->
+<button class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary-container hover:bg-primary text-on-primary-container font-headline-sm text-[15px] font-bold tracking-tight shadow-[0_0_24px_rgba(56,189,248,0.35)] hover:shadow-[0_0_32px_rgba(56,189,248,0.6)] transform hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer whitespace-nowrap" id="explore-btn" type="button">
+<span>Explore my code</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Drag & Drop Alternate Bar -->
+<div class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-surface-container-low/70 hover:bg-surface-container-low transition-colors cursor-pointer text-on-surface-variant hover:text-on-surface" id="drop-zone">
+<span class="material-symbols-outlined text-[18px] text-primary">upload_file</span>
+<span class="font-label-md text-label-md">or drop local file / paste snippet directly</span>
+</div>
+<!-- Quick Try Pills Below -->
+<div class="pt-1 flex flex-wrap items-center justify-center gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant/70">Or try sample code:</span>
+<button class="sample-pill font-label-md text-label-md px-3 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-primary transition-colors flex items-center gap-1.5" data-sample="github.com/vibecheck/redis-locks" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Redis Locks
+        </button>
+<button class="sample-pill font-label-md text-label-md px-3 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-primary transition-colors flex items-center gap-1.5" data-sample="github.com/vibecheck/react-state-hook" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+          React State Hook
+        </button>
+<button class="sample-pill font-label-md text-label-md px-3 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-primary transition-colors flex items-center gap-1.5" data-sample="github.com/vibecheck/fastapi-async-router" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          Python API Router
+        </button>
+</div>
+</div>
+<!-- Two Minimal Value Proposition Notes Below -->
+<div class="mt-space-xl grid grid-cols-1 sm:grid-cols-2 gap-space-md max-w-2xl w-full text-left">
+<!-- Value Prop 1 -->
+<div class="flex items-start gap-3.5 p-4 rounded-xl bg-surface-container-low/60 shadow-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+</div>
+<div>
+<h2 class="font-label-lg text-label-lg text-on-surface font-semibold">Plain English breakdowns</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Demystify complex concurrency, state trees, and nested callbacks.</p>
+</div>
+</div>
+<!-- Value Prop 2 -->
+<div class="flex items-start gap-3.5 p-4 rounded-xl bg-surface-container-low/60 shadow-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+</div>
+<div>
+<h2 class="font-label-lg text-label-lg text-on-surface font-semibold">Zero jargon AI choices</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Understand why your code was drafted this way, and verify every trade-off.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Persistent Floating AI Companion Widget (Bottom-Right, Closed State) -->
+<aside aria-label="AI Assistant Quick Access" class="fixed bottom-6 right-6 z-50 group flex items-center flex-row-reverse gap-3">
+<!-- Companion Circular Mascot Trigger -->
+<button aria-label="Open VibeCheck AI Assistant" class="w-14 h-14 rounded-full bg-surface-container p-1 shadow-[0_8px_24px_rgba(0,0,0,0.5),0_0_20px_rgba(56,189,248,0.35)] hover:shadow-[0_8px_30px_rgba(56,189,248,0.55)] transform hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center relative overflow-hidden focus:outline-none" id="companion-btn" type="button">
+<!-- Subtle Pulsing Aura -->
+<div class="absolute inset-0 rounded-full bg-primary/20 animate-ping opacity-25 pointer-events-none"></div>
+<!-- Mascot Image -->
+<img alt="VibeCheck AI Companion" class="w-full h-full object-cover rounded-full select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKhoan2QCxRGrADu5W50FRzaEk1_3BfmPbQurT0_7pJsXddyil_7aolJyt07bs6A-gPxuGiKOIjEQK1pCkYcn-tQwvWNuS-W8-mbPoVbeR4McD4fKI-8ArQtw7W1tFNwKGXUH64lz3gBZGBlmx1TdlCjuX81SAAQ4ws9wiPtw-i43gyZOy5CYui-aFvD4SqSjXJJLTRbfGpjIkBP7I1dTRrjtwDUtiRle68A8SR5Z4BVY2Rx7fA5"/>
+<!-- Online Indicator Dot -->
+<span class="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-secondary ring-2 ring-surface"></span>
+</button>
+<!-- Tooltip Card (Hover & Focus Reveal) -->
+<div class="opacity-0 translate-x-3 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 group-focus-within:opacity-100 group-focus-within:translate-x-0 transition-all duration-200 bg-surface-container-high/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2.5 max-w-xs">
+<div class="flex flex-col text-left">
+<span class="font-label-badge text-label-badge text-primary uppercase tracking-wider">Ask VibeCheck</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">“Want me to explain this code?”</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">chat_bubble</span>
+</div>
+</aside>
+</div>
+<script>
+  // Simple micro-interactions for initial state
+  document.addEventListener('DOMContentLoaded', () => {
+    const repoInput = document.getElementById('repo-input');
+    const clearBtn = document.getElementById('clear-btn');
+    const exploreBtn = document.getElementById('explore-btn');
+    const dropZone = document.getElementById('drop-zone');
+    const samplePills = document.querySelectorAll('.sample-pill');
+    const companionBtn = document.getElementById('companion-btn');
+
+    // Clear input
+    clearBtn?.addEventListener('click', () => {
+      repoInput.value = '';
+      repoInput.focus();
+    });
+
+    // Sample pills click
+    samplePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const sampleUrl = pill.getAttribute('data-sample');
+        if (sampleUrl && repoInput) {
+          repoInput.value = sampleUrl;
+          repoInput.focus();
+        }
+      });
+    });
+
+    // Dropzone click simulation
+    dropZone?.addEventListener('click', () => {
+      repoInput.value = 'local://workspace/src/app-core.ts';
+      repoInput.focus();
+    });
+
+    // Companion click toggle feedback
+    companionBtn?.addEventListener('click', () => {
+      alert('VibeCheck Assistant: "Ready when you are! Paste any repository or function to get an instant Plain English breakdown."');
+    });
+
+    // Explore CTA simulation
+    exploreBtn?.addEventListener('click', () => {
+      const target = repoInput.value.trim();
+      if (!target) {
+        repoInput.focus();
+        return;
+      }
+      exploreBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Analyzing AST...</span>';
+      setTimeout(() => {
+        exploreBtn.innerHTML = '<span>Explore my code</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span>';
+      }, 1200);
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Vibe<span class="text-primary">Check</span></span><span class="text-outline-variant">•</span><span>Interactive engineering &amp; developer mastery</span></div><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="plan" href="#">Curriculum</a><a class="hover:text-on-surface transition-colors" data-path="code-detective" href="#">Sandbox</a><a class="hover:text-on-surface transition-colors" data-path="my-skills" href="#">Skill Graph</a><span class="text-outline-variant">© 2025 VibeCheck. All rights reserved.</span></div></div></footer></body></html>

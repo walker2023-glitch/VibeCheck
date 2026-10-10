@@ -9,7 +9,7 @@
 | **Inputs** | Document A (prototype HTML: four screens), Document B (Master Brand Identity & Design System), and the Plan Template (`docs/plan/_TEMPLATE.md`), which is the basis of the feature-level plan `docs/plan/vibecheck.md` |
 | **Status labels** | *[Implemented]*, *[Tested]*, *[Verified]*, *[Partial]*, *[Blocked]*, *[Not started]*. Used on every feature in §6 and §26. |
 
-**Input limitations.** The brand reference image mentioned in Document B is not attached; only its text is. The logo artwork in the prototype is an external placeholder URL, not the official mark. Every logo reference in this spec is therefore a **pending asset**, not a finished one (see §11).
+**Input update.** The approved compass SVG variants are now in `public/brand/`; the brand board and handoff are in `references/brand/`. The original prototype's external logo URL remains a placeholder, not production source. A final wordmark lockup and companion illustration remain deferred (see §11).
 
 ---
 
@@ -67,7 +67,7 @@ The prototype is a set of static HTML files with a shared Tailwind config and in
 
 ### 3.2 Document B inventory (brand)
 
-Document B is authoritative for logo, color, typography, brand voice, accessibility expectations, and visual principles. It provides approximate HEX values that are marked provisional. It specifies no error, warning, or success colors beyond mint, and no spacing scale, no component specs, and no clear-space rule for the logo. Those gaps are filled in this spec and flagged for approval (§29).
+Document B is authoritative for logo, color, typography, brand voice, accessibility expectations, and visual principles. The palette, fonts, icon system, and 4 px base / 8 px primary spacing rhythm are approved for hackathon implementation. Document B specifies no error or warning colors, component specs, or clear-space rule for the logo; remaining decisions are tracked in §29.
 
 ### 3.3 Priority hierarchy
 
@@ -84,16 +84,16 @@ Each row records the conflict, the winning rule, and whether human approval is s
 
 | ID | Conflict | Prototype says | Requirement/brand says | Resolution | Approval needed |
 |---|---|---|---|---|---|
-| CR-01 | Typography | Space Grotesk headlines, Geist body, JetBrains Mono code | Inter is the primary typeface | **Inter** for all UI and headings. JetBrains Mono for code only (proposal, separate from brand typography). Space Grotesk and Geist are dropped. | Yes (mono choice) |
+| CR-01 | Typography | Space Grotesk headlines, Geist body, JetBrains Mono code | Inter is the primary typeface | **Inter** for all UI and headings; **JetBrains Mono** for code only. Space Grotesk and Geist are dropped. | No; approved for hackathon |
 | CR-02 | Palette | Sky blue primary (#8ED5FF / #38BDF8), mint secondary, amber tertiary, dark only | Navy, teal, turquoise, mint; blue and violet secondary; "avoid unrelated colors" | **Brand palette.** Turquoise replaces sky blue. Amber is removed from brand tokens. Soft Violet is the Rubber Duck accent. Status colors are proposed (§10.2). | Yes (warning, danger tokens) |
-| CR-03 | Logo | Google-hosted image placeholder in header | Official compass; never substitute | Compass lockup from supplied artwork. Until supplied, a labeled temporary placeholder (§11.4). | Asset needed |
+| CR-03 | Logo | Google-hosted image placeholder in header | Official compass; never substitute | Use the supplied production compass SVG variants in `public/brand/`; a final horizontal lockup remains deferred (§11). | Final lockup deferred |
 | CR-04 | Mascot vs logo | Same avatar used as mascot | Mascot "may be visually distinct"; distinguish from logo | Mascot is a separate illustration. Header always uses the compass. | Mascot art needed |
 | CR-05 | Homepage hero copy | Two variants with different copy ("Intelligent Repository Radar", "telemetry and conceptual bridge") | Exact headline and description specified | **Required copy** from the master request. Prototype variants are discarded. | No |
 | CR-06 | Homepage tool cards | "Launch Detective Sandbox", "Zero-Config", "Instant preview environments, automatic SSL" | Three choices: Code Detective, Rubber Duck, Deploy, with brief descriptions | **Required labels.** Card copy describes only what exists or is clearly labeled as planned. No SSL, latency, or zero-config claims. | No |
 | CR-07 | Simulated results | Hardcoded metrics and repo names | Mock functionality must not be described as implemented | All metrics and findings come from the backend or are removed. Until the backend exists, screens show an explicit empty or preview state (§9). | No |
 | CR-08 | AI attribution | "Claude 3.7 Copilot generated", "89% AI attribution" | Do not claim to know hidden reasoning or AI authorship | Replaced with **evidence labels**: "Self-declared," "Commit message says…", "Unknown." No percentages. | No |
 | CR-09 | Rubber Duck reveals solution | Code comments state the fix on first load | FR-21: first response is a question; hint before solution | Prototype comments with solutions are removed from initial state. | No |
-| CR-10 | Theme | Dark only (`class="dark"`) | Light and dark themes required | Both themes, system-default with user override (§10.4). | No |
+| CR-10 | Theme | Dark only (`class="dark"`) | Light and dark themes required | Dark is the hackathon default; light has semantic mappings. A later selector may provide user override (§10.4). | No |
 | CR-11 | Glow and decoration | Heavy cyan glows, blur, ping animations | "Avoid excessive gradients, glowing effects, neon overload" | Glows limited to one ambient element per page; no ping animation on idle elements. | No |
 | CR-12 | Companion name | "VibeCheck Duck", "VibeCheck AI", "Ask VibeCheck" | Companion must be consistently named | Mascot name **"Duck"** (working name); launcher label **"Ask VibeCheck"**; panel title **"VibeCheck Duck"**. | Yes |
 | CR-13 | Personal greeting | "Hey Alex!" hardcoded | No fabricated personalization | Greeting uses the signed-in user's display name only when signed in; otherwise "Hi there!" | No |
@@ -101,7 +101,7 @@ Each row records the conflict, the winning rule, and whether human approval is s
 | CR-15 | Footer year | "© 2025" | Current date 2026 | Year rendered from build date. | No |
 | CR-16 | Mobile navigation | Nav hidden below `lg`, no alternative | Responsive navigation required | Collapsible menu button below `lg` (§8.3). | No |
 | CR-17 | Deploy scope | "Instant preview environments", "Sub-second", "Global latency ~18ms" | Deployment is guided, not autonomous; no fabricated claims | Deploy in Stage 1 is a labeled **preview page** only (§9.6). | Yes |
-| CR-18 | Icons | Material Symbols via Google Fonts CDN | Simple line icons, consistent stroke | Proposed: **Lucide** icons, self-hosted (§10.7). Material Symbols is a fallback if approval is withheld. | Yes |
+| CR-18 | Icons | Material Symbols via Google Fonts CDN | Simple line icons, consistent stroke | **Lucide** icons from the installed package (§10.7). Material Symbols remain reference-only. | No; approved for hackathon |
 | CR-19 | Tailwind via CDN script | `cdn.tailwindcss.com` | Production build | Compile Tailwind in the build pipeline. The CDN is for prototyping only. | No |
 | CR-20 | Plan and Deploy in nav | Linked but absent | MVP scope excludes them | Nav items present; Stage 1 routes show an honest "Coming soon" state with the planned scope. | Yes |
 | CR-21 | Glow and blur background | Blueprint grid with perspective transform | Brand: calm, restrained | Keep the blueprint grid as a static, low-opacity SVG pattern. Remove the 3D transform (performance and motion). | No |
@@ -421,12 +421,12 @@ For the narrower Hackathon Demo, use multiple-choice items only. A guest sees a 
 ### 10.1 Foundations
 
 - **Typeface:** Inter for all UI text (Brand Guide §4). Weights: 400, 500, 600, 700.
-- **Code typeface (proposal):** JetBrains Mono, 400 and 500, for code only. It is not a brand typeface. Approval needed (CR-01).
+- **Code typeface:** JetBrains Mono, 400 and 500, for code only. It is not a brand typeface (CR-01; approved for the hackathon).
 - **Base size:** 16 px. Body text is never below 14 px for interface text, and never below 12 px for any text.
 
 ### 10.2 Color tokens
 
-Brand values from Document B, marked provisional. Tokens are semantic: components use role names, never raw HEX.
+The brand palette below is approved for hackathon implementation. Components consume semantic roles from `design/tokens.json` and `app/globals.css`, never raw HEX.
 
 **Brand palette (source values):**
 
@@ -444,112 +444,21 @@ Brand values from Document B, marked provisional. Tokens are semantic: component
 | Off White | `#F7FAFC` | Light background |
 | White | `#FFFFFF` | Light cards, text on dark |
 
-**Semantic mapping (proposed starting values; verify before approval):**
+**Semantic roles:** `design/tokens.json` is the source for both theme values. `app/globals.css` maps each role to `--vc-*` CSS variables and Tailwind v4 `@theme inline` colors. Dark is the default (`:root`); `[data-theme="light"]` supplies light values. Components use role names, not palette HEX values.
 
-| Token | Dark theme | Light theme | Use |
-|---|---|---|---|
-| `--bg` | `#071B2C` | `#F7FAFC` | Page background |
-| `--surface` | `#0B2940` | `#FFFFFF` | Cards, panels |
-| `--surface-raised` | `#12334F` *(proposed tint)* | `#FFFFFF` + border `#D5E0E8` | Popovers, active cards |
-| `--surface-sunken` | `#051420` *(proposed)* | `#EAF0F5` *(proposed)* | Code viewer background |
-| `--text` | `#FFFFFF` | `#071B2C` | Primary text |
-| `--text-muted` | `#B7C8D4` *(proposed; verify ≥ 4.5:1)* | `#4B5F70` *(proposed; verify)* | Secondary text |
-| `--accent` | `#16B8B0` | `#087E89` | Links, focus, active nav |
-| `--accent-fg` | `#071B2C` | `#FFFFFF` | Text on accent buttons |
-| `--success` | `#41D6AD` | `#0E7A5A` *(proposed darker mint for text)* | Positive states |
-| `--learn` | `#A18BFF` | `#5B43D6` *(proposed)* | Rubber Duck and learning accents |
-| `--info` | `#2478F2` | `#1F5FD1` *(proposed)* | Technical visualization |
-| `--warning` | `#E8B04A` *(proposed, approval needed)* | `#8A5A00` *(proposed)* | Caution (CR-02) |
-| `--danger` | `#F4837D` *(proposed, approval needed)* | `#B42318` *(proposed)* | Errors |
-| `--focus` | `#16B8B0` | `#087E89` | Focus ring |
+| Role group | Semantic roles |
+|---|---|
+| Layout | `background`, `surface`, `surface-raised`, `border` |
+| Text and actions | `text`, `text-muted`, `primary`, `primary-hover`, `on-primary`, `focus` |
+| Status and learning | `success`, `warning`, `danger`, `information`, `learning` |
 
-**Contrast checks.** Ratios below are computed from the brand HEX values with WCAG relative luminance. Re-verify with tooling before release.
+The brand palette is approved for hackathon implementation. Light-theme semantic variants and individual foreground/background pairings still need rendered contrast checks; no untested pairing is claimed to meet WCAG. Turquoise and mint should not be used as small text on light surfaces.
 
-| Pairing | Ratio | Result |
-|---|---|---|
-| Navy text on Turquoise (dark primary button) | ≈ 7.1 : 1 | Pass AA |
-| White on Deep Teal (light primary button) | ≈ 4.8 : 1 | Pass AA |
-| Mint on Navy | ≈ 9.6 : 1 | Pass AA |
-| Soft Violet on Navy | ≈ 6.4 : 1 | Pass AA |
-| Deep Teal on Off White | ≈ 4.6 : 1 | Pass AA (small text, verify) |
-| Turquoise on White | ≈ 2.5 : 1 | **Fail** for text; use only for non-text |
-| Mint on White | ≈ 1.8 : 1 | **Fail**; use darker success token on light |
+### 10.3 Tailwind token bridge
 
-**Rule (BRAND-010):** Turquoise and mint are not used for text on light backgrounds. The light theme uses Deep Teal and the proposed dark variants.
+Production uses compiled Tailwind v4 through `@import "tailwindcss"` in `app/globals.css`. The stylesheet defines theme variables and exposes them through `@theme inline`, for example `--color-primary: var(--vc-primary)`. Fonts, card radius, and restrained shadow are exposed there as well. Stitch's CDN configuration and inline JavaScript remain reference material only.
 
-### 10.3 Tailwind configuration (example, mapped to tokens)
-
-```ts
-// tailwind.config.ts (illustrative; implementation must follow this structure)
-import type { Config } from 'tailwindcss';
-
-export default {
-  darkMode: ['class', '[data-theme="dark"]'],
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        bg: 'rgb(var(--bg) / <alpha-value>)',
-        surface: 'rgb(var(--surface) / <alpha-value>)',
-        'surface-raised': 'rgb(var(--surface-raised) / <alpha-value>)',
-        'surface-sunken': 'rgb(var(--surface-sunken) / <alpha-value>)',
-        text: 'rgb(var(--text) / <alpha-value>)',
-        'text-muted': 'rgb(var(--text-muted) / <alpha-value>)',
-        accent: 'rgb(var(--accent) / <alpha-value>)',
-        'accent-fg': 'rgb(var(--accent-fg) / <alpha-value>)',
-        success: 'rgb(var(--success) / <alpha-value>)',
-        learn: 'rgb(var(--learn) / <alpha-value>)',
-        info: 'rgb(var(--info) / <alpha-value>)',
-        warning: 'rgb(var(--warning) / <alpha-value>)',
-        danger: 'rgb(var(--danger) / <alpha-value>)',
-        focus: 'rgb(var(--focus) / <alpha-value>)',
-      },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-      },
-    },
-  },
-} satisfies Config;
-```
-
-```css
-/* globals.css — tokens as RGB triplets so Tailwind alpha works */
-:root, [data-theme="light"] {
-  --bg: 247 250 252;        /* #F7FAFC */
-  --surface: 255 255 255;
-  --surface-raised: 255 255 255;
-  --surface-sunken: 234 240 245;
-  --text: 7 27 44;          /* #071B2C */
-  --text-muted: 75 95 112;
-  --accent: 8 126 137;      /* #087E89 */
-  --accent-fg: 255 255 255;
-  --success: 14 122 90;
-  --learn: 91 67 214;
-  --info: 31 95 209;
-  --warning: 138 90 0;
-  --danger: 180 35 24;
-  --focus: 8 126 137;
-}
-[data-theme="dark"] {
-  --bg: 7 27 44;            /* #071B2C */
-  --surface: 11 41 64;      /* #0B2940 */
-  --surface-raised: 18 51 79;
-  --surface-sunken: 5 20 32;
-  --text: 255 255 255;
-  --text-muted: 183 200 212;
-  --accent: 22 184 176;     /* #16B8B0 */
-  --accent-fg: 7 27 44;
-  --success: 65 214 173;    /* #41D6AD */
-  --learn: 161 139 255;     /* #A18BFF */
-  --info: 36 120 242;       /* #2478F2 */
-  --warning: 232 176 74;
-  --danger: 244 131 125;
-  --focus: 22 184 176;
-}
-```
-
-Theme selection: follow `prefers-color-scheme` by default, with a manual toggle stored in local preferences. The theme must be set before first paint to avoid a flash.
+Dark is the hackathon default. Light remains available through semantic tokens. A future theme selector should set the theme before first paint to avoid a flash.
 
 ### 10.4 Light and dark theme rules
 
@@ -576,7 +485,7 @@ Letter spacing: headings −0.02 em; labels +0.02 em; uppercase badges +0.08 em.
 
 ### 10.6 Spacing, layout, breakpoints
 
-- **Spacing scale (4 px base):** 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96.
+- **Spacing scale:** 4 px base unit; 8 px primary layout rhythm. Use 4 px increments for compact internal spacing. Normal layout spacing predominantly uses multiples of 8 px. Scale: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96.
 - **Breakpoints:** `sm` 640, `md` 768, `lg` 1024, `xl` 1280.
 - **Container:** max width 1200 px for content; 1280 px for the workspace header. Horizontal page margin 20 px (mobile), 40 px (tablet), 64 px (desktop).
 - **Grid:** 12 columns, 24 px gutter (desktop), 16 px (mobile).
@@ -584,9 +493,9 @@ Letter spacing: headings −0.02 em; labels +0.02 em; uppercase badges +0.08 em.
 
 ### 10.7 Radii, shadows, icons
 
-- **Radii:** controls 8 px; cards 12–16 px; large panels 16–20 px; pills (inputs and badges) full; app icons 22%.
+- **Radii:** controls 8 px; cards 12 px; large panels 16–20 px; pills (inputs and badges) full; app icons 22%.
 - **Shadows:** elevation 1 (cards, light: `0 1px 2px rgba(7,27,44,0.06)`; dark: border instead). Elevation 2 (popovers only). No colored glows except one ambient element per page at ≤ 10% opacity.
-- **Icons:** Lucide (proposed, approval needed; CR-18), 24 px grid, 1.75 px stroke, round caps. Icons are inline SVG from the package, self-hosted. The prototype's Material Symbols CDN is removed.
+- **Icons:** Lucide (approved for the hackathon; CR-18), 24 px grid, 1.75 px stroke, round caps. Icons are inline SVG from the package. The prototype's Material Symbols CDN is not production source.
 - The compass symbol is reserved for the logo, the header, the companion's panel header (small), and onboarding moments. It is not used as a generic feature icon (Brand Guide §6).
 
 ### 10.8 Motion
@@ -601,7 +510,7 @@ Letter spacing: headings −0.02 em; labels +0.02 em; uppercase badges +0.08 em.
 
 - **Buttons:** Primary (accent background, accent-fg text; min height 40 px; hover darkens 8%; focus ring 2 px with 2 px offset). Secondary (surface background, 1 px border). Ghost (text only, for low-priority actions). Destructive (danger, always confirmed).
 - **Inputs:** surface-sunken background, 1 px border, 40 px height, focus ring; error text below in danger with an icon.
-- **Cards:** surface background, 12–16 px radius, 1 px border in light theme.
+- **Cards:** surface background, 12 px radius, subtle 1 px border, restrained shadow where needed.
 - **Badges:** caption text, uppercase only for category labels, always paired with text (never color alone).
 - **Tabs:** segmented control with `role="tablist"`.
 - **Modals:** focus trap, Escape closes, focus returns to trigger, scrim at 60% navy.
@@ -637,10 +546,10 @@ The compass: a clean circular ring, four directional points at the cardinal posi
 
 ### 11.4 Placeholder rule
 
-Until official artwork is supplied:
+For the supplied standalone compass variants (`public/brand/compass-*.svg`), use the approved asset. For a still-missing lockup or other unsupplied artwork:
 
 - Use a neutral placeholder in the header that reads "VibeCheck" in Inter (text only, no fake compass) and is marked with `data-asset="placeholder-logo"`.
-- Do not recreate the compass from memory and present it as official.
+- Do not recreate a missing lockup or companion illustration from memory and present it as supplied artwork.
 - The placeholder must be replaced before any public release. A release check fails if `placeholder-logo` is present in the production build (TEST-BRAND-01).
 
 ### 11.5 Mascot versus logo
@@ -1452,15 +1361,15 @@ Product metrics (for example, assessments per week) are defined only when instru
 
 ## 29. Open Questions and Decisions Requiring Approval
 
-**Requires human approval**
+**Decision register (resolved and open)**
 
-1. **D-01 Code font.** Approve JetBrains Mono for code (CR-01).
+1. **D-01 Code font — resolved for hackathon.** JetBrains Mono is approved for code (CR-01).
 2. **D-02 Warning and danger colors.** Approve the proposed warning and danger tokens (CR-02).
-3. **D-03 Icon set.** Approve Lucide over Material Symbols (CR-18).
-4. **D-04 Companion name.** Approve "VibeCheck Duck" for the panel and "Ask VibeCheck" for the launcher (CR-12).
+3. **D-03 Icon set — resolved for hackathon.** Lucide is approved over Material Symbols (CR-18).
+4. **D-04 Companion name — partly resolved.** "Ask VibeCheck" is approved for the launcher; Duck is the provisional companion direction. The final companion and panel title remain open (CR-12).
 5. **D-05 Stage 1 Plan and Deploy.** Approve "Coming soon" and preview pages with no fabricated content (CR-20).
-6. **D-06 Logo asset.** Supply the official compass artwork (SVG) and a mascot illustration. Until then, the placeholder rule applies (CR-03, CR-04).
-7. **D-07 Light-theme token values.** Approve or adjust the proposed light variants for success, learn, info, and muted text, and verify contrast (§10.2).
+6. **D-06 Logo asset — partly resolved.** Approved production compass SVG variants are in `public/brand/`. A final horizontal lockup, favicon set, and mascot illustration remain deferred (CR-03, CR-04).
+7. **D-07 Light-theme token values — implementation mapping established.** `design/tokens.json` contains light semantic values. Rendered contrast validation and final production approval remain open (§10.2).
 8. **D-08 Clear space and minimum sizes.** Approve the logo clear-space proposal (§11.3).
 9. **D-09 Retention and deletion SLA.** Ownership and deletion relationships are defined; approve the production retention periods and deletion-completion SLA before production rollout (§20.2). No 30-day period is approved.
 10. **D-10 Mobile companion behavior.** Approve the full-sheet mode below 640 px (§13.3).
@@ -1659,4 +1568,4 @@ Cursor reads `AGENTS.md` through a project rules file that points to it. Codex a
 | 14 | Parallel-agent instructions avoid conflicts | **Yes** (§24). |
 | 15 | MVP and future separated | **Yes** (§7, §25). |
 
-**Items still open:** D-01 through D-10 and Q-01 and Q-08 (§29). Q-02 through Q-07 are resolved above. Do not begin frontend work that depends on open decisions until they are approved or explicitly deferred.
+**Items still open:** D-02, D-05, D-08 through D-10, the deferred portions of D-04/D-06/D-07, and Q-01/Q-08 (§29). D-01 and D-03 are approved for the hackathon; Q-02 through Q-07 are resolved above. Do not begin frontend work that depends on open decisions until they are approved or explicitly deferred.
