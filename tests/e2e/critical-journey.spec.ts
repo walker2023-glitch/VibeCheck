@@ -19,8 +19,8 @@ test("critical guest journey: analyze → inspect → quiz → session result", 
 
   await expect(page.getByText("Code Detective")).toBeVisible();
   await expect(page.getByText("What this code does")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Continue to Knowledge Check" })).toBeVisible();
-  await page.getByRole("button", { name: "Continue to Knowledge Check" }).click();
+  await expect(page.getByRole("button", { name: "Check my understanding" })).toBeVisible();
+  await page.getByRole("button", { name: "Check my understanding" }).click();
 
   await expect(page.getByRole("heading", { name: "Check your understanding." })).toBeVisible();
   await expect(page.getByText("Question 1 of 2")).toBeVisible();

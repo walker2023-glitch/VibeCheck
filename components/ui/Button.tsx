@@ -18,7 +18,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 export function Button({ variant = "primary", className = "", children, ...rest }: Props) {
   return (
     <button
-      className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium tracking-[0.02em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background ${styles[variant]} ${className}`}
+      className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium tracking-[0.02em] transition-all duration-150 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background ${styles[variant]} ${className}`}
       {...rest}
     >
       {children}

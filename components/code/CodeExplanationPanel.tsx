@@ -14,7 +14,7 @@ function ClaimBlock({ claim }: { claim: Claim }) {
   const evidence = claim.evidenceRefs[0];
 
   return (
-    <li className="rounded-lg border border-border bg-background p-3">
+    <li className="rounded-lg border border-border bg-background p-3 transition-colors duration-150 hover:border-primary/40">
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <span
           className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] ${
@@ -42,7 +42,7 @@ export function CodeExplanationPanel({ conceptLabel, explanation }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
+      <div className="rounded-[var(--radius-card)] border border-primary/25 bg-surface p-5 shadow-[0_0_28px_rgba(22,184,176,0.06)]">
         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-primary">Concept</p>
         <h2 className="mt-1 text-xl font-semibold tracking-tight text-text">{conceptLabel}</h2>
       </div>

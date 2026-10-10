@@ -49,7 +49,7 @@ export function RepositoryInput({
           disabled={disabled || submitting}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className="min-h-10 w-full flex-1 rounded-lg border border-border bg-surface px-4 text-[15px] text-text placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-60"
+          className="min-h-10 w-full flex-1 rounded-lg border border-border bg-surface px-4 text-[15px] text-text shadow-[0_8px_28px_rgba(7,27,44,0.25)] placeholder:text-text-muted transition-shadow duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:shadow-[0_0_0_1px_rgba(22,184,176,0.35),0_8px_28px_rgba(22,184,176,0.12)] disabled:opacity-60"
         />
         <Button type="submit" disabled={disabled || submitting} className="sm:min-w-[120px]">
           {submitting ? "Working…" : buttonLabel}

@@ -17,6 +17,8 @@
   --vc-danger: #F4837D;
   --vc-information: #2478F2;
   --vc-learning: #A18BFF;
+  --vc-indigo: #4535D5;
+  --vc-mint: #41D6AD;
 }
 
 [data-theme="light"] {
@@ -36,6 +38,8 @@
   --vc-danger: #B42318;
   --vc-information: #1F5FD1;
   --vc-learning: #5B43D6;
+  --vc-indigo: #4535D5;
+  --vc-mint: #0E7A5A;
 }
 
 @theme inline {
@@ -54,6 +58,8 @@
   --color-danger: var(--vc-danger);
   --color-information: var(--vc-information);
   --color-learning: var(--vc-learning);
+  --color-indigo: var(--vc-indigo);
+  --color-mint: var(--vc-mint);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   --radius-card: 12px;
@@ -76,6 +82,50 @@ body {
   outline-offset: 2px;
 }
 
+/* Homepage atmosphere — restrained, static grid (no 3D transform; CR-21) */
+.vc-hero-glow-primary {
+  background: radial-gradient(ellipse at center, rgba(22, 184, 176, 0.14), transparent 70%);
+  filter: blur(80px);
+}
+
+.vc-hero-glow-secondary {
+  background: radial-gradient(ellipse at center, rgba(65, 214, 173, 0.08), transparent 70%);
+  filter: blur(72px);
+}
+
+.vc-hero-grid {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(to right, rgba(41, 72, 90, 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 72, 90, 0.55) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 45%, transparent 100%);
+}
+
+.vc-process-path {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(22, 184, 176, 0.35),
+    transparent
+  );
+}
+
+@media (min-width: 768px) {
+  .vc-process-path {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(22, 184, 176, 0.35),
+      transparent
+    );
+  }
+}
+
+.vc-process-stage-active {
+  transition: color 300ms ease, box-shadow 300ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -84,6 +134,10 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .vc-process-stage-active {
+    box-shadow: none;
   }
 }
 
