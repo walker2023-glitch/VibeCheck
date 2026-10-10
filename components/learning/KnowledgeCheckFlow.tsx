@@ -47,6 +47,7 @@ export function KnowledgeCheckFlow() {
   const assessmentId = params.get("assessmentId");
   const initial = useMemo(() => readStoredAssessment(assessmentId), [assessmentId]);
   const [index, setIndex] = useState(0);
+  const session = useMemo(() => loadGuestSession(), []);
 
   if (initial.error || !initial.assessment) {
     return (
@@ -85,28 +86,37 @@ export function KnowledgeCheckFlow() {
       setIndex((i) => i + 1);
       return;
     }
-    const session = loadGuestSession();
+    const guest = loadGuestSession();
     router.push(
       `/session-result?assessmentId=${encodeURIComponent(assessment.id)}${
-        session?.usingFixtures ? "&fixtures=1" : ""
+        guest?.usingFixtures ? "&fixtures=1" : ""
       }`
     );
   }
 
   return (
-    <main className="mx-auto max-w-[720px] px-5 py-10 md:px-10 lg:px-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-learning">
+    <main className="relative mx-auto max-w-[720px] px-5 py-10 md:px-10 lg:px-16">
+      <div
+        className="pointer-events-none absolute -top-8 right-0 h-48 w-48 rounded-full bg-learning/10 blur-3xl"
+        aria-hidden
+      />
+      <p className="relative text-xs font-semibold uppercase tracking-[0.08em] text-learning">
         Knowledge Check
       </p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight text-text">
+      <h1 className="relative mt-2 text-3xl font-bold tracking-tight text-text">
         Check your understanding.
       </h1>
-      <p className="mt-3 text-text-muted">
+      <p className="relative mt-3 text-text-muted">
         Short questions grounded in your repository. Incorrect answers are a chance to learn —
         they never block progress.
       </p>
+      {session?.githubUrl ? (
+        <p className="relative mt-3 font-mono text-[12px] text-text-muted">
+          Repository: {session.githubUrl.replace("https://github.com/", "")}
+        </p>
+      ) : null}
 
-      <div className="mt-8">
+      <div className="relative mt-8">
         <div
           className="mb-4 h-1.5 overflow-hidden rounded-full bg-surface-raised"
           role="progressbar"

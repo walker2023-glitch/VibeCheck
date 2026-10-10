@@ -17,6 +17,8 @@
   --vc-danger: #F4837D;
   --vc-information: #2478F2;
   --vc-learning: #A18BFF;
+  --vc-indigo: #4535D5;
+  --vc-mint: #41D6AD;
 }
 
 [data-theme="light"] {
@@ -36,6 +38,8 @@
   --vc-danger: #B42318;
   --vc-information: #1F5FD1;
   --vc-learning: #5B43D6;
+  --vc-indigo: #4535D5;
+  --vc-mint: #0E7A5A;
 }
 
 @theme inline {
@@ -54,10 +58,16 @@
   --color-danger: var(--vc-danger);
   --color-information: var(--vc-information);
   --color-learning: var(--vc-learning);
+  --color-indigo: var(--vc-indigo);
+  --color-mint: var(--vc-mint);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   --radius-card: 12px;
   --shadow-card: 0 1px 2px rgba(7, 27, 44, 0.06);
+}
+
+html {
+  scroll-padding-top: 5.5rem;
 }
 
 html,
@@ -76,6 +86,143 @@ body {
   outline-offset: 2px;
 }
 
+/* Homepage atmosphere — restrained, static grid (no 3D transform; CR-21) */
+.vc-hero-glow-primary {
+  background: radial-gradient(ellipse at center, rgba(22, 184, 176, 0.14), transparent 70%);
+  filter: blur(80px);
+}
+
+.vc-hero-glow-secondary {
+  background: radial-gradient(ellipse at center, rgba(65, 214, 173, 0.08), transparent 70%);
+  filter: blur(72px);
+}
+
+.vc-hero-grid {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(to right, rgba(41, 72, 90, 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 72, 90, 0.55) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 45%, transparent 100%);
+}
+
+.vc-code-preview-line-active {
+  box-shadow: inset 0 0 24px rgba(22, 184, 176, 0.08);
+}
+
+.vc-code-preview-scanner {
+  animation: vc-preview-scanner-glow 2.5s ease-in-out infinite;
+}
+
+.vc-code-preview-connector {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(22, 184, 176, 0.18),
+    rgba(65, 214, 173, 0.22)
+  );
+}
+
+.vc-code-preview-panel {
+  animation: vc-preview-panel-in 450ms ease-out;
+}
+
+.vc-code-preview-progress-bar {
+  width: 100%;
+  transform-origin: left center;
+  animation-name: vc-preview-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes vc-preview-scanner-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(22, 184, 176, 0.35));
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(22, 184, 176, 0.7));
+    opacity: 1;
+  }
+}
+
+@keyframes vc-preview-panel-in {
+  from {
+    opacity: 0.35;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vc-preview-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.vc-analysis-compass-mark--search {
+  animation: vc-compass-search 2s linear infinite;
+}
+
+.vc-analysis-compass-mark--pulse {
+  animation: vc-compass-pulse 1.6s ease-in-out infinite;
+}
+
+.vc-analysis-compass-mark--connect {
+  animation: vc-compass-pulse 1.4s ease-in-out infinite;
+}
+
+.vc-analysis-compass-mark--complete {
+  filter: drop-shadow(0 0 10px rgba(65, 214, 173, 0.55));
+}
+
+.vc-analysis-compass-mark--error {
+  filter: drop-shadow(0 0 8px rgba(244, 131, 125, 0.45));
+}
+
+.vc-analysis-compass-connect {
+  box-shadow: 0 0 0 1px rgba(22, 184, 176, 0.25), 0 0 18px rgba(65, 214, 173, 0.28);
+  animation: vc-compass-connect-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes vc-compass-search {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vc-compass-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes vc-compass-connect-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -84,6 +231,18 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .vc-code-preview-panel,
+  .vc-code-preview-scanner,
+  .vc-code-preview-progress-bar,
+  .vc-analysis-compass-mark--search,
+  .vc-analysis-compass-mark--pulse,
+  .vc-analysis-compass-mark--connect,
+  .vc-analysis-compass-connect {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
   }
 }
 

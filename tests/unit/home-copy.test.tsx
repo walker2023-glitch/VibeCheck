@@ -6,7 +6,8 @@ describe("Homepage copy (hackathon demo)", () => {
   it("shows the approved hero and supporting message without fabricated metrics", () => {
     const markup = renderToStaticMarkup(<HomeExperience />);
 
-    expect(markup).toContain("Build with AI. Understand what you build.");
+    expect(markup).toContain("Build with AI.");
+    expect(markup).toContain("Understand what you build.");
     expect(markup).toContain(
       "VibeCheck helps developers understand, learn from, and prove their understanding of AI-assisted code using their own repositories."
     );

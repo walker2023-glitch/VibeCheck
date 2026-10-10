@@ -5,14 +5,15 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const NAV = [
+/** Lifecycle order: Plan → Build(understand) → Prove → Debug → Ship → Grow */
+export const PRIMARY_NAV = [
   { href: "/", label: "Home", exact: true },
-  { href: "/code-detective", label: "Code Detective" },
-  { href: "/knowledge-check", label: "Knowledge Check" },
-  { href: "/rubber-duck", label: "Rubber Duck", preview: true },
-  { href: "/plan", label: "Plan", preview: true },
-  { href: "/deploy", label: "Deploy", preview: true },
-  { href: "/my-skills", label: "My Skills", preview: true }
+  { href: "/plan", label: "Plan", preview: true, accent: "information" },
+  { href: "/code-detective", label: "Code Detective", accent: "primary" },
+  { href: "/knowledge-check", label: "Knowledge Check", accent: "learning" },
+  { href: "/rubber-duck", label: "Rubber Duck", preview: true, accent: "warning" },
+  { href: "/deploy", label: "Deploy", preview: true, accent: "success" },
+  { href: "/my-skills", label: "My Skills", preview: true, accent: "indigo" }
 ] as const;
 
 function isActive(pathname: string, href: string, exact?: boolean): boolean {
@@ -25,7 +26,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
+    <header className="border-b border-border/80 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between gap-4 px-5 md:px-10 lg:px-16">
         <Link
           href="/"
@@ -38,20 +39,28 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {NAV.map((item) => {
+        <nav className="hidden items-center gap-1 xl:gap-2 lg:flex" aria-label="Primary">
+          {PRIMARY_NAV.map((item, index) => {
             const active = isActive(pathname, item.href, "exact" in item && item.exact);
+            const showSeparator = index === 1 || index === 4;
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={`text-sm font-medium tracking-[0.02em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-                  active ? "text-primary" : "text-text-muted hover:text-text"
-                }`}
-              >
-                {item.label}
-              </Link>
+              <span key={item.href} className="flex items-center">
+                {showSeparator ? (
+                  <span
+                    className="mx-1 h-4 w-px bg-border/70"
+                    aria-hidden
+                  />
+                ) : null}
+                <Link
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-md px-2 py-1.5 text-sm font-medium tracking-[0.02em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                    active ? "text-primary" : "text-text-muted hover:text-text"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </span>
             );
           })}
         </nav>
@@ -75,7 +84,7 @@ export function SiteHeader() {
           aria-label="Mobile"
         >
           <ul className="flex flex-col gap-2">
-            {NAV.map((item) => {
+            {PRIMARY_NAV.map((item) => {
               const active = isActive(pathname, item.href, "exact" in item && item.exact);
               return (
                 <li key={item.href}>
