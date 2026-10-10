@@ -1,5 +1,6 @@
 import { explainCode } from "../ai/service";
 import { createAssessment, getCompletion, gradeAttempt, publicAssessment, publicAttempt } from "../assessment/knowledge-check";
+import { answerCompanion } from "../companion/service";
 import { checkPublicRepository, parseGithubUrl } from "../github/public-repository";
 import { ApiError, assertOrigin, guestCookie, guestSession, handle, idempotencyKey, ok, readJsonObject, requireGuest, stringField } from "./http";
 import { analyzeRun, consumeBudget, createRepository, createRun, getOwnedAssessment, getOwnedRepository, getOwnedRun, idempotent, idempotentAsync, newGuestSession, publicRepository, publicRun, saveAssessment } from "./store";
@@ -99,6 +100,50 @@ export function codeDetective(request: Request) {
     consumeBudget(session, "explain", 20);
     const repo = session.repositories.get(value.repositoryId)!;
     return ok(await explainCode(concept, evidence, { consent: repo.consent, audience: body.audience as "beginner" | "advanced" | undefined }));
+  });
+}
+
+export function companionMessage(request: Request) {
+  return handle(async () => {
+    assertOrigin(request);
+    const key = idempotencyKey(request);
+    const body = await readJsonObject(request, ["page", "question", "runId", "evidenceId"]);
+    const page = stringField(body.page, "page", 120);
+    const question = stringField(body.question, "question", 2_000);
+    const session = guestSession(request);
+
+    const respond = async () => {
+      if (body.runId !== undefined || body.evidenceId !== undefined) {
+        if (!session) throw unavailable();
+        const runId = stringField(body.runId, "runId");
+        const evidenceId = stringField(body.evidenceId, "evidenceId");
+        const value = getOwnedRun(session, runId);
+        if (!value || value.status !== "succeeded") throw unavailable();
+        const concept = value.concepts.find((item) => item.evidence.some((entry) => entry.id === evidenceId));
+        const evidence = concept?.evidence.find((entry) => entry.id === evidenceId);
+        if (!concept || !evidence) throw unavailable();
+        const repo = session.repositories.get(value.repositoryId);
+        if (!repo) throw unavailable();
+        consumeBudget(session, "companion", 30);
+        const reply = await answerCompanion({
+          page,
+          question,
+          consent: repo.consent,
+          concept,
+          evidence
+        });
+        return { summary: reply.summary, claims: reply.claims };
+      }
+      if (session) consumeBudget(session, "companion", 60);
+      const reply = await answerCompanion({ page, question, consent: false });
+      return { summary: reply.summary, claims: reply.claims };
+    };
+
+    if (session) {
+      const data = await idempotentAsync(session, "companion", key, body, respond);
+      return ok(data);
+    }
+    return ok(await respond());
   });
 }
 

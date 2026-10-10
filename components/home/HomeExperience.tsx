@@ -12,6 +12,7 @@ import { ConceptCard } from "../analysis/ConceptCard";
 import { StatusLine } from "../analysis/StatusLine";
 import { RepositoryInput } from "../ui/RepositoryInput";
 import { CodeDetectivePreview } from "./CodeDetectivePreview";
+import { PasteCodePreview } from "./PasteCodePreview";
 
 type UiPhase =
   | { kind: "idle" }
@@ -63,6 +64,7 @@ const accentStyles = {
 };
 
 export function HomeExperience() {
+  const [inputMode, setInputMode] = useState<"github" | "paste">("github");
   const [url, setUrl] = useState("");
   const [phase, setPhase] = useState<UiPhase>({ kind: "idle" });
   const [fieldError, setFieldError] = useState<string | null>(null);
@@ -197,19 +199,60 @@ export function HomeExperience() {
             AI-assisted code using their own repositories.
           </p>
 
-          <div ref={inputSectionRef} className="mt-10 flex w-full justify-center">
-            <RepositoryInput
-              value={url}
-              onChange={setUrl}
-              onSubmit={runAnalysis}
-              error={fieldError}
-              submitting={submitting}
-            />
+          <div
+            ref={inputSectionRef}
+            className="mt-10 flex w-full flex-col items-center gap-4"
+          >
+            <div
+              className="inline-flex rounded-lg border border-border bg-surface p-1"
+              role="tablist"
+              aria-label="Analysis source"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={inputMode === "github"}
+                onClick={() => setInputMode("github")}
+                className={`min-h-10 rounded-md px-4 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus ${
+                  inputMode === "github"
+                    ? "bg-primary/15 text-primary"
+                    : "text-text-muted hover:text-text"
+                }`}
+              >
+                GitHub Repository
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={inputMode === "paste"}
+                onClick={() => setInputMode("paste")}
+                className={`min-h-10 rounded-md px-4 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus ${
+                  inputMode === "paste"
+                    ? "bg-primary/15 text-primary"
+                    : "text-text-muted hover:text-text"
+                }`}
+              >
+                Paste Code
+              </button>
+            </div>
+
+            {inputMode === "github" ? (
+              <RepositoryInput
+                value={url}
+                onChange={setUrl}
+                onSubmit={runAnalysis}
+                error={fieldError}
+                submitting={submitting}
+              />
+            ) : (
+              <PasteCodePreview />
+            )}
           </div>
 
           <p className="mt-4 text-sm text-text-muted">
-            Public GitHub repositories only for this guest demo. Results are session-scoped, not
-            permanently saved.
+            {inputMode === "github"
+              ? "Public GitHub repositories only for this guest demo. Results are session-scoped, not permanently saved."
+              : "GitHub remains the default live workflow. Paste Code is an honest preview until non-GitHub sources have a first-class contract."}
           </p>
         </section>
 

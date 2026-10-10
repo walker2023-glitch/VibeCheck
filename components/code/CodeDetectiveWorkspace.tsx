@@ -35,6 +35,9 @@ export function CodeDetectiveWorkspace() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(viewState === "ready");
   const [startingCheck, setStartingCheck] = useState(false);
+  const [aiConsentGranted, setAiConsentGranted] = useState(false);
+  const [enablingAi, setEnablingAi] = useState(false);
+  const [explanationRefresh, setExplanationRefresh] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -85,7 +88,28 @@ export function CodeDetectiveWorkspace() {
     return () => {
       cancelled = true;
     };
-  }, [viewState, runId, evidence, session, concept]);
+  }, [viewState, runId, evidence, session, concept, explanationRefresh]);
+
+  async function enableAiExplanations() {
+    if (!session?.repositoryId || enablingAi) return;
+    setEnablingAi(true);
+    setError(null);
+    try {
+      await api.updateAiConsent(session.repositoryId, true);
+      setAiConsentGranted(true);
+      setExplanationRefresh((value) => value + 1);
+    } catch (err) {
+      setError(
+        userMessageForError(
+          err instanceof ApiError
+            ? err
+            : { code: "INVALID_REQUEST", message: "Could not enable AI explanations." }
+        )
+      );
+    } finally {
+      setEnablingAi(false);
+    }
+  }
 
   async function continueToCheck() {
     if (!runId || !session || viewState !== "ready") return;
@@ -179,6 +203,22 @@ export function CodeDetectiveWorkspace() {
           <h2 className="text-xs font-semibold uppercase tracking-[0.08em] text-learning">
             Understand it
           </h2>
+          {!aiConsentGranted ? (
+            <div className="rounded-[var(--radius-card)] border border-border bg-surface p-4">
+              <p className="text-sm font-semibold text-text">Enhance explanations with AI</p>
+              <p className="mt-2 text-sm text-text-muted">
+                Use managed AI to explain this selected code evidence. Repository evidence may be sent to the configured AI provider.
+              </p>
+              <Button
+                type="button"
+                onClick={enableAiExplanations}
+                disabled={enablingAi || !session?.repositoryId}
+                className="mt-3 w-full sm:w-auto"
+              >
+                {enablingAi ? "Enabling…" : "Enable AI explanations"}
+              </Button>
+            </div>
+          ) : null}
           {loading ? (
             <p className="rounded-[var(--radius-card)] border border-border bg-surface p-5 text-sm text-text-muted" role="status">
               Loading explanation…

@@ -16,6 +16,9 @@ export const PRIMARY_NAV = [
   { href: "/my-skills", label: "My Skills", preview: true, accent: "indigo" }
 ] as const;
 
+/** Outside the product lifecycle strip so judge order stays intact. */
+export const ABOUT_NAV = { href: "/about", label: "About" } as const;
+
 function isActive(pathname: string, href: string, exact?: boolean): boolean {
   if (exact) return pathname === href;
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -63,6 +66,16 @@ export function SiteHeader() {
               </span>
             );
           })}
+          <span className="mx-1 h-4 w-px bg-border/70" aria-hidden />
+          <Link
+            href={ABOUT_NAV.href}
+            aria-current={isActive(pathname, ABOUT_NAV.href) ? "page" : undefined}
+            className={`rounded-md px-2 py-1.5 text-sm font-medium tracking-[0.02em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+              isActive(pathname, ABOUT_NAV.href) ? "text-primary" : "text-text-muted hover:text-text"
+            }`}
+          >
+            {ABOUT_NAV.label}
+          </Link>
         </nav>
 
         <button
@@ -104,6 +117,20 @@ export function SiteHeader() {
                 </li>
               );
             })}
+            <li>
+              <Link
+                href={ABOUT_NAV.href}
+                aria-current={isActive(pathname, ABOUT_NAV.href) ? "page" : undefined}
+                onClick={() => setOpen(false)}
+                className={`block min-h-10 rounded-lg px-3 py-2 text-sm font-medium ${
+                  isActive(pathname, ABOUT_NAV.href)
+                    ? "bg-surface-raised text-primary"
+                    : "text-text-muted hover:text-text"
+                }`}
+              >
+                {ABOUT_NAV.label}
+              </Link>
+            </li>
           </ul>
         </nav>
       ) : null}

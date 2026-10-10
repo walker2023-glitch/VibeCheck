@@ -130,6 +130,47 @@ export const api = {
     });
   },
 
+  async updateAiConsent(
+    repositoryId: string,
+    granted: boolean
+  ): Promise<{ granted: boolean; consentVersion: string }> {
+    if (isFixtureMode()) {
+      void repositoryId;
+      return { granted, consentVersion: "demo.v1" };
+    }
+    return request<{ granted: boolean; consentVersion: string }>(
+      `/repositories/${repositoryId}/ai-consent`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ granted, consentVersion: "demo.v1" })
+      }
+    );
+  },
+
+  async askCompanion(
+    page: string,
+    question: string,
+    context?: { runId?: string; evidenceId?: string }
+  ): Promise<Explanation> {
+    if (isFixtureMode()) {
+      return {
+        summary:
+          "VibeCheck helps you understand AI-assisted code. This fixture reply is sample guidance, not a live provider response. (Implemented now.)",
+        claims: []
+      };
+    }
+    return request<Explanation>("/companion/messages", {
+      method: "POST",
+      body: JSON.stringify({
+        page,
+        question,
+        ...(context?.runId ? { runId: context.runId } : {}),
+        ...(context?.evidenceId ? { evidenceId: context.evidenceId } : {})
+      }),
+      idempotency: true
+    });
+  },
+
   async createAssessment(runId: string, conceptIds: string[]): Promise<Assessment> {
     if (isFixtureMode()) {
       return { ...demoAssessment, runId, items: demoAssessment.items.slice(0, 2) };

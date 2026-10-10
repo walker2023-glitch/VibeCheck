@@ -5,7 +5,7 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/"
 }));
 
-import { PRIMARY_NAV, SiteHeader } from "../../components/shell/SiteHeader";
+import { ABOUT_NAV, PRIMARY_NAV, SiteHeader } from "../../components/shell/SiteHeader";
 
 describe("Primary navigation lifecycle order", () => {
   it("orders links as Home → Plan → Code Detective → Knowledge Check → Rubber Duck → Deploy → My Skills", () => {
@@ -18,6 +18,7 @@ describe("Primary navigation lifecycle order", () => {
       "Deploy",
       "My Skills"
     ]);
+    expect(PRIMARY_NAV.map((item) => item.label)).not.toContain("About");
   });
 
   it("renders that order in the header markup", () => {
@@ -27,4 +28,13 @@ describe("Primary navigation lifecycle order", () => {
       expect(positions[i]).toBeGreaterThan(positions[i - 1]);
     }
   });
+
+  it("adds About after the lifecycle strip without inserting into PRIMARY_NAV", () => {
+    const markup = renderToStaticMarkup(<SiteHeader />);
+    const lastLifecycle = markup.indexOf(`>${PRIMARY_NAV[PRIMARY_NAV.length - 1].label}<`);
+    const aboutPos = markup.indexOf(`>${ABOUT_NAV.label}<`);
+    expect(aboutPos).toBeGreaterThan(lastLifecycle);
+    expect(markup).toContain(`href="${ABOUT_NAV.href}"`);
+  });
 });
+
