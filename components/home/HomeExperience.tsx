@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BookOpen, Compass, Lightbulb } from "lucide-react";
 import { getAnalysisPollPlan } from "@/lib/api/analysis-polling";
 import { api } from "@/lib/api/client";
@@ -67,6 +67,11 @@ export function HomeExperience() {
   const [phase, setPhase] = useState<UiPhase>({ kind: "idle" });
   const [fieldError, setFieldError] = useState<string | null>(null);
   const inputSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Avoid scroll restoration tucking the hero under sticky chrome on first paint.
+    window.scrollTo(0, 0);
+  }, []);
 
   const inviteAnalyze = useCallback(() => {
     const input = document.getElementById("repository-url") as HTMLInputElement | null;
@@ -178,9 +183,12 @@ export function HomeExperience() {
         <div className="vc-hero-grid absolute inset-x-0 top-0 h-[40rem]" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-16 px-5 py-12 md:px-10 lg:px-16 lg:py-20">
+      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-16 px-5 pb-12 pt-16 md:px-10 md:pt-20 lg:px-16 lg:pb-20 lg:pt-24">
         <section className="flex flex-col items-center text-center">
-          <h1 className="max-w-4xl text-4xl font-bold tracking-[-0.02em] text-text sm:text-5xl lg:text-[56px] lg:leading-[64px]">
+          <h1
+            data-testid="home-hero-headline"
+            className="max-w-4xl scroll-mt-28 text-4xl font-bold tracking-[-0.02em] text-text sm:text-5xl lg:text-[56px] lg:leading-[64px]"
+          >
             Build with AI.{" "}
             <span className="text-primary">Understand what you build.</span>
           </h1>
