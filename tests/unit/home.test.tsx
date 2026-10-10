@@ -12,6 +12,7 @@ describe("Homepage shell", () => {
     expect(markup).toContain("Understand what you build.");
     expect(markup).toContain("Analyze");
     expect(markup).toContain(CODE_DETECTIVE_PREVIEW_LABEL);
+    expect(markup).toContain("AI Coding Assistant");
     expect(markup).toContain("Understand code AI writes");
     expect(markup).toContain("Learn through your projects");
     expect(markup).toContain("Prove what you demonstrated");

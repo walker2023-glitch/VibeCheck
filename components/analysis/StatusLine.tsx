@@ -1,3 +1,4 @@
+import { getCompassAnalysisVisual } from "@/lib/analysis-compass";
 import { ANALYSIS_STAGE_LABELS } from "@/lib/api/errors";
 
 type StageKey = keyof typeof ANALYSIS_STAGE_LABELS;
@@ -5,47 +6,56 @@ type StageKey = keyof typeof ANALYSIS_STAGE_LABELS;
 type Props = {
   stage: StageKey;
   detail?: string | null;
+  /** Reserved for real backend progress; StatusLine intentionally does not render percentages. */
   progress?: number | null;
 };
 
-export function StatusLine({ stage, detail, progress }: Props) {
-  const spinning = ["validating", "reading", "inspecting", "finding"].includes(stage);
+export function StatusLine({ stage, detail }: Props) {
+  const visual = getCompassAnalysisVisual(stage);
+  const isError = visual.motion === "error";
+  const isComplete = visual.motion === "complete";
 
   return (
     <div
-      className="flex items-center gap-3 rounded-[var(--radius-card)] border border-border bg-surface px-4 py-3"
+      className={`flex items-center gap-4 rounded-[var(--radius-card)] border px-4 py-4 ${
+        isError
+          ? "border-danger/40 bg-surface"
+          : isComplete
+            ? "border-success/40 bg-surface shadow-[0_0_28px_rgba(65,214,173,0.12)]"
+            : "border-border bg-surface"
+      }`}
       role="status"
       aria-live="polite"
+      data-compass-motion={visual.motion}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/brand/compass-dark.svg"
-        alt=""
-        width={28}
-        height={28}
-        className={`h-7 w-7 ${spinning ? "motion-safe:animate-[spin_2s_linear_infinite]" : ""}`}
-      />
-      <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-text">{ANALYSIS_STAGE_LABELS[stage]}</p>
-        {detail ? <p className="text-sm text-text-muted">{detail}</p> : null}
-        {typeof progress === "number" ? (
-          <div className="mt-2">
-            <div
-              className="h-1.5 overflow-hidden rounded-full bg-surface-raised"
-              role="progressbar"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={progress}
-              aria-label="Analysis progress"
-            >
-              <div
-                className="h-full rounded-full bg-primary transition-[width] duration-200"
-                style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
-              />
-            </div>
-            <p className="mt-1 text-xs text-text-muted">{progress}% complete</p>
-          </div>
+      <div
+        className={`vc-analysis-compass relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${
+          isError
+            ? "border-danger/50 bg-danger/10"
+            : isComplete
+              ? "border-success/50 bg-success/10"
+              : "border-primary/40 bg-primary/10"
+        }`}
+        aria-hidden
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/brand/compass-dark.svg"
+          alt=""
+          width={28}
+          height={28}
+          className={`h-7 w-7 vc-analysis-compass-mark vc-analysis-compass-mark--${visual.motion}`}
+        />
+        {visual.motion === "connect" ? (
+          <span className="vc-analysis-compass-connect pointer-events-none absolute inset-0 rounded-full" />
         ) : null}
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className={`text-sm font-medium ${isError ? "text-danger" : "text-text"}`}>
+          {visual.label}
+        </p>
+        {visual.hint ? <p className="text-sm text-text-muted">{visual.hint}</p> : null}
+        {detail ? <p className={`text-sm ${isError ? "text-danger" : "text-text-muted"}`}>{detail}</p> : null}
       </div>
     </div>
   );

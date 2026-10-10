@@ -66,11 +66,11 @@ export function analysisUiStage(
 
 export const ANALYSIS_STAGE_LABELS = {
   idle: "Ready when you are",
-  validating: "Validating repository…",
-  reading: "Reading repository…",
-  inspecting: "Inspecting source…",
-  finding: "Finding concepts…",
-  success: "Analysis complete",
+  validating: "Validating repository",
+  reading: "Reading repository",
+  inspecting: "Inspecting source files",
+  finding: "Finding concepts",
+  success: "Ready to explore",
   failed: "Analysis failed",
   invalid: "Invalid repository",
   rateLimited: "GitHub rate limited",

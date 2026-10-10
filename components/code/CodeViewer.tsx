@@ -39,6 +39,7 @@ export function CodeViewer({ evidence, repositoryLabel }: Props) {
               const lineNumber = start + index;
               const highlighted =
                 lineNumber >= evidence.startLine && lineNumber <= evidence.endLine;
+              const isFirstHighlight = highlighted && lineNumber === evidence.startLine;
               return (
                 <tr
                   key={lineNumber}
@@ -58,6 +59,22 @@ export function CodeViewer({ evidence, repositoryLabel }: Props) {
                         className="absolute -left-1 top-0 bottom-0 w-1 rounded-r bg-primary"
                         aria-hidden
                       />
+                    ) : null}
+                    {isFirstHighlight ? (
+                      <span
+                        className="absolute -left-7 top-1/2 hidden h-4 w-4 -translate-y-1/2 lg:inline-flex"
+                        aria-hidden
+                        title="Selected evidence"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src="/brand/compass-dark.svg"
+                          alt=""
+                          width={16}
+                          height={16}
+                          className="h-4 w-4 drop-shadow-[0_0_6px_rgba(22,184,176,0.45)]"
+                        />
+                      </span>
                     ) : null}
                     {line || " "}
                   </td>

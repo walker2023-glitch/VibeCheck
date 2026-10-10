@@ -167,6 +167,62 @@ body {
   }
 }
 
+.vc-analysis-compass-mark--search {
+  animation: vc-compass-search 2s linear infinite;
+}
+
+.vc-analysis-compass-mark--pulse {
+  animation: vc-compass-pulse 1.6s ease-in-out infinite;
+}
+
+.vc-analysis-compass-mark--connect {
+  animation: vc-compass-pulse 1.4s ease-in-out infinite;
+}
+
+.vc-analysis-compass-mark--complete {
+  filter: drop-shadow(0 0 10px rgba(65, 214, 173, 0.55));
+}
+
+.vc-analysis-compass-mark--error {
+  filter: drop-shadow(0 0 8px rgba(244, 131, 125, 0.45));
+}
+
+.vc-analysis-compass-connect {
+  box-shadow: 0 0 0 1px rgba(22, 184, 176, 0.25), 0 0 18px rgba(65, 214, 173, 0.28);
+  animation: vc-compass-connect-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes vc-compass-search {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vc-compass-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes vc-compass-connect-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -179,7 +235,11 @@ body {
 
   .vc-code-preview-panel,
   .vc-code-preview-scanner,
-  .vc-code-preview-progress-bar {
+  .vc-code-preview-progress-bar,
+  .vc-analysis-compass-mark--search,
+  .vc-analysis-compass-mark--pulse,
+  .vc-analysis-compass-mark--connect,
+  .vc-analysis-compass-connect {
     animation: none !important;
     opacity: 1;
     transform: none;
