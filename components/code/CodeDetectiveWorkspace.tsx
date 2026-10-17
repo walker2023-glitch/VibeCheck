@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, FileCode2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "@/lib/api/client";
 import { ApiError, userMessageForError } from "@/lib/api/errors";
 import type { Concept, Explanation } from "@/lib/api/types";
