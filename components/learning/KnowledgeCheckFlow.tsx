@@ -96,7 +96,6 @@ export function KnowledgeCheckFlow() {
   }
 
   const items = assessment.items;
-  const items = assessment.items;
   const current = items[index];
 
   async function handleSubmit(answer: string, aiAssistance: AiAssistance): Promise<Attempt> {
