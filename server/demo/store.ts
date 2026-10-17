@@ -21,6 +21,29 @@ export type GuestSession = {
 const globalState = globalThis as typeof globalThis & { __vibecheckDemoSessions?: Map<string, GuestSession> };
 const sessions = globalState.__vibecheckDemoSessions ??= new Map<string, GuestSession>();
 
+const PUBLIC_SOURCE_CACHE_TTL_MS = 10 * 60 * 1_000;
+type PublicSourceSnapshot = Awaited<ReturnType<typeof retrievePublicSource>>;
+type CachedSource = { expiresAt: number; value: Promise<PublicSourceSnapshot> };
+const sourceState = globalThis as typeof globalThis & {
+  __vibecheckPublicSourceCache?: Map<string, CachedSource>;
+};
+const sourceCache = sourceState.__vibecheckPublicSourceCache ??= new Map<string, CachedSource>();
+
+async function retrieveCachedSource(githubUrl: string): Promise<PublicSourceSnapshot> {
+  const now = Date.now();
+  const cached = sourceCache.get(githubUrl);
+  if (cached && cached.expiresAt > now) return cached.value;
+
+  const value = retrievePublicSource(githubUrl);
+  sourceCache.set(githubUrl, { expiresAt: now + PUBLIC_SOURCE_CACHE_TTL_MS, value });
+  try {
+    return await value;
+  } catch (error) {
+    sourceCache.delete(githubUrl);
+    throw error;
+  }
+}
+
 export function newGuestSession(): GuestSession {
   for (const [id, existing] of sessions) if (existing.expiresAt <= Date.now()) sessions.delete(id);
   if (sessions.size >= 500) throw new Error("RATE_LIMITED");
@@ -122,7 +145,7 @@ export async function analyzeRun(session: GuestSession, run: RunRecord): Promise
   if (!repository) return;
   run.status = "running"; run.stage = "fetching"; run.progress = 10;
   try {
-    const snapshot = await retrievePublicSource(repository.githubUrl);
+    const snapshot = await retrieveCachedSource(repository.githubUrl);
     if (!getGuestSession(session.id)) return;
     run.snapshotSha = snapshot.commitSha;
     run.skippedFiles = snapshot.skippedFiles;
