@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "@/lib/api/client";
 import { ApiError, userMessageForError } from "@/lib/api/errors";
 import type { AiAssistance, Assessment, Attempt } from "@/lib/api/types";
-import { loadGuestSession } from "@/lib/session-state";
+import { loadGuestSession, saveGuestSession } from "@/lib/session-state";
 import { QuestionCard } from "./QuestionCard";
 
 const ASSESSMENT_KEY = "vibecheck_assessment_v1";
@@ -46,10 +46,12 @@ export function KnowledgeCheckFlow() {
   const router = useRouter();
   const assessmentId = params.get("assessmentId");
   const stored = useMemo(() => readStoredAssessment(assessmentId), [assessmentId]);
-  const [assessment, setAssessment] = useState<Assessment | null>(stored);
+  const [assessment, setAssessment] = useState<Assessment | null>(stored.assessment);
   const [index, setIndex] = useState(0);
   const [error, setError] = useState<string | null>(
-    assessmentId ? null : "No knowledge check is ready. Inspect a concept from your analysis first."
+    assessmentId
+      ? null
+      : "No knowledge check is ready. Inspect a concept from your analysis first."
   );
   const session = useMemo(() => loadGuestSession(), []);
 
@@ -95,12 +97,13 @@ export function KnowledgeCheckFlow() {
     );
   }
 
-  const items = assessment.items;
+  const activeAssessment = assessment;
+  const items = activeAssessment.items;
   const current = items[index];
 
   async function handleSubmit(answer: string, aiAssistance: AiAssistance): Promise<Attempt> {
     try {
-      return await api.submitAttempt(assessment.id, current.id, answer, aiAssistance);
+      return await api.submitAttempt(activeAssessment.id, current.id, answer, aiAssistance);
     } catch (err) {
       throw new Error(
         userMessageForError(
@@ -119,7 +122,7 @@ export function KnowledgeCheckFlow() {
     }
     const guest = loadGuestSession();
     router.push(
-      `/session-result?assessmentId=${encodeURIComponent(assessment.id)}${
+      `/session-result?assessmentId=${encodeURIComponent(activeAssessment.id)}${
         guest?.usingFixtures ? "&fixtures=1" : ""
       }`
     );
