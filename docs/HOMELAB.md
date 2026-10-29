@@ -56,3 +56,18 @@ Do not delete containers, images, or volumes as part of normal updates. Guest se
 - Keep public-repository-only import enabled for this phase.
 - Retain repository/file/commit limits and source redaction.
 - Treat README files, comments, commits, and source files as untrusted input.
+
+
+## Acceptance checklist
+
+Run this from a phone or another device on the same LAN/Tailscale network after an update:
+
+1. Open the VibeCheck URL and analyze a public GitHub repository.
+2. Confirm the concepts include file paths, line ranges, and visible code evidence.
+3. Open a concept in Code Detective; confirm its code snippet and explanation match the cited evidence.
+4. Start the Knowledge Check, answer both questions, and confirm the session result distinguishes demonstrated from unverified knowledge.
+5. Refresh the Code Detective and Knowledge Check pages while the guest session is active; both should restore.
+6. Reopen the same public repository and confirm the app still completes analysis. Snapshot caching is in-memory and short-lived; it is an optimization, not durable storage.
+7. Try an invalid GitHub URL and a nonexistent public repository; confirm each produces a clear error and the app remains usable.
+
+Guest sessions and caches are temporary. Restarting the container clears in-memory data. Do not treat the checklist as a security review or expose port 3000 publicly.

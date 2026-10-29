@@ -22,6 +22,7 @@ const globalState = globalThis as typeof globalThis & { __vibecheckDemoSessions?
 const sessions = globalState.__vibecheckDemoSessions ??= new Map<string, GuestSession>();
 
 const PUBLIC_SOURCE_CACHE_TTL_MS = 10 * 60 * 1_000;
+const PUBLIC_SOURCE_CACHE_MAX_ENTRIES = 50;
 type PublicSourceSnapshot = Awaited<ReturnType<typeof retrievePublicSource>>;
 type CachedSource = { expiresAt: number; value: Promise<PublicSourceSnapshot> };
 const sourceState = globalThis as typeof globalThis & {
@@ -29,17 +30,37 @@ const sourceState = globalThis as typeof globalThis & {
 };
 const sourceCache = sourceState.__vibecheckPublicSourceCache ??= new Map<string, CachedSource>();
 
+function prepareSourceCache(now: number): void {
+  for (const [key, entry] of sourceCache) {
+    if (entry.expiresAt <= now) sourceCache.delete(key);
+  }
+  while (sourceCache.size >= PUBLIC_SOURCE_CACHE_MAX_ENTRIES) {
+    const oldestKey = sourceCache.keys().next().value;
+    if (oldestKey === undefined) break;
+    sourceCache.delete(oldestKey);
+  }
+}
+
 async function retrieveCachedSource(githubUrl: string): Promise<PublicSourceSnapshot> {
   const now = Date.now();
   const cached = sourceCache.get(githubUrl);
-  if (cached && cached.expiresAt > now) return cached.value;
+  if (cached && cached.expiresAt > now) {
+    // Refresh insertion order so eviction approximates least-recently-used.
+    sourceCache.delete(githubUrl);
+    sourceCache.set(githubUrl, cached);
+    return cached.value;
+  }
+  if (cached) sourceCache.delete(githubUrl);
 
+  prepareSourceCache(now);
   const value = retrievePublicSource(githubUrl);
-  sourceCache.set(githubUrl, { expiresAt: now + PUBLIC_SOURCE_CACHE_TTL_MS, value });
+  const entry = { expiresAt: now + PUBLIC_SOURCE_CACHE_TTL_MS, value };
+  sourceCache.set(githubUrl, entry);
   try {
     return await value;
   } catch (error) {
-    sourceCache.delete(githubUrl);
+    // A newer request may have replaced this entry while the fetch was pending.
+    if (sourceCache.get(githubUrl) === entry) sourceCache.delete(githubUrl);
     throw error;
   }
 }
